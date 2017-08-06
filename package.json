@@ -1,0 +1,12 @@
+{
+	"devDependencies": {
+		"gulp": "*",
+		"gulp-autoprefixer": "^4.0.0",
+		"gulp-livereload": "^3.8.1",
+		"gulp-plumber": "*",
+		"gulp-stylus": "*",
+		"gulp-util": "*",
+		"jeet": "6.1.2",
+		"rupture": "*"
+	}
+}

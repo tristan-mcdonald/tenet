@@ -1,0 +1,41 @@
+// text underline that breaks for descenders
+underline-crop-color(color)
+	text-shadow .03em 0 color, -.03em 0 color, 0 .03em color, 0 -.03em color, .06em 0 color, -.06em 0 color, .09em 0 color, -.09em 0 color, .12em 0 color, -.12em 0 color, .15em 0 color, -.15em 0 color
+
+link-underlines(backgroundColor, color)
+	text-decoration none
+	underline-crop-color backgroundColor
+	background-image linear-gradient(backgroundColor, backgroundColor), linear-gradient(backgroundColor, backgroundColor), linear-gradient(color, color)
+	background-size .05em 1px, .05em 1px, 1px 1px
+	background-repeat no-repeat, no-repeat, repeat-x
+	background-position 0% 92%, 100% 92%, 0% 92%
+
+// link underlines that move on hover/focus
+line()
+	position relative
+	&:after
+		content ''
+		position absolute
+		bottom 0
+		left 0
+		width 0%
+		border-bottom 1px solid arguments
+		transition 0.2s
+	&:hover
+		&:after
+			width 100%
+
+// styling input placeholders
+placeholder()
+	&::-webkit-input-placeholder
+		{block}
+	&:-moz-placeholder
+		{block}
+	&::-moz-placeholder
+		{block}
+	&:-ms-input-placeholder
+		{block}
+
+// transitions
+trans()
+	transition all arguments ease-in-out

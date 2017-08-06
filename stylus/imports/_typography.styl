@@ -1,0 +1,138 @@
+// typography
+body
+button p
+input
+input[type="submit"]
+ul
+ol
+li
+button
+address
+textarea
+	font-family $copy
+	font-size 1.4rem
+	+above(2)
+		font-size 1.6rem
+	line-height 1.6
+	color $light
+
+address
+	margin 0
+	text-decoration none
+	font-style normal
+
+input
+	line-height 1
+
+b
+strong
+	font-weight 400
+	font-family $head
+
+h1
+h2
+h3
+	margin 0
+	line-height 1.45
+	font-weight normal
+	font-family $head
+	color $dark
+
+h1
+	font-size 2rem
+	+above(2)
+		font-size 2.2rem
+	+above(3)
+		font-size 2.4rem
+	+above(4)
+		font-size 3.4rem
+
+h2
+	font-size 2.2rem
+	+above(2)
+		font-size 2.6rem
+	+above(3)
+		font-size 3rem
+	+above(4)
+		font-size 3.2rem
+
+h3
+	font-size 1.6rem
+	+above(2)
+		font-size 1.8rem
+	+above(3)
+		font-size 2rem
+
+main p
+	font-family $copy
+	color $light
+	line-height 1.6
+	font-size 1.4rem
+	+above(2)
+		font-size 1.6rem
+
+	> a
+	> a:visited
+		cursor pointer
+		position relative
+		text-decoration none
+		color $light
+		box-shadow inset 0 -1px 0 darken($off,40%)
+
+		&:hover
+			color $light
+			box-shadow inset 0 -6px 0 darken($off,5%)
+
+main.site-main ul
+main.site-main ol
+
+	> * + *
+		margin-top 5px
+
+	a
+	a:visited
+		cursor pointer
+		position relative
+		trans(.07s)
+		text-decoration none
+		color $light
+
+		&:hover
+			color $light
+
+.woocommerce-message
+	display flex
+	flex-direction row
+	align-items center
+	justify-content center
+	margin 0 0 45px
+
+	a
+	a:visited
+		cursor pointer
+		position relative
+		trans(.07s)
+		text-decoration none
+		color $light
+
+		&:hover
+			color $light
+
+a
+a:visited
+	trans(.14s)
+	cursor pointer
+	text-decoration none
+
+ul
+	list-style-type circle
+	margin 0 0 0 20px
+
+	li
+		margin 0
+
+button
+input[type="button"]
+input[type="reset"]
+input[type="submit"]
+	padding 10px 20px
