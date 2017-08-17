@@ -1,5 +1,5 @@
-jQuery( document ).ready(function() {
+const $ = window.jQuery;
 
+$(document).ready(() => {
 
-
-});
+}); 
