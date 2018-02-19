@@ -1,0 +1,38 @@
+// mixin for text underline that breaks for descenders
+link-underlines(shadowColor = 'white', underlineColor, underlineThickness, underlinePosition)
+    text-decoration none
+    text-shadow .03em 0 shadowColor, -.03em 0 shadowColor, 0 .03em shadowColor, 0 -.03em shadowColor, .06em 0 shadowColor, -.06em 0 shadowColor, .09em 0 shadowColor, -.09em 0 shadowColor, .12em 0 shadowColor, -.12em 0 shadowColor, .15em 0 shadowColor, -.15em 0 shadowColor
+    background-image linear-gradient(shadowColor, shadowColor), linear-gradient(shadowColor, shadowColor), linear-gradient(underlineColor, underlineColor)
+    background-size 0 underlineThickness, 0 underlineThickness, 1px underlineThickness
+    background-repeat no-repeat, no-repeat, repeat-x
+    background-position 0% underlinePosition, 100% underlinePosition, 0% underlinePosition
+
+// mixin for link underlines that move on hover/focus
+line(underlineColour, bottomPosition, borderWidth)
+    position relative
+    z-index 2
+    &::after
+        content ''
+        z-index -1
+        position absolute
+        bottom bottomPosition
+        left 0
+        width 0%
+        border-bottom borderWidth solid underlineColour
+        transition 0.2s
+    &:hover
+    &:active
+    &:focus
+        &::after
+            width 100%
+
+// mixin for styling input placeholders
+placeholder()
+    &::-webkit-input-placeholder
+        {block}
+    &:-moz-placeholder
+        {block}
+    &::-moz-placeholder
+        {block}
+    &:-ms-input-placeholder
+        {block}

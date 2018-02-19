@@ -1,12 +1,18 @@
 {
-	"devDependencies": {
-		"gulp": "*",
-		"gulp-autoprefixer": "^4.0.0",
-		"gulp-livereload": "^3.8.1",
-		"gulp-plumber": "*",
-		"gulp-stylus": "*",
-		"gulp-util": "*",
-		"jeet": "6.1.2",
-		"rupture": "*"
-	}
+    "devDependencies": {
+        "gulp": "*",
+        "gulp-autoprefixer": "^4.0.0",
+        "gulp-clean-css": "^3.9.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-cssimport": "*",
+        "gulp-livereload": "^3.8.1",
+        "gulp-plumber": "*",
+        "gulp-rename": "^1.2.2",
+        "gulp-stylus": "*",
+        "gulp-uglify": "^3.0.0",
+        "gulp-util": "*",
+        "jeet": "6.1.2",
+        "rupture": "*"
+    },
+    "dependencies": {}
 }

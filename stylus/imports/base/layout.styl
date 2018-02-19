@@ -1,0 +1,47 @@
+*
+*::before
+*::after
+    box-sizing border-box
+    word-wrap break-word
+
+html
+    font-size 51.5%
+    +above(2)
+        font-size 54.5%
+    +above(3)
+        font-size 56.5%
+    +above(4)
+        font-size 58.5%
+    +above(5)
+        font-size 60.5%
+    +above(6)
+        font-size 62.5%
+
+body
+    display flex
+    flex-direction column
+    align-items center
+    justify-content flex-start
+    min-height 100vh
+    width 100%
+
+.main_content
+    width 100%
+
+.page_content
+    width 92%
+    max-width 1400px
+    margin 0 auto
+
+    > *:first-child
+        margin-top $vs--base--double
+
+    > *:last-child
+        margin-bottom $vs--base--double
+
+img
+    display block
+    height auto
+    width auto
+    max-width 100%
+    vertical-align bottom
