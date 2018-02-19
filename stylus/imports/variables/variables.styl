@@ -12,18 +12,19 @@ $cl--light       = #3b3f49
 $cl--pale        = #f3f8f9
 
 // font family variables
-$ff--light   = 'Quicksand', sans-serif
-$ff--body    = 'Quicksand', sans-serif
-$ff--italic  = 'Quicksand', sans-serif
-$ff--heading = 'Quicksand', sans-serif
+$ff--light   = 'neuzeit--book', sans-serif
+$ff--body    = 'neuzeit--book', sans-serif
+$ff--italic  = 'neuzeit--book', sans-serif
+$ff--heading = 'neuzeit--book', sans-serif
 
-// font-size variables calculated here:
-// http://www.modularscale.com/?18&px&1.5
-$fz--h1   = 6.075rem
-$fz--h2   = 4.05rem
-$fz--h3   = 2.7rem
-$fz--base = 1.8rem
-$fz--sub  = 1.2rem
+// font-size variables
+$ratio        = 1.25
+$fz--base     = 1.8rem
+$fz--h1       = ($fz--base * ($ratio * 3))
+$fz--h2       = ($fz--base * ($ratio * 2))
+$fz--h3       = ($fz--base * $ratio)
+$fz--sub      = ($fz--base / $ratio)
+$fz--supersub = ($fz--base / ($ratio * 2))
 
 // line height variables
 $lh--heading = 1.5
