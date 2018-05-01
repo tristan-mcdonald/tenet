@@ -3,13 +3,46 @@ html
     -webkit-font-smoothing antialiased
     -moz-osx-font-smoothing grayscale
 
+:root
+    // see typographic-mixins.styl for an explanation of this
+    type-interpolation('font-size', 400px, 1540px, 13px, 20px)
+    // set CSS variables based on typographic scales
+    // calculated here: http://www.modularscale.com
+    // ratios used are in variables.styl
+    // %s is the syntax for Stylus variables inside calc:
+    // http://stylus-lang.com/docs/operators.html#sprintf
+    --fz--supersub 'calc((%s / %s) / %s)' % ($fz--base $ratio--sml $ratio--sml)
+    --fz--sub 'calc(%s / %s)' % ($fz--base $ratio--sml)
+    --fz--h4 'calc(%s * %s)' % ($fz--base $ratio--sml)
+    --fz--h3 'calc((%s * %s) * %s)' % ($fz--base $ratio--sml $ratio--sml)
+    --fz--h2 'calc(((%s * %s) * %s) * %s)' % ($fz--base $ratio--sml $ratio--sml $ratio--sml)
+    --fz--h1 'calc((((%s * %s) * %s) * %s) * %s)' % ($fz--base $ratio--sml $ratio--sml $ratio--sml $ratio--sml)
+    +above(3)
+        --fz--supersub 'calc((%s / %s) / %s)' % ($fz--base $ratio--med $ratio--med)
+        --fz--sub 'calc(%s / %s)' % ($fz--base $ratio--med)
+        --fz--h4 'calc(%s * %s)' % ($fz--base $ratio--med)
+        --fz--h3 'calc((%s * %s) * %s)' % ($fz--base $ratio--med $ratio--med)
+        --fz--h2 'calc(((%s * %s) * %s) * %s)' % ($fz--base $ratio--med $ratio--med $ratio--med)
+        --fz--h1 'calc((((%s * %s) * %s) * %s) * %s)' % ($fz--base $ratio--med $ratio--med $ratio--med $ratio--med)
+    +above(6)
+        --fz--supersub 'calc((%s / %s) / %s)' % ($fz--base $ratio--lrg $ratio--lrg)
+        --fz--sub 'calc(%s / %s)' % ($fz--base $ratio--lrg)
+        --fz--h4 'calc(%s * %s)' % ($fz--base $ratio--lrg)
+        --fz--h3 'calc((%s * %s) * %s)' % ($fz--base $ratio--lrg $ratio--lrg)
+        --fz--h2 'calc(((%s * %s) * %s) * %s)' % ($fz--base $ratio--lrg $ratio--lrg $ratio--lrg)
+        --fz--h1 'calc((((%s * %s) * %s) * %s) * %s)' % ($fz--base $ratio--lrg $ratio--lrg $ratio--lrg $ratio--lrg)
+    // spacing variables
+    --sp--h1 'calc(var(--fz--h1) * %s)' % ($lh--heading)
+    --sp--h2 'calc(var(--fz--h2) * %s)' % ($lh--heading)
+    --sp--h3 'calc(var(--fz--h3) * %s)' % ($lh--heading)
+    --sp--h4 'calc(var(--fz--h4) * %s)' % ($lh--heading)
+
 body
 select
 input
 textarea
     font-family $ff--body
-    font-size 1.8rem
-    font-weight 400
+    font-weight normal
     line-height $lh--body
     color $cl--light
 
@@ -19,54 +52,53 @@ h3
 h4
     display block
     line-height $lh--heading
-    font-weight 400
+    font-weight normal
     font-family $ff--heading
     color $cl--dark
 
 h1
-    max-width 24em
-    font-size $fz--h1
-
-    * + &
-        margin-top $sp--h1
+    max-width 32ch
+    font-size var(--fz--h1)
 
 h2
-    max-width 26em
-    font-size $fz--h2
+    max-width 46ch
+    font-size var(--fz--h2)
 
     * + &
-        margin-top $sp--h2
+        margin-top var(--sp--h2)
 
 h3
-    max-width 32em
-    font-size $fz--h3
+    max-width 50ch
+    font-size var(--fz--h3)
 
     * + &
-        margin-top $sp--h3
+        margin-top var(--sp--h3)
 
 h4
-    max-width 38em
-    font-size $fz--base
+    max-width 52ch
+    font-size var(--fz--h4)
 
     * + &
-        margin-top $sp--h3
+        margin-top var(--sp--h4)
 
 p
-    max-width 38em
+    max-width 60ch
     font-family $ff--body
-    color $cl--light
+    font-size $fz--base
     line-height $lh--body
     letter-spacing .2px
-    font-size $fz--base
-
-    * + &
-        margin-top $sp--base
+    color $cl--light
 
     h1 + &
     h2 + &
     h3 + &
+        margin-top $sp--base--two-thirds
+
     h4 + &
         margin-top $sp--base--half
+
+    * + &
+        margin-top $sp--base
 
     > a
     > a:visited
@@ -80,7 +112,7 @@ p
         &:hover
         &:focus
             color $cl--primary
-            box-shadow 0
+            box-shadow inset 0 -.3em 0 transparent
 
 a
 a:visited
@@ -90,9 +122,14 @@ a:visited
 
 b
 strong
-    font-weight 500
+    font-weight normal
     font-family $ff--heading
 
 i
 em
-    font-style italic
+    font-style normal
+    font-family $ff--italic
+
+::selection
+    background-color $cl--primary--low
+    color white
