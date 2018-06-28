@@ -12,19 +12,40 @@ body
     min-height 100vh
     width 100%
 
+// keyboard focus styles
+html
+    &[data-focus-source="key"] :focus
+        z-index 90
+        outline-offset 6px
+        outline 2px solid $cl--focus
+
+    :focus
+        outline 0
+
 .main_content
+    flex 1
+    display flex
+    flex-direction column
     width 100%
 
 .page_content
-    width 92%
-    max-width 1400px
-    margin 0 auto
+    flex 1
+    width 100%
+    background-color white
 
-    > *:first-child
-        margin-top $sp--base--double
+    &__inner
+        display flex
+        flex-direction column
+        align-items flex-start
+        width 92%
+        max-width $container
+        margin 0 auto
 
-    > *:last-child
-        margin-bottom $sp--base--double
+        > *:first-child
+            margin-top $sp--base--plus-half
+
+        > *:last-child
+            margin-bottom $sp--base--plus-half
 
 img
     display block
@@ -32,3 +53,7 @@ img
     width auto
     max-width 100%
     vertical-align bottom
+    mt()
+
+button
+    button-reset()

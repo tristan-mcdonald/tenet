@@ -7,7 +7,7 @@
     different typographic scales. We set these as extends, for easier
     overriding of an element's font-size in the rest of the codebase.
 */
-type-interpolation($properties, $min-screen, $max-screen, $min-value, $max-value)
+interpolation($properties, $min-screen, $max-screen, $min-value, $max-value)
     &
 
         for $property in $properties
@@ -34,34 +34,6 @@ calc-interpolation($min-screen, $min-value, $max-screen, $max-value)
 
     return s('calc('+ unit($a*100, 'vw') + $sign + ($b) + ')')
 
-// mixin for text underline that breaks for descenders
-link-underlines(shadowColor = 'white', underlineColor, underlineThickness, underlinePosition)
-    text-decoration none
-    text-shadow .03em 0 shadowColor, -.03em 0 shadowColor, 0 .03em shadowColor, 0 -.03em shadowColor, .06em 0 shadowColor, -.06em 0 shadowColor, .09em 0 shadowColor, -.09em 0 shadowColor, .12em 0 shadowColor, -.12em 0 shadowColor, .15em 0 shadowColor, -.15em 0 shadowColor
-    background-image linear-gradient(shadowColor, shadowColor), linear-gradient(shadowColor, shadowColor), linear-gradient(underlineColor, underlineColor)
-    background-size 0 underlineThickness, 0 underlineThickness, 1px underlineThickness
-    background-repeat no-repeat, no-repeat, repeat-x
-    background-position 0% underlinePosition, 100% underlinePosition, 0% underlinePosition
-
-// mixin for link underlines that move on hover/focus
-line(underlineColour, bottomPosition, borderWidth)
-    position relative
-    z-index 2
-    &::after
-        content ''
-        z-index -1
-        position absolute
-        bottom bottomPosition
-        left 0
-        width 0%
-        border-bottom borderWidth solid underlineColour
-        transition 0.2s
-    &:hover
-    &:active
-    &:focus
-        &::after
-            width 100%
-
 // mixin for styling input placeholders
 placeholder()
     &::-webkit-input-placeholder
@@ -72,3 +44,30 @@ placeholder()
         {block}
     &:-ms-input-placeholder
         {block}
+
+// mixin for resetting button elements
+button-reset()
+    cursor pointer
+    border none
+    background-color transparent
+    padding 0
+    font inherit
+    color inherit
+
+// mixin for simple link underline which appears on hover/focus
+simple-link($background = white, $color = $cl--primary)
+    overflow hidden
+    position relative
+    text-shadow .03em 0 $background, -.03em 0 $background, 0 .03em $background, 0 -.03em $background, .06em 0 $background, -.06em 0 $background, .09em 0 $background, -.09em 0 $background, .12em 0 $background, -.12em 0 $background, .15em 0 $background, -.15em 0 $background
+    background-image linear-gradient($background, $background), linear-gradient($background, $background), linear-gradient($color, $color)
+    background-position 0% 110%, 100% 110%, 0% 110%
+    background-repeat no-repeat, no-repeat, repeat-x
+    background-size .05em 1px, .05em 1px, 1px 1px
+    color $color
+
+    &:active
+    &:focus
+    &:hover
+        background-image linear-gradient($background, $background), linear-gradient($background, $background), linear-gradient($color, $color)
+        background-position 0% 92%, 100% 92%, 0% 92%
+        color @color

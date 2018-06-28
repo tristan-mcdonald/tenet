@@ -5,7 +5,7 @@ html
 
 :root
     // see typographic-mixins.styl for an explanation of this
-    type-interpolation('font-size', 400px, 1540px, 13px, 20px)
+    interpolation('font-size', 480px, 1680px, 12px, 17px)
     // set CSS variables based on typographic scales
     // calculated here: http://www.modularscale.com
     // ratios used are in variables.styl
@@ -42,9 +42,17 @@ select
 input
 textarea
     font-family $ff--body
-    font-weight normal
+    font-weight $fw--normal
     line-height $lh--body
     color $cl--light
+
+h1
+h2
+    font-weight $fw--light
+
+h3
+h4
+    font-weight $fw--normal
 
 h1
 h2
@@ -52,47 +60,89 @@ h3
 h4
     display block
     line-height $lh--heading
-    font-weight normal
     font-family $ff--heading
     color $cl--dark
 
+    a
+    a:visited
+        color $cl--primary
+
+        &:active
+        &:hover
+        &:focus
+            color $cl--primary--low
+
 h1
-    max-width 32ch
-    font-size var(--fz--h1)
+    max-width 27ch
+    h1()
 
 h2
-    max-width 46ch
-    font-size var(--fz--h2)
+    max-width 40ch
+    h2()
 
     * + &
+        margin-top (((($fz--base * $ratio--sml) * $ratio--sml) * $ratio--sml) * $lh--heading)
         margin-top var(--sp--h2)
+        +above(3)
+            margin-top (((($fz--base * $ratio--med) * $ratio--med) * $ratio--med) * $lh--heading)
+            margin-top var(--sp--h2)
+        +above(6)
+            margin-top (((($fz--base * $ratio--lrg) * $ratio--lrg) * $ratio--lrg) * $lh--heading)
+            margin-top var(--sp--h2)
 
 h3
-    max-width 50ch
+    max-width 45ch
     font-size var(--fz--h3)
 
     * + &
+        margin-top ((($fz--base * $ratio--sml) * $ratio--sml) * $lh--heading)
         margin-top var(--sp--h3)
+        +above(3)
+            margin-top ((($fz--base * $ratio--med) * $ratio--med) * $lh--heading)
+            margin-top var(--sp--h3)
+        +above(6)
+            margin-top ((($fz--base * $ratio--lrg) * $ratio--lrg) * $lh--heading)
+            margin-top var(--sp--h3)
 
 h4
-    max-width 52ch
+    max-width 55ch
     font-size var(--fz--h4)
 
     * + &
+        margin-top (($fz--base * $ratio--sml) * $lh--heading)
         margin-top var(--sp--h4)
+        +above(3)
+            margin-top (($fz--base * $ratio--med) * $lh--heading)
+            margin-top var(--sp--h4)
+        +above(6)
+            margin-top (($fz--base * $ratio--lrg) * $lh--heading)
+            margin-top var(--sp--h4)
 
 p
-    max-width 60ch
     font-family $ff--body
     font-size $fz--base
     line-height $lh--body
     letter-spacing .2px
     color $cl--light
+    width auto
+    max-width 100%
+
+    &.streamfield_paragraph
+        width 70ch
+
+        > a
+        > a:visited
+            color $cl--primary
+
+            &:active
+            &:hover
+            &:focus
+                color $cl--primary--low
 
     h1 + &
     h2 + &
     h3 + &
-        margin-top $sp--base--two-thirds
+        margin-top $sp--base--third
 
     h4 + &
         margin-top $sp--base--half
@@ -100,36 +150,42 @@ p
     * + &
         margin-top $sp--base
 
-    > a
-    > a:visited
-        cursor pointer
-        position relative
-        text-decoration none
-        color $cl--light
-        box-shadow inset 0 -1px 0 $cl--primary
-
-        &:active
-        &:hover
-        &:focus
-            color $cl--primary
-            box-shadow inset 0 -.3em 0 transparent
-
 a
 a:visited
-    trans(.14s)
+    trans()
+    position relative
     cursor pointer
     text-decoration none
 
 b
 strong
-    font-weight normal
-    font-family $ff--heading
+    font-weight $fw--semibold
+    font-family $ff--hard
 
 i
 em
-    font-style normal
+    font-style italic
     font-family $ff--italic
 
 ::selection
     background-color $cl--primary--low
     color white
+
+.written_content_list
+    display block
+    width 70ch
+    max-width 100%
+    mt()
+    padding-left 3ch
+
+    ol^[0]
+        list-style-type decimal
+
+    ul^[0]
+        list-style-type disc
+
+    li
+        max-width 100%
+
+        + li
+            margin-top $sp--base--half

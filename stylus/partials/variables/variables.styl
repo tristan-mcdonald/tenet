@@ -1,18 +1,32 @@
 // colour variables
-$cl--primary--high   = #17afab
+$cl--primary--med    = #17afab
 $cl--primary         = #007c92
 $cl--primary--low    = #144449
 
+$cl--secondary--med  = #0d4f70
+$cl--secondary       = #003a59
+$cl--secondary--low  = #002940
+
 $cl--off             = #f2f9f9
+$cl--off--low        = darken($cl--off, 4%)
+
 $cl--pale            = #e1feff
-$cl--light           = #30393a
+
+$cl--high            = #8ca7b3
+$cl--light           = #555555
+$cl--med             = #30393a
 $cl--dark            = #222a2b
 
+$cl--focus           = #ebc71b
+$cl--error           = #ee5432
+$cl--success         = #2fd060
+
 // font family variables
-$ff--light   = 'akzidenz-grotesk-bq--regular', sans-serif
-$ff--body    = 'akzidenz-grotesk-bq--regular', sans-serif
-$ff--italic  = 'akzidenz-grotesk-bq--italic', sans-serif
-$ff--heading = 'value-serif', sans-serif
+$ff--light   = 'Roboto', sans-serif
+$ff--body    = 'Roboto', sans-serif
+$ff--hard    = 'Roboto', sans-serif
+$ff--italic  = 'Roboto', sans-serif
+$ff--heading = 'Roboto', sans-serif
 
 // font-size variables
 $ratio--sml = 1.125
@@ -21,17 +35,34 @@ $ratio--lrg = 1.333
 
 $fz--base = 1rem
 
+// font-size variables
+$ratio--sml = 1.125
+$ratio--med = 1.225
+$ratio--lrg = 1.325
+
+$fz--base   = 1rem
+
 // line height variables
 $lh--heading = 1.5
 $lh--body    = 1.618
 
+// spacing variables
 $sp--base             = ($fz--base * $lh--body)
+
+$sp--base--quadruple  = ($sp--base * 4)
+$sp--base--triple     = ($sp--base * 3)
 $sp--base--double     = ($sp--base * 2)
 $sp--base--plus-half  = ($sp--base * 1.5)
+
 $sp--base--two-thirds = ($sp--base * .666)
 $sp--base--half       = ($sp--base / 2)
 $sp--base--third      = ($sp--base / 3)
 $sp--base--quarter    = ($sp--base / 4)
+$sp--base--sixth      = ($sp--base / 6)
+$sp--base--eighth     = ($sp--base / 8)
 
 // global border-radius variable
 $bdrs = 2px
+
+// global container width variable
+$container = 1388px
