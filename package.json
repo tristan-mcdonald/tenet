@@ -1,10 +1,13 @@
 {
+    "repository": "",
+    "license": "",
     "devDependencies": {
         "gulp": "*",
         "gulp-autoprefixer": "^4.0.0",
         "gulp-clean-css": "^3.9.0",
         "gulp-concat": "^2.6.1",
         "gulp-cssimport": "*",
+        "gulp-file-include": "^2.0.1",
         "gulp-livereload": "^3.8.1",
         "gulp-plumber": "*",
         "gulp-rename": "^1.2.2",
