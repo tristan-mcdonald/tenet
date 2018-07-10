@@ -11,3 +11,11 @@ material-shadow($color)
     &:focus
     &:hover
         box-shadow 0 3px 6px $color
+
+// mixin for centered container element
+contain($display = block)
+    display $display
+    width 92%
+    max-width $container
+    margin-right auto
+    margin-left auto

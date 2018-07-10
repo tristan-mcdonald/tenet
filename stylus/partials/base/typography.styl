@@ -48,19 +48,12 @@ textarea
 
 h1
 h2
-    font-weight $fw--light
-
-h3
-h4
-    font-weight $fw--normal
-
-h1
-h2
 h3
 h4
     display block
     line-height $lh--heading
     font-family $ff--heading
+    font-weight normal
     color $cl--dark
 
     a
@@ -127,7 +120,7 @@ p
     width auto
     max-width 100%
 
-    &.streamfield_paragraph
+    .page_content__inner &
         width 70ch
 
         > a
@@ -159,13 +152,13 @@ a:visited
 
 b
 strong
-    font-weight $fw--semibold
-    font-family $ff--hard
+    font-weight normal
+    font-family $ff--strong
 
 i
 em
     font-style italic
-    font-family $ff--italic
+    font-family $ff--emphasis
 
 ::selection
     background-color $cl--primary--low
