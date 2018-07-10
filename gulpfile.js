@@ -60,7 +60,7 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest(jsDest))
         .on('end', function(){ gutil.log('js files have been concatenated'); })
         .pipe(rename('app.min.js'))
-        .pip(uglify('app.min.js'))
+        .pipe(uglify('app.min.js'))
         .pipe(gulp.dest(jsDest))
         .on('end', function(){ gutil.log('js files have been minified'); })
         .on('end', function(){ gutil.log('*** js task is finished ***'); })
