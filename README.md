@@ -10,5 +10,5 @@ This is not a CSS library for back-end engineers looking to get their MVP app st
 You will need to have [Node.js](https://nodejs.org) installed.
 
 ## Installation
-In your terminal, `cd` into the root, then run `npm i' to install dependencies.
+In your terminal, `cd` into the root, then run `npm i` to install dependencies.
 Run `gulp` to compile your styles and watch for changes.
