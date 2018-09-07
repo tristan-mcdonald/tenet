@@ -1,39 +1,3 @@
-/*
-    this mixin is intended to be used on the :root element.
-    we use it to set a base font-size which is based on the viewport
-    width, and which scales between two font-sizes we've set, at two
-    viewport widths that we've also set. We then use CSS variables to
-    set REM unit values for individual type elements, based on 3
-    different typographic scales. We set these as extends, for easier
-    overriding of an element's font-size in the rest of the codebase.
-*/
-interpolation($properties, $min-screen, $max-screen, $min-value, $max-value)
-    &
-
-        for $property in $properties
-            {$property}: $min-value
-
-        @media screen and (min-width: $min-screen)
-            for $property in $properties
-                {$property}: calc-interpolation($min-screen, $min-value, $max-screen, $max-value)
-
-        @media screen and (min-width: $max-screen)
-            for $property in $properties
-                {$property}: $max-value
-
-// the above requires the calc-interpolation function,
-// which can also be used independently
-calc-interpolation($min-screen, $min-value, $max-screen, $max-value)
-    $a = ($max-value - $min-value) / ($max-screen - $min-screen)
-    $b = $min-value - $a * $min-screen;
-
-    $sign = " + "
-    if ($b < 0 )
-        $sign = " - "
-        $b = abs($b)
-
-    return s('calc('+ unit($a*100, 'vw') + $sign + ($b) + ')')
-
 // mixin for styling input placeholders
 placeholder()
     &::-webkit-input-placeholder
@@ -45,17 +9,9 @@ placeholder()
     &:-ms-input-placeholder
         {block}
 
-// mixin for resetting button elements
-button-reset()
-    cursor pointer
-    border none
-    background-color transparent
-    padding 0
-    font inherit
-    color inherit
-
 // mixin for simple link underline which appears on hover/focus
 simple-link($background, $color)
+    z-index auto
     overflow hidden
     position relative
     text-shadow .03em 0 $background, -.03em 0 $background, 0 .03em $background, 0 -.03em $background, .06em 0 $background, -.06em 0 $background, .09em 0 $background, -.09em 0 $background, .12em 0 $background, -.12em 0 $background, .15em 0 $background, -.15em 0 $background
@@ -69,5 +25,5 @@ simple-link($background, $color)
     &:focus
     &:hover
         background-image linear-gradient($background, $background), linear-gradient($background, $background), linear-gradient($color, $color)
-        background-position 0% 92%, 100% 92%, 0% 92%
+        background-position 0% 80%, 100% 80%, 0% 80%
         color @color

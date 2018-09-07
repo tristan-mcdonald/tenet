@@ -1,0 +1,35 @@
+/*
+    this mixin is intended to be used on the :root element.
+    we use it to set a base font-size which is based on the viewport
+    width, and which scales between two font-sizes we've set, at two
+    viewport widths that we've also set. We then use CSS variables to
+    set REM unit values for individual type elements, based on 3
+    different typographic scales. We set these as extends, for easier
+    overriding of an element's font-size in the rest of the codebase.
+*/
+interpolation($properties, $function-name, $min-screen, $max-screen, $min-value, $max-value)
+    &
+
+        for $property in $properties
+            {$property}: $min-value
+
+        @media screen and (min-width: $min-screen)
+            for $property in $properties
+                {$property}: $function-name($min-screen, $min-value, $max-screen, $max-value)
+
+        @media screen and (min-width: $max-screen)
+            for $property in $properties
+                {$property}: $max-value
+
+// the interpolation function above requires this calc-interpolation function,
+// which can also be used independently.
+calc-interpolation($min-screen, $min-value, $max-screen, $max-value)
+    $a = ($max-value - $min-value) / ($max-screen - $min-screen)
+    $b = $min-value - $a * $min-screen;
+
+    $sign = " + "
+    if ($b < 0 )
+        $sign = " - "
+        $b = abs($b)
+
+    return s('calc('+ unit($a*100, 'vw') + $sign + ($b) + ')')

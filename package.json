@@ -1,6 +1,6 @@
 {
-    "repository": "",
-    "license": "",
+    "repository": "https://github.com/trubblebruin/design-prototyping-kit",
+    "license": "licence.txt",
     "devDependencies": {
         "gulp": "*",
         "gulp-autoprefixer": "^4.0.0",

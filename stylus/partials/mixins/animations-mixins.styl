@@ -1,3 +1,10 @@
 // mixin for transitions
 trans($time = .14s)
     transition all $time ease-in-out
+
+// mixin to lift the element vertically on hover
+bump-up($distance = -1px)
+    &:active
+    &:focus
+    &:hover
+        transform translateY($distance)

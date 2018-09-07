@@ -1,39 +1,45 @@
 // colour variables
-$cl--first--pale  = #f0ffeb
-$cl--first--high  = #a2a8a0
-$cl--first--med   = #899386
-$cl--first        = #757f73
-$cl--first--low   = #5f685c
+$cl--first--high             = #3161ac
+$cl--first--med              = #2753a1
+$cl--first                   = #224194
+$cl--first--low              = #24356c
 
-$cl--second--pale = #ddeffc
-$cl--second--high = #487aab
-$cl--second--med  = #2f5d94
-$cl--second       = #1f5080
-$cl--second--low  = #0f2b41
+$cl--second--high            = #10b7d0
+$cl--second--med             = #0093b2
+$cl--second                  = #008091
+$cl--second--low             = #067078
 
-$cl--third--pale  = #f2f0ef
-$cl--third--high  = #afa2a0
-$cl--third--med   = #8c7d7a
-$cl--third        = #736360
-$cl--third--low   = #554543
+$cl--third--high             = #70c0a2
+$cl--third--med              = #44b48f
+$cl--third                   = #19ae87
+$cl--third--low              = #1a9371
 
-$cl--fourth--pale = #f3e5f2
-$cl--fourth--high = #8b7499
-$cl--fourth--med  = #7e698c
-$cl--fourth       = #654b75
-$cl--fourth--low  = #402d4b
+$cl--fourth--high            = #395a6b
+$cl--fourth--med             = #2e4b5c
+$cl--fourth                  = #263d49
+$cl--fourth--low             = #1c2f38
 
-$cl--off          = #f2f9f9
-$cl--off--low     = darken($cl--off, 4%)
+$cl--off                     = #fafafc
+$cl--off--low                = darken($cl--off, 4%)
 
-$cl--high         = #81888c
-$cl--light        = #2f3335
-$cl--med          = #202425
-$cl--dark         = #1a1f22
+$cl--pale                    = #f6f5f3
 
-$cl--focus        = #ebc71b
-$cl--error        = #ee5432
-$cl--success      = #2fd060
+$cl--high                    = #5e626d
+$cl--light                   = #2b2e35
+$cl--med                     = #1d1f26
+$cl--dark                    = #0b0d10
+
+$cl--anchor                  = $cl--first--med
+$cl--anchor--hover           = $cl--first
+
+$cl--focus                   = #ebc71b
+$cl--error                   = #ee5432
+$cl--success                 = #2fd060
+
+$cl--twitter                 = #55acee
+$cl--facebook                = #3b5998
+$cl--linkedin                = #007bb5
+$cl--youtube                 = #ff0000
 
 // font family variables
 $ff--light    = 'neuzeit-s--book', sans-serif
@@ -44,8 +50,8 @@ $ff--heading  = 'neuzeit-s--book', sans-serif
 
 // font-size variables
 $ratio--sml = 1.125
-$ratio--med = 1.2
-$ratio--lrg = 1.333
+$ratio--med = 1.18
+$ratio--lrg = 1.24
 
 $fz--base = 1rem
 
@@ -53,25 +59,36 @@ $fz--base = 1rem
 $lh--heading = 1.5
 $lh--body    = 1.618
 
+// line-length variable, edit this to suit the typeface chosen
+$ll = 74
+
+// letter-spacing variable, edit this to suit the typeface chosen
+$ls = 0 //-0.03em
+
 // spacing variables
-$sp--base = ($fz--base * $lh--body)
+$sp = ($fz--base * $lh--body)
 
-$sp--base--quadruple      = ($sp--base * 4)
-$sp--base--triple         = ($sp--base * 3)
-$sp--base--double         = ($sp--base * 2)
-$sp--base--plus-half      = ($sp--base * 1.5)
+$sp--quadruple           = ($sp * 4)
+$sp--triple              = ($sp * 3)
+$sp--double              = ($sp * 2)
+$sp--plus-three-quarters = ($sp * 1.75)
+$sp--plus-two-thirds     = ($sp * 1.666)
+$sp--plus-half           = ($sp * 1.5)
+$sp--plus-third          = ($sp * 1.333)
+$sp--plus-quarter        = ($sp * 1.25)
 
-$sp--base--three-quarters = ($sp--base * .75)
-$sp--base--two-thirds     = ($sp--base * .666)
-$sp--base--half           = ($sp--base / 2)
-$sp--base--third          = ($sp--base / 3)
-$sp--base--quarter        = ($sp--base / 4)
-$sp--base--fifth          = ($sp--base / 5)
-$sp--base--sixth          = ($sp--base / 6)
-$sp--base--eighth         = ($sp--base / 8)
+$sp--three-quarters      = ($sp * .75)
+$sp--two-thirds          = ($sp * .666)
+$sp--half                = ($sp / 2)
+$sp--third               = ($sp / 3)
+$sp--quarter             = ($sp / 4)
+$sp--fifth               = ($sp / 5)
+$sp--sixth               = ($sp / 6)
+$sp--eighth              = ($sp / 8)
+$sp--tenth               = ($sp / 10)
 
 // global border-radius variable
 $bdrs = 2px
 
 // global container width variable
-$container = 1480px
+$container = 1520px

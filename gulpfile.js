@@ -60,7 +60,6 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest(jsDest))
         .on('end', function(){ gutil.log('js files have been concatenated'); })
         .pipe(rename('app.min.js'))
-        .pipe(uglify('app.min.js'))
         .pipe(gulp.dest(jsDest))
         .on('end', function(){ gutil.log('js files have been minified'); })
         .on('end', function(){ gutil.log('*** js task is finished ***'); })
@@ -69,7 +68,7 @@ gulp.task('scripts', function() {
 
 // file include task
 gulp.task('fileinclude', function() {
-    gulp.src(['templates/index.html'])
+    gulp.src(['templates/*.html'])
         .pipe(fileinclude({
             prefix: '@@',
             basepath: '@file'
@@ -84,9 +83,9 @@ livereload.listen();
 
 // gulp watch
 gulp.task('watch', function() {
-    gulp.watch('stylus/**/*.styl', ['css'])
-    gulp.watch('js/source/**/*.js', ['scripts']);
-    gulp.watch('templates/index.html', ['fileinclude']);
+    gulp.watch('stylus/**/*', ['css'])
+    gulp.watch('js/source/**/*', ['scripts']);
+    gulp.watch('templates/**/*', ['fileinclude']);
 });
 
 // default task

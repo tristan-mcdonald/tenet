@@ -13,6 +13,7 @@ body
     width 100%
 
 // keyboard focus styles
+// use a11y.js to detect keyboard input
 html
     &[data-focus-source="key"] :focus
         z-index 90
@@ -28,10 +29,11 @@ html
     flex-direction column
     width 100%
 
+// styles nested in this block are for a standard content page layout
+// with a centered containing div
 .page_content
     flex 1
     width 100%
-    background-color white
 
     &__inner
         contain(flex)
@@ -39,10 +41,10 @@ html
         align-items flex-start
 
         > *:first-child
-            margin-top $sp--base--plus-half
+            margin-top $sp--plus-half
 
         > *:last-child
-            margin-bottom $sp--base--plus-half
+            margin-bottom $sp--plus-half
 
 img
     display block
@@ -51,6 +53,17 @@ img
     max-width 100%
     vertical-align bottom
     mt()
+
+svg
+    overflow visible // fix bug in Firefox where edges of SVG display as cut
+    height 100%
+    max-height 100%
+    width 100%
+    max-width 100%
+
+input
+button
+    trans()
 
 button
     button-reset()
