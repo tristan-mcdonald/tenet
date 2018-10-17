@@ -15,14 +15,18 @@ module.exports = {
     // interpolate between type ratio minimum and maximum values
     // store the result in a CSS custom property
     init: () => {
+        // add smallest type ratio from variables.styl here
+        let typeRatioSmall = 1.125;
+        // add largest type ratio from variables.styl here
+        let typeRatioLarge = 1.24;
         // get current viewport width
         let screenWidth = screen.width;
         // apply the ratio scaling function
-        scaleRatio(screenWidth, 1.125, 1.24);
+        scaleRatio(screenWidth, typeRatioSmall, typeRatioLarge);
         // watch for change in the viewport width and recalculate if change is detected
         window.addEventListener("resize", () => {
             let screenWidth = screen.width;
-            scaleRatio(screenWidth, 1.125, 1.333);
+            scaleRatio(screenWidth, typeRatioSmall, typeRatioLarge);
         });
     }
 };
