@@ -41,7 +41,7 @@
     "dependencies": {},
     "license": "",
     "main": "gulpfile.js",
-    "repository": "https://github.com/omni-digital/tghn-split-hub",
+    "repository": "https://github.com/trubblebruin/design-prototyping-kit",
     "scripts": {
         "lint": "node_modules/.bin/eslint assets/js/**/*.js",
         "format": "prettier-eslint --write \"assets/js/**/*.js\""
