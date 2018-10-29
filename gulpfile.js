@@ -1,7 +1,7 @@
 // interpret all `require` statements in source js & load the code into the stream,
 // concatenating it all into one file
 // allows use of commonjs when targeting the browser
-// `babelify` is also a dependency here, but is not explicitly required
+const babelify     = require('babelify');
 const browserify   = require("browserify");
 // we must convert the vinyl virtual file format into a buffer,
 // that can be interpreted by other libraries in the gulp ecosystem
