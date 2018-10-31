@@ -1,5 +1,5 @@
 # Tenet
-A starting point for designing and building the frontend of large web projects. 
+A starting point for designing and building the front-end of large web projects. 
 
 ## What is this?
 Tenet is a sensible toolkit for starting large front-end projects, and for prototyping designs for the web. It is opinionated, and a detailed guide to the suggested methodology for working with this toolkit will follow.
