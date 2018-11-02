@@ -1,8 +1,8 @@
 {
     "devDependencies": {
-        "babel-core": "^6.26.0",
-        "babel-preset-env": "*",
-        "babelify": "^8.0.0",
+        "@babel/core": "^7.1.2",
+        "@babel/preset-env": "^7.1.0",
+        "babelify": "^10.0.0",
         "browser-sync": "^2.26.3",
         "browserify": "^15.2.0",
         "eslint": "^4.16.0",
@@ -39,9 +39,9 @@
         "vinyl-source-stream": "^2.0.0"
     },
     "dependencies": {},
-    "license": "",
+    "license": "license.txt",
     "main": "gulpfile.js",
-    "repository": "https://github.com/trubblebruin/design-prototyping-kit",
+    "repository": "https://github.com/trubblebruin/tenet",
     "scripts": {
         "lint": "node_modules/.bin/eslint assets/js/**/*.js",
         "format": "prettier-eslint --write \"assets/js/**/*.js\""
