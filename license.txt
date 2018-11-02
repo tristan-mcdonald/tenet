@@ -1,5 +1,3 @@
-Copyright (c) Jamie Kyle
-
 This license is granted to everyone except for the following entities and
 any of their subsidiaries:
 
