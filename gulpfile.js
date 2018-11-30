@@ -2,62 +2,62 @@
 // concatenating it all into one file
 // allows use of commonjs when targeting the browser
 // `babelify` is also a dependency here, but is not explicitly required
-const browserify = require("browserify");
+const browserify   = require("browserify");
 // serve files locally, and across the network
 // synchronise file changes with the browser
-const browserSync = require("browser-sync").create();
+const browserSync  = require("browser-sync").create();
 // we must convert the vinyl virtual file format into a buffer,
 // that can be interpreted by other libraries in the gulp ecosystem
-const buffer = require("vinyl-buffer");
+const buffer       = require("vinyl-buffer");
 // configurably optimize generated CSS to remove any duplication/unnecessary rules
-const cleanCss = require("gulp-clean-css");
+const cleanCss     = require("gulp-clean-css");
 // combine duplicate media queries in CSS, improves performance
-const combineMq = require("gulp-combine-mq");
+const combineMq    = require("gulp-combine-mq");
 // concatenate multiple files into one
-const concat = require("gulp-concat");
+const concat       = require("gulp-concat");
 // encode images referenced in css into the compiled file to reduce http requests
 // leave out svg as it can be problematic
-const cssBase64 = require("gulp-css-base64");
+const cssBase64    = require("gulp-css-base64");
 // replace css imports with the imported file"s contents
 // note this is different to partial imports in stylus
-const cssImport = require("gulp-cssimport");
+const cssImport    = require("gulp-cssimport");
 // lint js while developing
-const eslint = require("gulp-eslint");
+const eslint       = require("gulp-eslint");
 // minify html files after templates are rendered
 // docs here: https://github.com/kangax/html-minifier
-const htmlMin = require("gulp-htmlmin");
+const htmlMin      = require("gulp-htmlmin");
 // log task completion to the terminal, pulled out from gutil (which is now deprecated)
-const log = require("fancy-log");
+const log          = require("fancy-log");
 // adds includes to html templates; a basic static-site builder
-const fileInclude = require("gulp-file-include");
+const fileInclude  = require("gulp-file-include");
 // run build tasks
-const gulp = require("gulp");
+const gulp         = require("gulp");
 // image minification tools
-const imagemin = require("gulp-imagemin");
+const imagemin     = require("gulp-imagemin");
 // stylus utility library for grids
-const jeet = require("jeet");
+const jeet         = require("jeet");
 // autoprefix outputted css
-const prefix = require("gulp-autoprefixer");
+const prefix       = require("gulp-autoprefixer");
 // view google pagespeed insights reporting on the project
-const psi = require("psi");
+const psi          = require("psi");
 // allow for better management of errors across pipes
-const pump = require("pump");
+const pump         = require("pump");
 // simple virtual file rename utility for gulp streams
-const rename = require("gulp-rename");
+const rename       = require("gulp-rename");
 // run tasks in sequence
-const runSequence = require("run-sequence");
+const runSequence  = require("run-sequence");
 // stylus library for very simple declaration of media queries
-const rupture = require("rupture");
+const rupture      = require("rupture");
 // gulp uses `vinyl`, a virtual file format to pass data through pipes
 // as such, we must ensure browserify output can be interpreted by following pipe operations
 // `vinyl-source-stream` loads browserify output into a vinyl object
-const source = require("vinyl-source-stream");
+const source       = require("vinyl-source-stream");
 // allow the browser to map minified code back to a readable source
-const sourcemaps = require("gulp-sourcemaps");
+const sourcemaps   = require("gulp-sourcemaps");
 // transpile stylus into css
-const stylus = require("gulp-stylus");
+const stylus       = require("gulp-stylus");
 // minify js & replace variable names to make file size as small as possible
-const uglify = require("gulp-uglify");
+const uglify       = require("gulp-uglify");
 // add your IP address to run google pagespeed insights tasks
 const devMachineIp = "your-ip-address-here";
 // file names & paths
@@ -287,7 +287,7 @@ function watch() {
             baseDir: "./dist",
         },
         notify: false,
-        browser: ["google chrome"],
+        browser: ["firefox", "google chrome"],
         files: ["dist/assets/css/*.min.css"],
         reloadOnRestart: true,
     });
