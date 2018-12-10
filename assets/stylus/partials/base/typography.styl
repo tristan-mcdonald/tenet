@@ -17,12 +17,12 @@ html
     +above(6)
         --ratio $ratio--lrg
 
-    --fz--h1 'calc(%s * var(--ratio) * var(--ratio) * var(--ratio) *  var(--ratio))' % ($fz--base)
+    --fz--h1 'calc(%s * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio))' % ($fz--base)
     --fz--h2 'calc(%s * var(--ratio) * var(--ratio) * var(--ratio))' % ($fz--base)
     --fz--h3 'calc(%s * var(--ratio) * var(--ratio))' % ($fz--base)
     --fz--h4 'calc(%s * var(--ratio))' % ($fz--base)
-    --fz--sub 'calc(%s / %s)' % ($fz--base var(--ratio))
-    --fz--supersub 'calc((%s / %s) / %s)' % ($fz--base var(--ratio) var(--ratio))
+    --fz--sub 'calc(%s / var(--ratio))' % ($fz--base)
+    --fz--supersub 'calc((%s / var(--ratio)) / var(--ratio))' % ($fz--base)
 
     // spacing variables
     --sp--h1 'calc(var(--fz--h1) * %s)' % ($lh--heading)
