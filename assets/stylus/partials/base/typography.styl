@@ -108,6 +108,7 @@ h4
 
 p
     width auto
+    mt()
     max-width 100%
     font-family $ff--body
     font-size $fz--base
@@ -115,8 +116,16 @@ p
     letter-spacing $ls
     color $cl--med
 
-    // add this class to paragraph content to
-    // constrain it to a readable line-length
+    h1 + &
+    h2 + &
+    h3 + &
+        margin-top $sp--third
+
+    h4 + &
+        margin-top $sp--half
+
+    // add this class to paragraph content to constrain it to a readable line-length
+    // avoid setting paragraph line-lengths globally so they don't need to be overridden
     .reading_content &
     &.reading_content
         width ($ll)ch
@@ -129,17 +138,6 @@ p
             &:hover
             &:focus
                 color $cl--anchor--hover
-
-    h1 + &
-    h2 + &
-    h3 + &
-        margin-top $sp--third
-
-    h4 + &
-        margin-top $sp--half
-
-    * + &
-        margin-top $sp
 
 a
 a:visited
@@ -159,11 +157,12 @@ em
 
 ::selection
     background-color $cl--first
+    text-shadow 0 0 .1em $cl--first--dark
     color white
 
 .reading_content__list
     display block
-    width 70ch
+    width ($ll)ch
     max-width 100%
     mt()
     padding-left 3ch
