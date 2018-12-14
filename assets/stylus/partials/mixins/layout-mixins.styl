@@ -1,11 +1,11 @@
 // mixin to add margin-top to an item if another child precedes it
-// must be used on a single selector, will not work on nested selectors
+// must be used on a single selector; will not work on nested selectors
 mt($margin-top = $sp)
     * + &
         margin-top $margin-top
 
 // mixin to add margin-left to an item if another child precedes it
-// must be used on a single selector, will not work on nested selectors
+// must be used on a single selector; will not work on nested selectors
 ml($margin-left = $sp)
     * + &
         margin-left $margin-left
@@ -27,9 +27,10 @@ button-reset()
     font inherit
     color inherit
 
-// mixin to add a material design-style box shadow which expands on hover
+// mixin to add a material design-style box-shadow which expands on hover
 bxsh-hover($color = alpha($cl--dark, 10%))
     box-shadow 0 1px 1px $color
+
     &:active
     &:focus
     &:hover
