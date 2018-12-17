@@ -143,8 +143,15 @@ svg {
 }
 
 input,button {
-  -webkit-transition: all 0.14s ease-in-out;
-  transition: all 0.14s ease-in-out;
+  will-change: background-color, box-shadow;
+  -webkit-transition-property: background-color, -webkit-box-shadow;
+  transition-property: background-color, -webkit-box-shadow;
+  transition-property: background-color, box-shadow;
+  transition-property: background-color, box-shadow, -webkit-box-shadow;
+  -webkit-transition-duration: 0.14s;
+  transition-duration: 0.14s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
 }
 
 button {
@@ -164,7 +171,7 @@ html {
 
 :root {
   --ratio: 1.125;
-  --fz--h1: calc(1rem * var(--ratio) * var(--ratio) * var(--ratio) *  var(--ratio));
+  --fz--h1: calc(1rem * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio));
   --fz--h2: calc(1rem * var(--ratio) * var(--ratio) * var(--ratio));
   --fz--h3: calc(1rem * var(--ratio) * var(--ratio));
   --fz--h4: calc(1rem * var(--ratio));
@@ -181,20 +188,20 @@ html {
 }
 
 body,select,input,textarea {
-  font-family: 'neuzeit-s--book', sans-serif;
+  font-family: 'inter-ui--regular', sans-serif;
   font-weight: $fw--normal;
   line-height: 1.618;
   font-size: inherit;
-  color: #2b2e35;
+  color: #2f333b;
 }
 
 h1,h2,h3,h4 {
   display: block;
   line-height: 1.5;
-  font-family: 'neuzeit-s--book', sans-serif;
+  font-family: 'inter-ui--medium', sans-serif;
   font-weight: normal;
-  letter-spacing: 0;
-  color: #1d1f26;
+  letter-spacing: -0.05em;
+  color: #282b35;
 }
 
 h1 a,h2 a,h3 a,h4 a,h1 a:visited,h2 a:visited,h3 a:visited,h4 a:visited {
@@ -245,11 +252,23 @@ h4 {
 p {
   width: auto;
   max-width: 100%;
-  font-family: 'neuzeit-s--book', sans-serif;
+  font-family: 'inter-ui--regular', sans-serif;
   font-size: 1rem;
   line-height: 1.618;
-  letter-spacing: 0;
-  color: #1d1f26;
+  letter-spacing: -0.05em;
+  color: #282b35;
+}
+
+* + p {
+  margin-top: 1.618rem;
+}
+
+h1 + p,h2 + p,h3 + p {
+  margin-top: 0.539333333333333rem;
+}
+
+h4 + p {
+  margin-top: 0.809rem;
 }
 
 .reading_content p,p.reading_content {
@@ -264,48 +283,45 @@ p {
   color: #224194;
 }
 
-h1 + p,h2 + p,h3 + p {
-  margin-top: 0.539333333333333rem;
-}
-
-h4 + p {
-  margin-top: 0.809rem;
-}
-
-* + p {
-  margin-top: 1.618rem;
-}
-
 a,a:visited {
-  -webkit-transition: all 0.14s ease-in-out;
-  transition: all 0.14s ease-in-out;
+  will-change: background-color, box-shadow;
+  -webkit-transition-property: background-color, -webkit-box-shadow;
+  transition-property: background-color, -webkit-box-shadow;
+  transition-property: background-color, box-shadow;
+  transition-property: background-color, box-shadow, -webkit-box-shadow;
+  -webkit-transition-duration: 0.14s;
+  transition-duration: 0.14s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
   cursor: pointer;
   text-decoration: none;
 }
 
 b,strong {
   font-weight: normal;
-  font-family: 'neuzeit-s--book', sans-serif;
+  font-family: 'inter-ui--medium', sans-serif;
 }
 
 i,em {
   font-style: normal;
-  font-family: 'neuzeit-s--book', sans-serif;
+  font-family: 'inter-ui--italic', sans-serif;
 }
 
 ::-moz-selection {
   background-color: #224194;
+  text-shadow: 0 0 0.1em #15254f;
   color: #fff;
 }
 
 ::selection {
   background-color: #224194;
+  text-shadow: 0 0 0.1em #15254f;
   color: #fff;
 }
 
 .reading_content__list {
   display: block;
-  width: 70ch;
+  width: 74ch;
   max-width: 100%;
   padding-left: 3ch;
 }
@@ -337,7 +353,19 @@ sup {
 }
 
 @font-face {
-  font-family:'neuzeit-s--book';src:url("../fonts/neuzeit-s--book/neuzeit-s--book.eot");src:url("../fonts/neuzeit-s--book/neuzeit-s--book.eot?#iefix") format('embedded-opentype'), url("../fonts/neuzeit-s--book/neuzeit-s--book.woff") format('woff'), url("../fonts/neuzeit-s--book/neuzeit-s--book.ttf") format('truetype');font-weight:400;font-style:normal;font-stretch:normal;
+  font-family:'inter-ui--regular';src:url("../fonts/inter-ui--regular/inter-ui--regular.eot");src:url("../fonts/inter-ui--regular/inter-ui--regular.eot?#iefix") format('embedded-opentype'), url("../fonts/inter-ui--regular/inter-ui--regular.woff") format('woff'), url("../fonts/inter-ui--regular/inter-ui--regular.ttf") format('truetype');font-weight:400;font-style:normal;font-stretch:normal;
+}
+
+@font-face {
+  font-family:'inter-ui--regular';src:url("../fonts/inter-ui--regular/inter-ui--regular.eot");src:url("../fonts/inter-ui--regular/inter-ui--regular.eot?#iefix") format('embedded-opentype'), url("../fonts/inter-ui--regular/inter-ui--regular.woff") format('woff'), url("../fonts/inter-ui--regular/inter-ui--regular.ttf") format('truetype');font-weight:400;font-style:normal;font-stretch:normal;
+}
+
+@font-face {
+  font-family:'inter-ui--italic';src:url("../fonts/inter-ui--italic/inter-ui--italic.eot");src:url("../fonts/inter-ui--italic/inter-ui--italic.eot?#iefix") format('embedded-opentype'), url("../fonts/inter-ui--italic/inter-ui--italic.woff") format('woff'), url("../fonts/inter-ui--italic/inter-ui--italic.ttf") format('truetype');font-weight:400;font-style:normal;font-stretch:normal;
+}
+
+@font-face {
+  font-family:'inter-ui--medium';src:url("../fonts/inter-ui--medium/inter-ui--medium.eot");src:url("../fonts/inter-ui--medium/inter-ui--medium.eot?#iefix") format('embedded-opentype'), url("../fonts/inter-ui--medium/inter-ui--medium.woff") format('woff'), url("../fonts/inter-ui--medium/inter-ui--medium.ttf") format('truetype');font-weight:400;font-style:normal;font-stretch:normal;
 }
 
 @media only screen and (min-width: 42.5625em) {
