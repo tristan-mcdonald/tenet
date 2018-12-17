@@ -1,5 +1,7 @@
 # Tenet
-High designer-engineer happiness when designing and building the front-end of large-scale web software, while avoiding introducing technical debt as much as is possible. Catchy.
+_As starred by [Chris Coyier](https://github.com/chriscoyier)!_
+
+High designer-engineer happiness when designing and building the frontend of large-scale web software, while avoiding introducing technical debt as much as is possible.
 
 ## What is this?
 Tenet is a sensible toolkit for starting large front-end projects, and for prototyping designs for the web. It is opinionated, and a detailed guide to the suggested methodology for working with this toolkit can be found in the [documentation](https://github.com/trubblebruin/tenet/wiki).
