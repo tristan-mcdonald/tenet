@@ -6,7 +6,7 @@ High designer-engineer happiness when designing and building the frontend of lar
 ## What is this?
 Tenet is a sensible toolkit for starting large front-end projects, and for prototyping designs for the web. It is opinionated, and a detailed guide to the suggested methodology for working with this toolkit can be found in the [documentation](https://github.com/trubblebruin/tenet/wiki).
 
-Tenet aims to help reduce the introduction of technical debt, which is useful because you or another human like you will almost certainly end up maintaining the project that you're designing and building now, and they will be happier if you make more sensible decisions now.
+Tenet aims to help reduce the introduction of technical debt, which is useful because you or another human like you will almost certainly end up maintaining the project that you're designing and building now, and they will be happier if you make sensible decisions from the outset.
 
 Tenet has been in use in production in various forms since 2013, though in its original incarnation it was tightly coupled to a CMS. It is currently in production on user-facing government software, amongst other large pieces of software for national and international organisations.
 
