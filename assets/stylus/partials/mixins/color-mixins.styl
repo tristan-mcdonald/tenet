@@ -1,25 +1,28 @@
-// Function needs to:
-//    * Take an HSLA
-//    * Split it into the values
-//    * add the ability to do maths on the values
-//    * output the finished value
-
 $cl--test = hsla(10, 50%, 30%, 0.5)
 
-modify-color($color = $cl--test)
+modify-hsla($color, $h="", $s="", $l="", $a="")
     // convert the colour value to a string so that we can operate on it
     $color = join(" ", $color)
     // slice away everything other than the list of values
-    $color-as-values = slice($color, 5, -1)
-    $values-without-units = replace("%", "", $color-as-values)
-    $values = split(",", $values-without-units)
-    $hue = $values[0]
-    $saturation = $values[1]
-    $lightness = $values[2]
-    $alpha = $values[3]
-    // $final-value = "hsla(" + unquote($hue) + ")"
-    // return unquote($final-value)
-    return $values
+    $color = slice($color, 5, -1)
+    // remove units from the list of values so that we can operate on it
+    $color = replace("%", "", $color)
+    // split the colour into an array
+    $values = split(",", $color)
+    $hue = convert($values[0])
+    if $h != ""
+        $hue = $hue + $h
+    $saturation = convert($values[1])
+    if $s != ""
+        $saturation = $saturation + $s
+    $lightness = convert($values[2])
+    if $l != ""
+        $lightness = $lightness + $l
+    $alpha = convert($values[3])
+    if $a != ""
+        $alpha = $alpha + $a
+    $final-value = "hsla(" + $hue + "," + $saturation + "%," + $lightness + "%," + $alpha + ")"
+    return unquote($final-value)
 
 body
-    background-color modify-color()
+    background-color modify-hsla($cl--test)
