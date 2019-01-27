@@ -1,5 +1,11 @@
 {
+    "eslintIntegration": true,
+    "cssEnable": ["css", "styl"],
     "singleQuote": false,
+    "semi": true,
+    "useTabs": false,
     "tabWidth": 4,
-    "trailingComma": "es5"
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false
 }

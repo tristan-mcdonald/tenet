@@ -1,0 +1,22 @@
+{
+    "extends": "standard",
+    "env": {
+        "browser": true,
+        "jquery": false,
+        "node": true
+    },
+    "rules": {
+        "eqeqeq": 2,
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "semi": 0,
+        "no-multi-spaces": 0,
+        "quotes": [1, "double"],
+        "space-before-function-paren": 0
+    }
+}
