@@ -31,15 +31,15 @@ const cssImport = require("gulp-cssimport");
 // lint js while developing
 const eslint = require("gulp-eslint");
 
-// minify html files after templates are rendered
-// docs here: https://github.com/kangax/html-minifier
-const htmlMin = require("gulp-htmlmin");
-
 // adds includes to html templates; a basic static-site builder
 const fileInclude = require("gulp-file-include");
 
 // run build tasks
 const gulp = require("gulp");
+
+// minify html files after templates are rendered
+// docs here: https://github.com/kangax/html-minifier
+const htmlMin = require("gulp-htmlmin");
 
 // image minification tools
 const imagemin = require("gulp-imagemin");
@@ -124,15 +124,16 @@ const PATHS = {
 
 // terrible welcome message - really needs to be ASCII text
 function welcome(callback) {
-    log.info("");
-    log.info("################");
-    log.info("");
-    log.info("================");
-    log.info("Welcome to TENET");
-    log.info("================");
-    log.info("");
-    log.info("################");
-    log.info("");
+    log.info(`
+
+  ::::::::::: :::::::::: ::::    ::: :::::::::: :::::::::::
+     :+:     :+:        :+:+:   :+: :+:            :+:
+    +:+     +:+        :+:+:+  +:+ +:+            +:+
+   +#+     +#++:++#   +#+ +:+ +#+ +#++:++#       +#+
+  +#+     +#+        +#+  +#+#+# +#+            +#+
+ #+#     #+#        #+#   #+#+# #+#            #+#
+###     ########## ###    #### ##########     ###
+    `);
     callback();
 }
 
@@ -153,6 +154,18 @@ function lint(callback) {
 // @param {*} callback
 function html(callback) {
     gulp.src(PATHS.files.entry)
+        .on("error", function(er) {
+            log.error(
+                `
+
+-----------------------------
+HTML error encountered:
+-----------------------------
+
+` + er.toString()
+            );
+            this.emit("end");
+        })
         .pipe(
             fileInclude({
                 prefix: "@@",
@@ -186,8 +199,16 @@ function html(callback) {
 // @param {*} callback - the "done" callback fired when all gulp pipes have completed
 function styles(callback) {
     gulp.src(PATHS.styles.stylus.entry)
-        .on("error", function(err) {
-            console.log(err.toString());
+        .on("error", function(er) {
+            log.error(
+                `
+
+-----------------------------
+Stylus error encountered:
+-----------------------------
+
+` + er.toString()
+            );
             this.emit("end");
         })
         .pipe(sourcemaps.init())
@@ -217,6 +238,18 @@ function styles(callback) {
 // @param {*} callback
 function images(callback) {
     gulp.src(PATHS.images.entry)
+        .on("error", function(er) {
+            log.error(
+                `
+
+-----------------------------
+Image processing error encountered:
+-----------------------------
+
+` + er.toString()
+            );
+            this.emit("end");
+        })
         .pipe(
             imagemin([
                 imagemin.gifsicle({ interlaced: true }),
@@ -267,8 +300,15 @@ function scripts(callback) {
     })
         .bundle()
         .on("error", function(er) {
-            log.error("Javascript Error:");
-            log.error(er.toString());
+            log.error(
+                `
+
+-----------------------------
+Javascript error encountered:
+-----------------------------
+
+` + er.toString()
+            );
             this.emit("end");
         })
         .pipe(source("app.js"))
