@@ -189,7 +189,7 @@ html {
 
 body,select,input,textarea {
   font-family: 'inter-ui--regular', sans-serif;
-  font-weight: $fw--normal;
+  font-weight: normal;
   line-height: 1.618;
   font-size: inherit;
   color: #2f333b;
@@ -357,10 +357,6 @@ sup {
 }
 
 @font-face {
-  font-family:'inter-ui--regular';src:url("../fonts/inter-ui--regular/inter-ui--regular.eot");src:url("../fonts/inter-ui--regular/inter-ui--regular.eot?#iefix") format('embedded-opentype'), url("../fonts/inter-ui--regular/inter-ui--regular.woff") format('woff'), url("../fonts/inter-ui--regular/inter-ui--regular.ttf") format('truetype');font-weight:400;font-style:normal;font-stretch:normal;
-}
-
-@font-face {
   font-family:'inter-ui--italic';src:url("../fonts/inter-ui--italic/inter-ui--italic.eot");src:url("../fonts/inter-ui--italic/inter-ui--italic.eot?#iefix") format('embedded-opentype'), url("../fonts/inter-ui--italic/inter-ui--italic.woff") format('woff'), url("../fonts/inter-ui--italic/inter-ui--italic.ttf") format('truetype');font-weight:400;font-style:normal;font-stretch:normal;
 }
 
@@ -368,7 +364,13 @@ sup {
   font-family:'inter-ui--medium';src:url("../fonts/inter-ui--medium/inter-ui--medium.eot");src:url("../fonts/inter-ui--medium/inter-ui--medium.eot?#iefix") format('embedded-opentype'), url("../fonts/inter-ui--medium/inter-ui--medium.woff") format('woff'), url("../fonts/inter-ui--medium/inter-ui--medium.ttf") format('truetype');font-weight:400;font-style:normal;font-stretch:normal;
 }
 
-@media only screen and (min-width: 42.5625em) {
+@media screen and (min-width: 480px) {
+  :root {
+    font-size: calc(0.5vw + 10.6px);
+  }
+}
+
+@media only screen and (min-width: 681em) {
   :root {
     --ratio: 1.18;
   }
@@ -404,7 +406,7 @@ sup {
   }
 }
 
-@media only screen and (min-width: 80.0625em) {
+@media only screen and (min-width: 1281em) {
   :root {
     --ratio: 1.24;
   }
@@ -437,12 +439,6 @@ sup {
   sup {
     font-size: 0.806451612903226rem;
     font-size: var(--fz--sub);
-  }
-}
-
-@media screen and (min-width: 480px) {
-  :root {
-    font-size: calc(0.5vw + 10.6px);
   }
 }
 
