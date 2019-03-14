@@ -1,8 +1,8 @@
 // interpolate between minimum ratio and maximum ratio,
 // based on current viewport width
 function scaleRatio (width, minValue, maxValue) {
-    const minRange      = 680;
-    const maxRange      = 1280;
+    const minRange      = 480;
+    const maxRange      = 1680;
     const a             = (maxValue - minValue) / (maxRange - minRange);
     const b             = minValue - a * minRange;
     const ratio         = width * a + b;
