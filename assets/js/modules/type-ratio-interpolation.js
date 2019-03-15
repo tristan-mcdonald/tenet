@@ -20,12 +20,12 @@ module.exports = {
         // add largest type ratio from variables.styl here
         let typeRatioLarge = 1.24;
         // get current viewport width
-        let screenWidth = screen.width;
+        let screenWidth = window.innerWidth;
         // apply the ratio scaling function
         scaleRatio(screenWidth, typeRatioSmall, typeRatioLarge);
         // watch for change in the viewport width and recalculate if change is detected
         window.addEventListener("resize", () => {
-            let screenWidth = screen.width;
+            let screenWidth = window.innerWidth;
             scaleRatio(screenWidth, typeRatioSmall, typeRatioLarge);
         });
     }
