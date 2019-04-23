@@ -242,9 +242,9 @@ function renderTemplates (callback) {
                 },
             }),
             htmlMin({
-                collapseWhitespace: true,
                 caseSensitive: true,
-                collapseInlineTagWhitespace: true,
+                collapseInlineTagWhitespace: false,
+                collapseWhitespace: true,
                 decodeEntities: true,
                 minifyCSS: true,
                 minifyJS: true,
