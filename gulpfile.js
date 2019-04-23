@@ -179,13 +179,16 @@ function compileStylus (callback) {
             sourcemaps.init(),
             stylus({
                 use: [
-                    jeet(),
                     rupture()
                 ],
             }),
             cssBase64({
                 baseDir: PATHS.images.dest,
-                extensionsAllowed: [".gif", ".jpg", ".png"],
+                extensionsAllowed: [
+                    ".gif",
+                    ".jpg",
+                    ".png"
+                ],
                 maxWeightResource: 100,
             }),
             cssImport(),
