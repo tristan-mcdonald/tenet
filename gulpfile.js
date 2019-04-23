@@ -34,8 +34,6 @@ const fileInclude  = require("gulp-file-include");
 const gulp         = require("gulp");
 // image minification tools
 const imagemin     = require("gulp-imagemin");
-// stylus utility library for grids
-const jeet         = require("jeet");
 // autoprefix outputted css
 const prefix       = require("gulp-autoprefixer");
 // view google pagespeed insights reporting on the project
