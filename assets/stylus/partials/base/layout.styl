@@ -6,17 +6,10 @@
     box-sizing border-box
     word-wrap break-word
 
-body
-    display flex
-    flex-direction column
-    align-items center
-    justify-content flex-start
-    min-height 100vh
-    width 100%
-
 // keyboard focus styles
 // use a11y.js to detect keyboard input
 html
+
     &[data-focus-source="key"] :focus
         z-index 90
         outline-offset 6px
@@ -24,6 +17,15 @@ html
 
     :focus
         outline 0
+
+body
+    display flex
+    flex-direction column
+    align-items center
+    justify-content flex-start
+    overflow hidden
+    min-height 100vh
+    width 100%
 
 .main_content
     flex 1
