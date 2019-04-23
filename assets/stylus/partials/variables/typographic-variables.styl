@@ -7,22 +7,25 @@ $ff--heading  = 'inter-ui--medium', sans-serif
 
 // font-size variables
 $ratio--sml = 1.125
-$ratio--med = 1.18
 $ratio--lrg = 1.24
+// the middle point between $ratio--lrg and $ratio--sml
+$ratio--med = ((($ratio--lrg - $ratio--sml) / 2) + $ratio--sml)
 
 $fz--base = 1rem
 
 // font-weight variables
 $fw--normal  = normal
+$fw--strong  = normal
 $fw--heading = normal
 
 // line height variables
-$lh--heading = 1.5
 $lh--body    = 1.618
+$lh--heading = 1.5
 
 // line-length variable, edit this to suit the typeface chosen.
 // the line-length of heading elements will operate on this value
 $ll = 74
 
 // letter-spacing variable, edit this to suit the typeface chosen
-$ls = -0.05em
+$ls--body    = -0.05em
+$ls--heading = -0.05em

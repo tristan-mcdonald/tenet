@@ -34,8 +34,6 @@ const fileInclude  = require("gulp-file-include");
 const gulp         = require("gulp");
 // image minification tools
 const imagemin     = require("gulp-imagemin");
-// stylus utility library for grids
-const jeet         = require("jeet");
 // autoprefix outputted css
 const prefix       = require("gulp-autoprefixer");
 // view google pagespeed insights reporting on the project
@@ -181,13 +179,16 @@ function compileStylus (callback) {
             sourcemaps.init(),
             stylus({
                 use: [
-                    jeet(),
                     rupture()
                 ],
             }),
             cssBase64({
                 baseDir: PATHS.images.dest,
-                extensionsAllowed: [".gif", ".jpg", ".png"],
+                extensionsAllowed: [
+                    ".gif",
+                    ".jpg",
+                    ".png"
+                ],
                 maxWeightResource: 100,
             }),
             cssImport(),
@@ -244,9 +245,9 @@ function renderTemplates (callback) {
                 },
             }),
             htmlMin({
-                collapseWhitespace: true,
                 caseSensitive: true,
-                collapseInlineTagWhitespace: true,
+                collapseInlineTagWhitespace: false,
+                collapseWhitespace: true,
                 decodeEntities: true,
                 minifyCSS: true,
                 minifyJS: true,
