@@ -294,11 +294,8 @@ function watch() {
     });
     gulp.watch(PATHS.files.watch, ["files"]).on("change", browserSync.reload);
     gulp.watch(PATHS.images.watch, ["images"]).on("change", browserSync.reload);
-    gulp.watch(PATHS.styles.stylus.watch, ["styles"]);
-    gulp.watch(PATHS.javascript.app.watch, ["javascript"]).on(
-        "change",
-        browserSync.reload
-    );
+    gulp.watch(PATHS.styles.stylus.watch, ["styles"]).on("change", browserSync.reload);
+    gulp.watch(PATHS.javascript.app.watch, ["javascript"]).on("change", browserSync.reload);
 }
 // default task
 gulp.task("default", ["files", "images", "styles", "javascript"], watch);
