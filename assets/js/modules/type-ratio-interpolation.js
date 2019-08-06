@@ -28,5 +28,5 @@ module.exports = {
             let screenWidth = window.innerWidth;
             scaleRatio(screenWidth, typeRatioSmall, typeRatioLarge);
         });
-    }
+    },
 };
