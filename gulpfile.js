@@ -149,6 +149,26 @@ const welcomeMessage = color(`
 
 `, "MAGENTA");
 
+// a template to print to the console when an error arises
+const errorMessageTemplate = function (taskName, subTaskName, er) {
+    log.error(color(`
+
+
+==============================================================
+
+${taskName} error ${subTaskName} encountered:
+
+==============================================================
+
+
+`, "RED") + er.toString() + color(`
+
+
+==============================================================
+`, "RED")
+    );
+};
+
 // logs our welcome message
 function welcome (callback) {
     log.info(welcomeMessage);
@@ -172,16 +192,8 @@ function lint(callback) {
 // @param {*} callback
 function html(callback) {
     gulp.src(PATHS.files.entry)
-        .on("error", function(er) {
-            log.error(
-                `
-
------------------------------
-HTML error encountered:
------------------------------
-
-` + er.toString()
-            );
+        .on("error", function (er) {
+            errorMessageTemplate("HTML", "", er);
             this.emit("end");
         })
         .pipe(
@@ -215,22 +227,15 @@ HTML error encountered:
 // - utilise cleancss to clean and minify the stylus output
 // - Write a minified css file to the destination
 // @param {*} callback - the "done" callback fired when all gulp pipes have completed
-function styles(callback) {
-    gulp.src(PATHS.styles.stylus.entry)
-        .on("error", function(er) {
-            log.error(
-                `
-
------------------------------
-Stylus error encountered:
------------------------------
-
-` + er.toString()
-            );
+function styles (callback) {
+    gulp
+        .src(PATHS.styles.stylus.entry)
+        .pipe(sourcemaps.init())
+        .pipe(stylus({ use: rupture() }))
+        .on("error", function (er) {
+            errorMessageTemplate("Stylus", "(Rupture)", er);
             this.emit("end");
         })
-        .pipe(sourcemaps.init())
-        .pipe(stylus({ use: [rupture()] }))
         .pipe(
             cssBase64({
                 baseDir: PATHS.images.dest,
@@ -238,11 +243,31 @@ Stylus error encountered:
                 maxWeightResource: 100
             })
         )
+        .on("error", function (er) {
+            errorMessageTemplate("Stylus", "(CSSBase64 Image Conversion)", er);
+            this.emit("end");
+        })
         .pipe(cssImport())
+        .on("error", function (er) {
+            errorMessageTemplate("Stylus", "(CSS Import)", er);
+            this.emit("end");
+        })
         .pipe(prefix())
+        .on("error", function (er) {
+            errorMessageTemplate("Stylus", "(Prefix)", er);
+            this.emit("end");
+        })
         .pipe(combineMq())
+        .on("error", function (er) {
+            errorMessageTemplate("Stylus", "(CombineMQ)", er);
+            this.emit("end");
+        })
         .pipe(gulp.dest(PATHS.styles.common.dest))
         .pipe(cleanCss({ level: 1 }))
+        .on("error", function (er) {
+            errorMessageTemplate("Stylus", "(CSS Clean)", er);
+            this.emit("end");
+        })
         .pipe(rename({ extname: ".min.css" }))
         .pipe(sourcemaps.write(PATHS.common.sourcemapsOut))
         .pipe(gulp.dest(PATHS.styles.common.dest));
@@ -256,16 +281,8 @@ Stylus error encountered:
 // @param {*} callback
 function images(callback) {
     gulp.src(PATHS.images.entry)
-        .on("error", function(er) {
-            log.error(
-                `
-
------------------------------
-Image processing error encountered:
------------------------------
-
-` + er.toString()
-            );
+        .on("error", function (er) {
+            errorMessageTemplate("Images", "", er);
             this.emit("end");
         })
         .pipe(
@@ -282,6 +299,10 @@ Image processing error encountered:
                 })
             ])
         )
+        .on("error", function (er) {
+            errorMessageTemplate("Images", "(ImageMin)", er);
+            this.emit("end");
+        })
         .pipe(gulp.dest(PATHS.images.dest));
     callback();
 }
@@ -317,22 +338,22 @@ function scripts(callback) {
         ]
     })
         .bundle()
-        .on("error", function(er) {
-            log.error(
-                `
-
------------------------------
-Javascript error encountered:
------------------------------
-
-` + er.toString()
-            );
+        .on("error", function (er) {
+            errorMessageTemplate("Javascript", "(Bundle)", er);
             this.emit("end");
         })
         .pipe(source("app.js"))
         .pipe(buffer())
+        .on("error", function (er) {
+            errorMessageTemplate("Javascript", "(Buffer)", er);
+            this.emit("end");
+        })
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(uglify())
+        .on("error", function (er) {
+            errorMessageTemplate("Javascript", "(Uglify)", er);
+            this.emit("end");
+        })
         .pipe(sourcemaps.write(PATHS.common.sourcemapsOut))
         .pipe(gulp.dest(PATHS.javascript.common.dest));
     callback();
