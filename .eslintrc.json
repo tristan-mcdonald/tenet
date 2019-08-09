@@ -1,22 +1,39 @@
 {
-    "extends": "standard",
-    "env": {
-        "browser": true,
-        "jquery": false,
-        "node": true
+    "extends":"standard",
+    "env":{
+        "browser":true,
+        "jquery":false,
+        "node":true
     },
-    "rules": {
-        "eqeqeq": 2,
-        "indent": [
+    "rules":{
+        "comma-dangle":[
+            "error",
+            "always"
+        ],
+        "eqeqeq":[
+            "error",
+            "always"
+        ],
+        "indent":[
             "error",
             4,
             {
                 "SwitchCase": 1
             }
         ],
-        "semi": 0,
         "no-multi-spaces": 0,
-        "quotes": [1, "double"],
-        "space-before-function-paren": 0
+        "quotes":[
+            1,
+            "double"
+        ],
+        "semi":[
+            "error",
+            "always"
+        ],
+        "sort-vars":"error",
+        "space-before-function-paren":[
+            "error",
+            "always"
+        ]
     }
 }

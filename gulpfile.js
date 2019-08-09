@@ -44,9 +44,6 @@ const htmlMin = require("gulp-htmlmin");
 // image minification tools
 const imagemin = require("gulp-imagemin");
 
-// nice logging for gulp and plugins
-const log = require("gulplog");
-
 // autoprefix outputted css
 const prefix = require("gulp-autoprefixer");
 
@@ -318,9 +315,38 @@ Javascript error encountered:
         .pipe(sourcemaps.write(PATHS.common.sourcemapsOut))
         .pipe(gulp.dest(PATHS.javascript.common.dest));
     callback();
+
+// render html files from templates
+// change baseurl to the github pages url if using that to present designs
+// minify html
+// @param {*} callback
+function renderTemplates (callback) {
+    pump(
+        [
+            gulp.src(PATHS.files.entry),
+            fileInclude({
+                prefix: "@@",
+                basepath: "@file",
+                context: {
+                    baseurl: "dist", // this only works if the variable is all lowercase with no underscore
+                },
+            }),
+            htmlMin({
+                caseSensitive: true,
+                collapseInlineTagWhitespace: false,
+                collapseWhitespace: true,
+                decodeEntities: true,
+                minifyCSS: true,
+                minifyJS: true,
+                removeComments: true,
+            }),
+            gulp.dest(PATHS.files.dest),
+        ],
+        callback
+    );
 }
 
-// BrowserSync be watchin'
+// BrowserSync ia watching
 function browserSync() {
     bs.init({
         server: {
@@ -333,11 +359,11 @@ function browserSync() {
     });
 }
 
-// BrowserSync also be reloadin'
+// BrowserSync is also reloading
 function browserSyncReload(callback) {
     bs.reload();
     callback();
-}
+};
 
 // watch function to fire appropriate tasks on file change
 function watch() {
@@ -348,7 +374,7 @@ function watch() {
         PATHS.javascript.app.watch,
         gulp.series(scripts, browserSyncReload)
     );
-}
+};
 
 /* == == tasks == == */
 const watchFiles = parallel(watch, browserSync);
@@ -358,4 +384,11 @@ exports.html = html;
 exports.styles = styles;
 exports.images = images;
 exports.scripts = scripts;
-exports.default = series(welcome, styles, scripts, images, html, watchFiles);
+exports.default = series(
+    welcome,
+    styles,
+    scripts,
+    images,
+    html,
+    watchFiles
+);

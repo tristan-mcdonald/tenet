@@ -40,8 +40,14 @@ bxsh-hover($color = alpha($cl--dark, 10%))
 bxsh-simple($percentage = 40%)
     box-shadow 0 1px .06rem alpha($cl--dark, $percentage)
 
-// mixin to avoid z-index issues by default
-// when giving an element position: relative
+// mixin to avoid by default giving an element an unintended
+// z-index context when giving an element position: relative
 pos-r()
     position relative
+    z-index auto
+
+// mixin to avoid by default giving an element an unintended
+// z-index context when giving an element position: absolute
+pos-a()
+    position absolute
     z-index auto

@@ -1,0 +1,23 @@
+:root
+    // set CSS variables for fluid typographic scale
+    // ratios used are in variables.styl
+    // %s is the syntax for printing the values of Stylus variables inside calc:
+    // http://stylus-lang.com/docs/operators.html#sprintf
+    --ratio $ratio--sml
+    +above(3)
+        --ratio $ratio--med
+    +above(6)
+        --ratio $ratio--lrg
+
+    --fz-ratio-power--four 'calc(%s * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio))' % ($fz--base)
+    --fz-ratio-power--three 'calc(%s * var(--ratio) * var(--ratio) * var(--ratio))' % ($fz--base)
+    --fz-ratio-power--two 'calc(%s * var(--ratio) * var(--ratio))' % ($fz--base)
+    --fz-ratio-power--one 'calc(%s * var(--ratio))' % ($fz--base)
+    --fz-ratio-power--minus-one 'calc(%s / var(--ratio))' % ($fz--base)
+    --fz-ratio-power--minus-two 'calc((%s / var(--ratio)) / var(--ratio))' % ($fz--base)
+
+    // spacing variables
+    --sp-ratio-power--four 'calc(var(--fz-ratio-power--four) * %s)' % ($lh--heading)
+    --sp-ratio-power--three 'calc(var(--fz-ratio-power--three) * %s)' % ($lh--heading)
+    --sp-ratio-power--two 'calc(var(--fz-ratio-power--two) * %s)' % ($lh--heading)
+    --sp-ratio-power--one 'calc(var(--fz-ratio-power--one) * %s)' % ($lh--heading)

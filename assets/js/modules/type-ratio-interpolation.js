@@ -1,8 +1,8 @@
 // interpolate between minimum ratio and maximum ratio,
 // based on current viewport width
 function scaleRatio (width, minValue, maxValue) {
-    const minRange      = 680;
-    const maxRange      = 1280;
+    const minRange      = 480;
+    const maxRange      = 1680;
     const a             = (maxValue - minValue) / (maxRange - minRange);
     const b             = minValue - a * minRange;
     const ratio         = width * a + b;
@@ -20,13 +20,13 @@ module.exports = {
         // add largest type ratio from variables.styl here
         let typeRatioLarge = 1.24;
         // get current viewport width
-        let screenWidth = screen.width;
+        let screenWidth = window.innerWidth;
         // apply the ratio scaling function
         scaleRatio(screenWidth, typeRatioSmall, typeRatioLarge);
         // watch for change in the viewport width and recalculate if change is detected
         window.addEventListener("resize", () => {
-            let screenWidth = screen.width;
+            let screenWidth = window.innerWidth;
             scaleRatio(screenWidth, typeRatioSmall, typeRatioLarge);
         });
-    }
+    },
 };
