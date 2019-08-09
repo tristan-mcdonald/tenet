@@ -128,6 +128,13 @@ const PATHS = {
 // terrible welcome message - really needs to be ASCII text
 function welcome(callback) {
     log.info(`
+// list of browsers that will open/load the website upon running Gulp
+const browsers = [
+    // "firefox",
+    // "safari",
+    "google chrome"
+];
+
 
   ::::::::::: :::::::::: ::::    ::: :::::::::: :::::::::::
      :+:     :+:        :+:+:   :+: :+:            :+:
@@ -359,7 +366,7 @@ function browserSync() {
             baseDir: "./dist"
         },
         notify: false,
-        browser: ["firefox", "google chrome"],
+        browser: browsers,
         files: ["dist/assets/css/*.min.css"],
         reloadOnRestart: true
     });
