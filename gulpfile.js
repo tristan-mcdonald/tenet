@@ -60,7 +60,7 @@ const rename = require("gulp-rename");
 const rupture = require("rupture");
 
 // now included in gulp, run tasks concurrently or in an order
-const { series, parallel } = require("gulp");
+const {series, parallel} = require("gulp");
 
 // gulp uses `vinyl`, a virtual file format to pass data through pipes
 // as such, we must ensure browserify output can be interpreted by following pipe operations
@@ -179,7 +179,7 @@ function welcome (callback) {
 // we do not fail on eslint error here; there is a precommit hook set up for that
 // during development code will continue to compile despite warnings (not blocking dev)
 // @param {*} callback - the "done" callback fired when all gulp pipes have completed
-function lint(callback) {
+function lint (callback) {
     gulp.src(PATHS.javascript.app.watch)
         .pipe(eslint())
         .pipe(eslint.format());
@@ -190,7 +190,7 @@ function lint(callback) {
 // change baseurl to the github pages url if using that to present designs
 // minify html
 // @param {*} callback
-function html(callback) {
+function html (callback) {
     gulp.src(PATHS.files.entry)
         .on("error", function (er) {
             errorMessageTemplate("HTML", "", er);
@@ -279,7 +279,7 @@ function styles (callback) {
 // a vector illustration program and use them as an include within a
 // template, in which case we do not need to pass them through optimisation
 // @param {*} callback
-function images(callback) {
+function images (callback) {
     gulp.src(PATHS.images.entry)
         .on("error", function (er) {
             errorMessageTemplate("Images", "", er);
@@ -317,7 +317,7 @@ function images(callback) {
 // - create sourcemaps
 // - write a minified version to the destination folder
 // @param {*} callback - the "done" callback fired when all gulp pipes have completed
-function scripts(callback) {
+function scripts (callback) {
     // set up the browserify instance on a task basis
     const b = browserify({
         entries: PATHS.javascript.app.entry,
@@ -357,39 +357,10 @@ function scripts(callback) {
         .pipe(sourcemaps.write(PATHS.common.sourcemapsOut))
         .pipe(gulp.dest(PATHS.javascript.common.dest));
     callback();
-
-// render html files from templates
-// change baseurl to the github pages url if using that to present designs
-// minify html
-// @param {*} callback
-function renderTemplates (callback) {
-    pump(
-        [
-            gulp.src(PATHS.files.entry),
-            fileInclude({
-                prefix: "@@",
-                basepath: "@file",
-                context: {
-                    baseurl: "dist", // this only works if the variable is all lowercase with no underscore
-                },
-            }),
-            htmlMin({
-                caseSensitive: true,
-                collapseInlineTagWhitespace: false,
-                collapseWhitespace: true,
-                decodeEntities: true,
-                minifyCSS: true,
-                minifyJS: true,
-                removeComments: true,
-            }),
-            gulp.dest(PATHS.files.dest),
-        ],
-        callback
-    );
 }
 
-// BrowserSync ia watching
-function browserSync() {
+// BrowserSync is watching
+function browserSync (callback) {
     bs.init({
         server: {
             baseDir: "./dist"
@@ -399,27 +370,52 @@ function browserSync() {
         files: ["dist/assets/css/*.min.css"],
         reloadOnRestart: true
     });
+    callback();
 }
 
 // BrowserSync is also reloading
-function browserSyncReload(callback) {
+function browserSyncReload (callback) {
     bs.reload();
     callback();
-};
+}
 
-// watch function to fire appropriate tasks on file change
-function watch() {
-    gulp.watch(PATHS.files.watch, gulp.series(html, browserSyncReload));
-    gulp.watch(PATHS.images.watch, gulp.series(images, browserSyncReload));
-    gulp.watch(PATHS.styles.stylus.watch, styles); // Needs no following task as css is streamed in browserSync function
+// a function to fire appropriate tasks on file change
+function watch (callback) {
+    gulp.watch(
+        PATHS.files.watch,
+        gulp.series(
+            html,
+            browserSyncReload
+        )
+    );
+    gulp.watch(
+        PATHS.images.watch,
+        gulp.series(
+            images,
+            browserSyncReload
+        )
+    );
+    gulp.watch(
+        PATHS.styles.stylus.watch,
+        styles
+    ); // Needs no following task as css is streamed in browserSync function
     gulp.watch(
         PATHS.javascript.app.watch,
-        gulp.series(scripts, browserSyncReload)
+        gulp.series(
+            scripts,
+            browserSyncReload
+        )
     );
-};
+    callback();
+}
 
-/* == == tasks == == */
-const watchFiles = parallel(watch, browserSync);
+// runs our watch and BrowserSync tasks
+const watchFiles = parallel([
+    watch,
+    browserSync
+]);
+
+/* task exports */
 exports.welcome = welcome;
 exports.lint = lint;
 exports.html = html;
