@@ -17,6 +17,9 @@ const buffer = require("vinyl-buffer");
 // configurably optimize generated CSS to remove any duplication/unnecessary rules
 const cleanCss = require("gulp-clean-css");
 
+// adds colour to our logged messages for greater clarity
+const color = require("gulp-color");
+
 // combine duplicate media queries in CSS, improves performance
 const combineMq = require("gulp-combine-mq");
 
@@ -43,6 +46,9 @@ const htmlMin = require("gulp-htmlmin");
 
 // image minification tools
 const imagemin = require("gulp-imagemin");
+
+// Gives us nice logging output
+const log = require("fancy-log");
 
 // autoprefix outputted css
 const prefix = require("gulp-autoprefixer");
