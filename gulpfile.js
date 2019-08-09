@@ -125,9 +125,6 @@ const PATHS = {
     }
 };
 
-// terrible welcome message - really needs to be ASCII text
-function welcome(callback) {
-    log.info(`
 // list of browsers that will open/load the website upon running Gulp
 const browsers = [
     // "firefox",
@@ -135,6 +132,11 @@ const browsers = [
     "google chrome"
 ];
 
+// a message used to get the user pumped about using this rad framework
+const welcomeMessage = color(`
+
+
+  Initialising:
 
   ::::::::::: :::::::::: ::::    ::: :::::::::: :::::::::::
      :+:     :+:        :+:+:   :+: :+:            :+:
@@ -143,7 +145,13 @@ const browsers = [
   +#+     +#+        +#+  +#+#+# +#+            +#+
  #+#     #+#        #+#   #+#+# #+#            #+#
 ###     ########## ###    #### ##########     ###
-    `);
+
+
+`, "MAGENTA");
+
+// logs our welcome message
+function welcome (callback) {
+    log.info(welcomeMessage);
     callback();
 }
 
