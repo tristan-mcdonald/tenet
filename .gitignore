@@ -1,3 +1,4 @@
+/.vscode
 dist/assets/css/app.css
 dist/assets/js/app.js
 /node_modules
