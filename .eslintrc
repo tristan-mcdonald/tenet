@@ -6,10 +6,6 @@
         "node":true
     },
     "rules":{
-        "comma-dangle":[
-            "error",
-            "always"
-        ],
         "eqeqeq":[
             "error",
             "always"
