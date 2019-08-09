@@ -7,5 +7,3 @@ TypeRatioInterpolation.init();
 // polyfill to enable us to use forEach on node lists in IE11
 const ForEachPolyfill = require("./modules/foreach-polyfill");
 ForEachPolyfill.init();
-
-let ForEachPolyfill = "hello!";
