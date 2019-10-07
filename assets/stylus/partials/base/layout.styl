@@ -19,6 +19,11 @@ html
         outline 0
 
 body
+    // the below three properties ensure that elements with
+    // fixed positioning will still display relative to the viewport
+    will-change unset
+    transform none
+    filter none
     display flex
     flex-direction column
     align-items center
