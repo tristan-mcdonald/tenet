@@ -284,13 +284,13 @@ gulp.task("images", minifyImages);
 // watch function to fire appropriate tasks on file change
 function watch() {
     browserSync.init({
+        files: ["dist/assets/css/*.min.css"],
+        open: false,
+        notify: false,
+        reloadOnRestart: true,
         server: {
             baseDir: "./dist",
         },
-        notify: false,
-        browser: ["firefox", "google chrome"],
-        files: ["dist/assets/css/*.min.css"],
-        reloadOnRestart: true,
     });
     gulp.watch(PATHS.files.watch, ["files"]).on("change", browserSync.reload);
     gulp.watch(PATHS.images.watch, ["images"]).on("change", browserSync.reload);
