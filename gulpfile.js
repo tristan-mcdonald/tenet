@@ -23,13 +23,8 @@ const cssBase64    = require("gulp-css-base64");
 const cssImport    = require("gulp-cssimport");
 // lint js while developing
 const eslint       = require("gulp-eslint");
-// minify html files after templates are rendered
-// docs here: https://github.com/kangax/html-minifier
-const htmlMin      = require("gulp-htmlmin");
 // log task completion to the terminal, pulled out from gutil (which is now deprecated)
 const log          = require("fancy-log");
-// adds includes to html templates; a basic static-site builder
-const fileInclude  = require("gulp-file-include");
 // run build tasks
 const gulp         = require("gulp");
 // image minification tools
@@ -68,11 +63,6 @@ const PATHS = {
         // then serve your site on 0.0.0.0:9080 (if using the npm package static-server)
         site: "http://" + devMachineIp + ":9080",
     },
-    files: {
-        entry: "templates/pages/*.html",
-        dest: "./dist",
-        watch: "templates/**/*",
-    },
     images: {
         entry: "assets/images/*",
         dest: "dist/assets/images",
@@ -102,6 +92,7 @@ const PATHS = {
     styles: {
         common: {
             dest: "dist/assets/css",
+            watch: "dist/assets/css/app.min.css",
         },
         stylus: {
             outputName: "app.css",
@@ -229,38 +220,6 @@ function minifyImages (callback) {
         callback
     );
 }
-// render html files from templates
-// change baseurl to the github pages url if using that to present designs
-// minify html
-// @param {*} callback
-function renderTemplates (callback) {
-    pump(
-        [
-            gulp.src(PATHS.files.entry),
-            fileInclude({
-                prefix: "@@",
-                basepath: "@file",
-                context: {
-                    baseurl: "dist", // this only works if the variable is all lowercase with no underscore
-                },
-            }),
-            htmlMin({
-                caseSensitive: true,
-                collapseInlineTagWhitespace: false,
-                collapseWhitespace: true,
-                decodeEntities: true,
-                minifyCSS: true,
-                minifyJS: true,
-                removeComments: true,
-            }),
-            gulp.dest(PATHS.files.dest),
-        ],
-        callback
-    );
-}
-/* == == tasks == == */
-// file include task
-gulp.task("files", renderTemplates);
 // js tasks
 gulp.task("javascript:lint", lintJavascript);
 gulp.task("javascript:app", compileJavascript);
@@ -284,21 +243,42 @@ gulp.task("images", minifyImages);
 // watch function to fire appropriate tasks on file change
 function watch() {
     browserSync.init({
-        files: ["dist/assets/css/*.min.css"],
-        open: false,
         notify: false,
+        open: false,
+        proxy: "/dist",
         reloadOnRestart: true,
-        server: {
-            baseDir: "./dist",
-        },
     });
-    gulp.watch(PATHS.files.watch, ["files"]).on("change", browserSync.reload);
-    gulp.watch(PATHS.images.watch, ["images"]).on("change", browserSync.reload);
-    gulp.watch(PATHS.styles.stylus.watch, ["styles"]).on("change", browserSync.reload);
-    gulp.watch(PATHS.javascript.app.watch, ["javascript"]).on("change", browserSync.reload);
+    gulp.watch(
+        PATHS.images.watch,
+        ["images"]).on(
+            "change",
+            browserSync.reload
+        );
+    gulp.watch(
+        PATHS.styles.stylus.watch,
+        ["styles"]
+    );
+    gulp.watch(PATHS.styles.common.watch).on(
+        "change",
+        browserSync.reload
+    );
+    gulp.watch(
+        PATHS.javascript.app.watch,
+        ["javascript"]).on(
+            "change",
+            browserSync.reload
+        );
 }
 // default task
-gulp.task("default", ["files", "images", "styles", "javascript"], watch);
+gulp.task(
+    "default",
+    [
+        "images",
+        "styles",
+        "javascript"
+    ],
+    watch
+);
 // google pagespeed insights tasks, not included in the default task
 gulp.task("mobile", () => {
     return psi(PATHS.common.site, {
