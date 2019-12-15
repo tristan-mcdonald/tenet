@@ -1,41 +1,90 @@
-$cl--first--high   = #3161ac
-$cl--first--med    = #2753a1
-$cl--first         = #224194
-$cl--first--low    = #24356c
-$cl--first--dark   = #15254f
+// $cl--first--high   = #3161ac
+// $cl--first--med    = #2753a1
+// $cl--first         = #224194
+// $cl--first--low    = #24356c
+// $cl--first--dark   = #15254f
 
-$cl--second--high  = #10b7d0
-$cl--second--med   = #0093b2
-$cl--second        = #008091
-$cl--second--low   = #067078
-$cl--second--dark  = #005e60
+// $cl--second--high  = #10b7d0
+// $cl--second--med   = #0093b2
+// $cl--second        = #008091
+// $cl--second--low   = #067078
+// $cl--second--dark  = #005e60
 
-$cl--third--high   = #70c0a2
-$cl--third--med    = #44b48f
-$cl--third         = #19ae87
-$cl--third--low    = #1a9371
-$cl--third--dark   = #087f5a
+// $cl--third--high   = #70c0a2
+// $cl--third--med    = #44b48f
+// $cl--third         = #19ae87
+// $cl--third--low    = #1a9371
+// $cl--third--dark   = #087f5a
 
-$cl--fourth--high  = #395a6b
-$cl--fourth--med   = #2e4b5c
-$cl--fourth        = #263d49
-$cl--fourth--low   = #1c2f38
-$cl--fourth--dark  = #112730
+// $cl--fourth--high  = #395a6b
+// $cl--fourth--med   = #2e4b5c
+// $cl--fourth        = #263d49
+// $cl--fourth--low   = #1c2f38
+// $cl--fourth--dark  = #112730
 
-$cl--off           = #fafafc
-$cl--off--low      = darken($cl--off, 4%)
+// $cl--off           = #fafafc
+// $cl--off--low      = darken($cl--off, 4%)
 
-$cl--pale          = #f9f9c7
+// $cl--pale          = #f9f9c7
 
-$cl--high          = #626875
-$cl--light         = #2f333b
-$cl--med           = #282b35
-$cl--low           = #1d1f26
-$cl--dark          = #111519
+// $cl--high          = #626875
+// $cl--light         = #2f333b
+// $cl--med           = #282b35
+// $cl--low           = #1d1f26
+// $cl--dark          = #111519
 
-$cl--anchor           = $cl--first--med
-$cl--anchor--interact = $cl--first
+// $cl--anchor           = $cl--first--med
+// $cl--anchor--interact = $cl--first
 
-$cl--focus         = #ebc71b
-$cl--error         = #ee5432
-$cl--success       = #2fd060
+// $cl--focus         = #ebc71b
+// $cl--error         = #ee5432
+// $cl--success       = #2fd060
+
+// the app's colour scheme is triadic
+// three hues are used: 220.7, 39.9, and 178
+
+// user interface colours
+$cl--interface--dark  = hsla(220.7, 06%, 10%, 1)
+$cl--interface--low   = hsla(220.7, 10%, 24%, 1)
+$cl--interface        = hsla(220.7, 12%, 28%, 1)
+$cl--interface--med   = hsla(220.7, 14.3%, 89%, 1);
+$cl--interface--light = hsla(220.7, 20%, 92.2%, 1)
+$cl--interface--high  = hsla(220.7, 29.4%, 96.7%, 1);
+
+// attention colours, to draw the user's attention to an element
+$cl--attention--dark = hsla(39.9, 100%, 46%, 1)
+$cl--attention--low  = hsla(39.9, 100%, 50%, 1)
+$cl--attention       = hsla(39.9, 100%, 60%, 1)
+$cl--attention--med  = hsla(39.9, 100%, 70%, 1)
+$cl--attention--high = hsla(39.9, 100%, 90%, 1)
+
+// interaction colours, to show the user they can interact with an element
+$cl--interaction--dark = hsla(178, 40%, 28%, 1)
+$cl--interaction--low  = hsla(178, 56%, 38%, 1)
+$cl--interaction       = hsla(178, 52%, 40%, 1)
+$cl--interaction--med  = hsla(178, 40%, 63%, 1)
+$cl--interaction--high = hsla(178, 44%, 90%, 1)
+
+// text colours
+$cl--text--dark  = hsla(220.7, 8%, 14%, 1)
+$cl--text--low   = hsla(220.7, 8%, 26%, 1)
+$cl--text        = hsla(220.7, 8%, 34%, 1)
+$cl--text--med   = hsla(220.7, 8%, 40%, 1)
+$cl--text--light = hsla(220.7, 20%, 92.2%, 1)
+$cl--text--high  = hsla(220.7, 29%, 96.7%, 1)
+
+$cl--anchor           = $cl--interaction
+$cl--anchor--interact = $cl--interaction--low
+
+$cl--focus = $cl--attention
+
+$cl--error = hsla(345.4, 100%, 58%, 1)
+
+$cl--success = hsla(153, 100%, 38.8%, 1)
+
+$cl--risk--first  = hsla(358, 97%, 42%, 1)
+$cl--risk--second = hsla(358, 97%, 52%, 1)
+$cl--risk--third  = hsla(358, 97%, 62%, 1)
+$cl--risk--fourth = hsla(358, 97%, 96%, 1)
+
+$cl--placeholder = modify-hsla($color: $cl--text, $a: -.4)

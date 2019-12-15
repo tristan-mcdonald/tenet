@@ -1,9 +1,13 @@
 // mixin for transitions; adds a will-change value for each property chosen
-trans($time = 0.14s, $easing = ease-out, $properties = "background-color, box-shadow")
+trans(
+    $properties                 = "background-color, box-shadow",
+    $transition-duration        = .14s,
+    $transition-timing-function = ease-out
+)
     will-change unquote($properties)
     transition-property unquote($properties)
-    transition-duration $time
-    transition-timing-function $easing
+    transition-duration $transition-duration
+    transition-timing-function $transition-timing-function
 
 // mixin to lift the element vertically on hover
 bump-up($distance = -1px)
