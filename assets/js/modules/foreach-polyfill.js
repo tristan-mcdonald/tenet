@@ -1,5 +1,5 @@
 module.exports = {
-    // polyfill to enable us to use forEach on node lists in IE11
+    // polyfill to enable us to use forEach on node lists in internet explorer
     init: () => {
         if ("NodeList" in window && !NodeList.prototype.forEach) {
             NodeList.prototype.forEach = function (callback, thisArg) {
@@ -8,6 +8,9 @@ module.exports = {
                     callback.call(thisArg, this[i], i, this);
                 }
             };
+        }
+        if (window.HTMLCollection && !HTMLCollection.prototype.forEach) {
+            HTMLCollection.prototype.forEach = Array.prototype.forEach;
         }
     },
 };
