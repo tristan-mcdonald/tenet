@@ -16,7 +16,7 @@ textarea
     line-height $lh--body
     font-size inherit
     letter-spacing $ls--body
-    color $cl--light
+    color $cl--text
 
 h1
 h2
@@ -27,7 +27,7 @@ h4
     font-family $ff--heading
     font-weight normal
     letter-spacing $ls--heading
-    color $cl--med
+    color $cl--text--low
 
     a
     a:visited
@@ -66,6 +66,11 @@ h4
     * + &
         sp-scale--one()
 
+// there are no styles for any heading levels lower than h4, as
+// I have never seen these used semantically; content editors
+// tend to use h5 and h6 as a means of editing the size of text, which
+// is combining content and presentation and should be discouraged.
+
 p
     width auto
     mt()
@@ -74,7 +79,7 @@ p
     font-size $fz--base
     line-height $lh--body
     letter-spacing $ls--body
-    color $cl--med
+    color $cl--text
 
     h1 + &
     h2 + &
@@ -111,8 +116,8 @@ i
     font-family $ff--emphasis
 
 ::selection
-    background-color $cl--first
-    text-shadow 0 0 .1em $cl--first--dark
+    background-color $cl--interface
+    text-shadow 0 0 .1em $cl--interface--dark
     color white
 
 .reading_content

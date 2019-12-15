@@ -27,18 +27,18 @@ button-reset()
     font inherit
     color inherit
 
+// mixin for non-interactive material-style box shadow
+bxsh-static($color = modify-hsla($color: $cl--interface--low, $a: -.8))
+    box-shadow 0 1px .06rem $color
+
 // mixin to add a material design-style box-shadow which expands on hover
-bxsh-hover($color = alpha($cl--dark, 10%))
+bxsh-interaction($color = modify-hsla($color: $cl--interface--low, $a: -.8))
     box-shadow 0 1px 1px $color
 
     &:active
     &:focus
     &:hover
         box-shadow 0 3px 6px $color
-
-// mixin for non-interactive material-style box shadow
-bxsh-static($percentage = 40%)
-    box-shadow 0 1px .06rem alpha($cl--dark, $percentage)
 
 // mixin to avoid by default giving an element an unintended
 // z-index context when giving an element position: relative

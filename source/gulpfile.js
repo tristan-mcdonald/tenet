@@ -65,34 +65,28 @@ const PATHS = {
     },
     images: {
         entry: "assets/images/*",
-        dest: "dist/assets/images",
+        dest: "../distribution/assets/images",
         watch: "assets/images/**/*",
     },
     javascript: {
         common: {
-            dest: "dist/assets/js",
+            dest: "../distribution/assets/js",
         },
         app: {
             outputName: "app.js",
             entry: "assets/js/app.js",
             watch: "assets/js/**/*",
         },
-        vendor: {
-            outputName: "vendor.js",
-            entry: "assets/js/vendor/**/*",
-            watch: "assets/js/vendor/*",
-        },
         final: {
             outputName: "app.min.js",
-            app: "dist/assets/js/app.js",
-            vendor: "dist/assets/js/vendor.js",
+            app: "../distribution/assets/js/app.js",
             watch: "assets/js/**/*",
         },
     },
     styles: {
         common: {
-            dest: "dist/assets/css",
-            watch: "dist/assets/css/app.min.css",
+            dest: "../distribution/assets/css",
+            watch: "../distribution/assets/css/app.min.css",
         },
         stylus: {
             outputName: "app.css",
@@ -245,7 +239,7 @@ function watch() {
     browserSync.init({
         notify: false,
         open: false,
-        proxy: "/dist",
+        proxy: "../distribution",
         reloadOnRestart: true,
     });
     gulp.watch(

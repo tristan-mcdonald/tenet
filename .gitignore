@@ -1,4 +1,4 @@
-dist/assets/css/app.css
-dist/assets/js/app.js
-/node_modules
-.DS_Store
+distribution/assets/css/app.css
+distribution/assets/js/app.js
+**/*/node_modules
+**/*.DS_Store

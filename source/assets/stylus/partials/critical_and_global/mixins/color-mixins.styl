@@ -1,9 +1,10 @@
 // this mixin is for use in variables.styl, to create a programmatic colour system.
 // $color is a required argument, but the others can be defined optionally.
 // if you wanted to add 10% to the saturation of $color, you would call the mixin as so:
-// modify-hsla($color: $cl--first, $s: 10)
+// modify-hsla($color: $cl--attention, $s: 10)
 // if you wanted to subtract .2 from the alpha of $color, you would call the mixin as so:
-// modify-hsla($color: $cl--first, $a: -.2)
+// modify-hsla($color: $cl--attention, $a: -.2)
+
 modify-hsla($color, $h="", $s="", $l="", $a="")
     // convert the colour value to a string so that we can operate on it
     $color  = join(" ", $color)
@@ -33,7 +34,7 @@ modify-hsla($color, $h="", $s="", $l="", $a="")
     return unquote($final-value)
 
 // here are some examples of this in use:
-// $cl--first        = hsla(199, 44%, 19%, 1)
-// $cl--first--low   = modify-hsla($color: $cl--first, $s: -6, $l: -6)
-// $cl--first--med   = modify-hsla($color: $cl--first, $s: 11, $l: 11)
-// $cl--first--high  = modify-hsla($color: $cl--first, $s: 22, $l: 22)
+// $cl--attention        = hsla(199, 44%, 19%, 1)
+// $cl--attention--low   = modify-hsla($color: $cl--attention, $s: -6, $l: -6)
+// $cl--attention--med   = modify-hsla($color: $cl--attention, $s: 11, $l: 11)
+// $cl--attention--high  = modify-hsla($color: $cl--attention, $s: 22, $l: 22)
