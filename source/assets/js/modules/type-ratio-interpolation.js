@@ -10,7 +10,6 @@ function scaleRatio (width, minValue, maxValue) {
     // update CSS custom property '--ratio' with ratio figure from the above math
     document.documentElement.style.setProperty("--ratio", adjustedRatio);
 }
-
 module.exports = {
     // interpolate between type ratio minimum and maximum values
     // store the result in a CSS custom property

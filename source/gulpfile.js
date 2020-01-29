@@ -101,7 +101,11 @@ const PATHS = {
 // @param {*} callback - the "done" callback fired when all gulp pipes have completed
 function lintJavascript (callback) {
     pump(
-        [gulp.src(PATHS.javascript.app.watch), eslint(), eslint.format()],
+        [
+            gulp.src(PATHS.javascript.app.watch),
+            eslint(),
+            eslint.format()
+        ],
         callback
     );
 }

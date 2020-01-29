@@ -1,4 +1,4 @@
-This license is granted to everyone except for the following entities and
+This license is granted to everyone, except for the following entities and
 any of their subsidiaries:
 
 * "Microsoft Corporation" (for working with ICE)
