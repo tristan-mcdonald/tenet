@@ -11,20 +11,16 @@ Tenet aims to help reduce the introduction of technical debt, which is useful be
 Tenet has been in use in production in various forms since 2013, though in its original incarnation it was tightly coupled to a CMS. It is currently in production on user-facing government software, amongst other large pieces of software for national and international organisations.
 
 ## Who is this for?
-This is not a CSS library for engineers looking to add presentational classes to elements and have their MVP app styled quickly; there are already many excellent tools for that.
+This is not a CSS library for engineers looking to add presentational classes to elements and have their prototype app styled quickly; there are already many excellent libraries for that.
 
 Tenet is a set of tools and a methodology for front-end engineers and designers who design in-browser, write hundreds (if not thousands) of lines of CSS on a daily basis on large projects, and seek to avoid introducing technical debt.
 
 I design almost entirely in code and in-browser; this isn't just a conference talk about the novelty of a designer-engineer, but rather a practical and well-tested set of tools and ideas to help push that job role forwards in our industry in a meaningful way.
 
-I work closely with excellent backend engineers, and our aim is to make robust software together while maintaining a high quality of life for engineers; reducing repetition, increasing predictability in our codebases etc. It is my opinion that context and methodologies can and should be shared freely, from project managers to designers to engineers, and that the separation of concerns and skills that pervades our industry at present is holding us back, but that's for another time.
+I work closely with excellent backend engineers, and our aim is to make robust software together while maintaining a high quality of life for engineers; reducing repetition, increasing predictability in our codebases, avoiding common and annoying bugs, etc. It is my opinion that context and methodologies can and should be shared freely and continuously improved, from project managers to designers to engineers, and that the separation of concerns and skills that pervades our industry at present is holding us back, but that's for another time.
 
 ## Why is it called Tenet?
-I'm glad you asked. Tenet is named after my favourite designer, [Deiter Rams](https://en.wikipedia.org/wiki/Dieter_Rams), and his tenets of [good design](https://www.vitsoe.com/eu/about/good-design); my favourite of which is "good design makes a product understandable".
-
-> Indifference towards people and the reality in which they live is actually the one and only cardinal sin in design.
-
-_Dieter Rams_
+Tenet is named after the designer [Deiter Rams](https://en.wikipedia.org/wiki/Dieter_Rams) and his tenets of [good design](https://www.vitsoe.com/eu/about/good-design); my favourite of which is "_good design makes a product understandable_".
 
 > Design should not dominate things, should not dominate people. It should help people. That’s its role.
 
@@ -38,7 +34,7 @@ That's great to hear! Please have a peek at the documentation first and then fee
 
 > Tenet is a working reference implementation of responsible design.
 
-_[Gary Stevens](http://bramblefinch.co.uk)_
+_[Gary Stevens](https://uncommoncorrelation.co.uk)_
 
 > There is no place for hope in software development.
 
