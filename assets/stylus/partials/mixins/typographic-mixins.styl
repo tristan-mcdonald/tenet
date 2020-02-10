@@ -23,3 +23,8 @@ content-anchor(
     &:hover
         box-shadow inset 0 -2px 0 modify-hsla($color: $interaction-color, $a: -.6)
         color $interaction-color
+
+// mixin for ensuring that long words don't break layout
+break-long-words()
+    word-break break-word
+    word-wrap anywhere
