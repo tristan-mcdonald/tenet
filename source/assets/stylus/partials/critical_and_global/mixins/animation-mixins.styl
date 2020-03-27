@@ -1,7 +1,7 @@
 // mixin for transitions; adds a will-change value for each property chosen
 trans(
     $properties                 = "background-color, box-shadow",
-    $transition-duration        = .14s,
+    $transition-duration        = $trsdu,
     $transition-timing-function = ease-out
 )
     will-change unquote($properties)
