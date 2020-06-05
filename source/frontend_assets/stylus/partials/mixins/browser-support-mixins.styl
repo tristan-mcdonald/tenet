@@ -41,6 +41,13 @@ fz-scale--one()
         font-size ($fz--base * $ratio--lrg)
         font-size var(--fz-ratio-power--one)
 
+fz-scale--reset-to-base()
+    font-size $fz--base
+    +above(3)
+        font-size $fz--base
+    +above(6)
+        font-size $fz--base
+
 fz-scale--minus-one()
     font-size ($fz--base / $ratio--sml)
     font-size var(--fz-ratio-power--minus-one)
