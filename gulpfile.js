@@ -75,12 +75,12 @@ const PATHS = {
     },
     images: {
         entry: "assets/images/*",
-        dest: "dist/assets/images",
+        dest: "distribution/assets/images",
         watch: "assets/images/**/*",
     },
     javascript: {
         common: {
-            dest: "dist/assets/js",
+            dest: "distribution/assets/js",
         },
         app: {
             outputName: "app.js",
@@ -94,14 +94,14 @@ const PATHS = {
         },
         final: {
             outputName: "app.min.js",
-            app: "dist/assets/js/app.js",
-            vendor: "dist/assets/js/vendor.js",
+            app: "distribution/assets/js/app.js",
+            vendor: "distribution/assets/js/vendor.js",
             watch: "assets/js/**/*",
         },
     },
     styles: {
         common: {
-            dest: "dist/assets/css",
+            dest: "distribution/assets/css",
         },
         stylus: {
             outputName: "app.css",
