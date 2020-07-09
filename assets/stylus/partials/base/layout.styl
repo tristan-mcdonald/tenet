@@ -6,18 +6,6 @@
     box-sizing border-box
     word-wrap break-word
 
-// keyboard focus styles
-// use a11y.js to detect keyboard input
-html
-
-    &[data-focus-source="key"] :focus
-        z-index 90
-        outline-offset 6px
-        outline 2px solid $cl--focus
-
-    :focus
-        outline 0
-
 body
     // the below three properties ensure that elements with
     // fixed positioning will still display relative to the viewport
