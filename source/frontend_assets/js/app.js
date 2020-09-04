@@ -1,24 +1,24 @@
 "use strict";
+// import functions
+import ClassListPolyfill from ".modules/classlist_polyfill";
+import ForEachPolyfill from "./modules/foreach_polyfill";
+import FocusAccessibility from "./modules/focus_accessibility";
+import TypeRatioInterpolation from "./modules/type_ratio_interpolation";
 /*
-    polyfill to enable us to use forEach
-    on node lists in internet explorer
+    polyfill to enable use of forEach on node lists in IE11
 */
-const ForEachPolyfill = require("./modules/foreach-polyfill");
-ForEachPolyfill.init();
+ForEachPolyfill();
 /*
     polyfill to allow use of replace method
     on a classList in internet explorer
 */
-const ClassListPolyfill = require("./modules/classlist-polyfill");
-ClassListPolyfill.init();
+ClassListPolyfill();
 /*
-    interpolate between minimum ratio & maximum ratio,
-    based on current viewport width
+    interpolate between type ratio minimum and maximum values,
+    and store the result in a CSS custom property
 */
-const TypeRatioInterpolation = require("./modules/type-ratio-interpolation");
-TypeRatioInterpolation.init();
+TypeRatioInterpolation();
 /*
-    detect focus source using a11y.js
+    allow enchanced focus detection (depends on a11y.js)
 */
-const FocusAccessibility = require("./modules/focus-accessibility");
-FocusAccessibility.init();
+FocusAccessibility();
