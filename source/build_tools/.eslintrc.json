@@ -1,20 +1,22 @@
 {
-    "extends":"standard",
-    "env":{
-        "browser":true,
-        "jquery":false,
-        "node":true
+    "extends": "standard",
+    "env": {
+        "browser": true,
+        "jest": true,
+        "jquery": false,
+        "node": true
     },
-    "rules":{
-        "comma-dangle":[
+    "rules": {
+        "camelcase": 0,
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "eqeqeq": [
             "error",
             "always"
         ],
-        "eqeqeq":[
-            "error",
-            "always"
-        ],
-        "indent":[
+        "indent": [
             "error",
             4,
             {
@@ -22,18 +24,19 @@
             }
         ],
         "no-multi-spaces": 0,
-        "quotes":[
+        "quotes": [
             1,
             "double"
         ],
-        "semi":[
+        "semi": [
             "error",
             "always"
         ],
-        "sort-vars":"error",
-        "space-before-function-paren":[
+        "sort-vars": "error",
+        "space-before-function-paren": [
             "error",
             "always"
         ]
     }
 }
+
