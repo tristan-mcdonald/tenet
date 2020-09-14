@@ -1,0 +1,26 @@
+/*
+    mixin for transitions. this adds a will-change value for each
+    property chosen. avoid using "all" for the will-change value,
+    as you will very quickly hit the browser's will-change
+    memory consumption limit.
+*/
+transition(
+    $time = 0.14s,
+    $easing = ease-out,
+    $properties = "background-color"
+)
+    will-change unquote($properties)
+    transition-property unquote($properties)
+    transition-duration $time
+    transition-timing-function $easing
+
+/*
+    mixin to lift an element vertically on interaction.
+    remember to specify a transition for the element
+    with a value of `transform`; this has beenommitted
+    here to allow multiple transition values.
+*/
+raise_up($distance = -1px)
+    &:focus
+    &:hover
+        transform translateY($distance)
