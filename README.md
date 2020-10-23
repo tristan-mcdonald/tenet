@@ -1,7 +1,11 @@
 # Tenet
 _As starred by [Chris Coyier](https://github.com/chriscoyier)!_
 
-High designer-engineer happiness when designing and building the frontend of large-scale web software, while avoiding introducing technical debt as much as is possible.
+With Tenet you define a small viewport size and a font-size to go with it, as well as a large viewport size and a font-size to go with that. Between these viewport sizes, Tenet fluidly interpolates not only your entire font stack, but also all whitespace and element sizes. In addition to this, you'll define two different ratios (for the minimum and maximum viewport sizes) by which the font-size of your headings will increase, and Tenet will fluidly interpolate between those! 
+
+This means you won't need to write media queries for your font-sizes again, and you'll write far fewer media queries overall, as elements resize fluidly with the viewport.
+
+Tenet also comes with many handy tools pointing you toward a methodology for writing maintainable frontends, with your quality of life in mind, while avoiding introducing technical debt as much as is possible.
 
 ## What is this?
 Tenet is a sensible toolkit for starting large front-end projects, and for prototyping designs for the web. It is opinionated, and a detailed guide to the suggested methodology for working with this toolkit can be found in the [documentation](https://github.com/trubblebruin/tenet/wiki).
