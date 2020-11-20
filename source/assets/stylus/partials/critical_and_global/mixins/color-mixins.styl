@@ -20,13 +20,13 @@ modify-hsla($color, $h="", $s="", $l="", $a="")
     $lightness  = convert($values[2])
     $alpha      = convert($values[3])
     // if present, add/subtract the arguments to their relevant part in the HSLA
-    if $h is a 'unit'
+    if $h is a "unit"
         $hue = $hue + $h
-    if $s is a 'unit'
+    if $s is a "unit"
         $saturation = $saturation + $s
-    if $l is a 'unit'
+    if $l is a "unit"
         $lightness = $lightness + $l
-    if $a is a 'unit'
+    if $a is a "unit"
         $alpha = $alpha + $a
     // compile the final values into a CSS HSLA value
     $final-value = "hsla(" + $hue + "," + $saturation + "%," + $lightness + "%," + $alpha + ")"

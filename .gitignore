@@ -1,4 +1,6 @@
 distribution/assets/css/app.css
+distribution/assets/css/app.min.css.map
 distribution/assets/js/app.js
+distribution/assets/js/app.min.js.map
 **/*/node_modules
 **/*.DS_Store

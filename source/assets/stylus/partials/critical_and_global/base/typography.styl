@@ -1,6 +1,12 @@
 :root
     // see functions/interpolation.styl for an explanation of this function
-    interpolation()
+    interpolation(
+        $properties: "font-size",
+        $min-screen: 480px,
+        $max-screen: 1680px,
+        $min-value: 13px,
+        $max-value: 19px
+    )
 
 html
     text-rendering optimizeLegibility
