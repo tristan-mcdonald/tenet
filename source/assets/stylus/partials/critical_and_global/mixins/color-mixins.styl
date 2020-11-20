@@ -1,0 +1,40 @@
+// this mixin is for use in variables.styl, to create a programmatic colour system.
+// $color is a required argument, but the others can be defined optionally.
+// if you wanted to add 10% to the saturation of $color, you would call the mixin as so:
+// modify-hsla($color: $cl--attention, $s: 10)
+// if you wanted to subtract .2 from the alpha of $color, you would call the mixin as so:
+// modify-hsla($color: $cl--attention, $a: -.2)
+
+modify-hsla($color, $h="", $s="", $l="", $a="")
+    // convert the colour value to a string so that we can operate on it
+    $color  = join(" ", $color)
+    // slice away everything other than the list of values
+    $color  = slice($color, 5, -1)
+    // remove units from the list of values so that we can operate on it
+    $color  = replace("%", "", $color)
+    // split the colour into an array
+    $values = split(",", $color)
+    // split the array into numbers which we can operate on
+    $hue        = convert($values[0])
+    $saturation = convert($values[1])
+    $lightness  = convert($values[2])
+    $alpha      = convert($values[3])
+    // if present, add/subtract the arguments to their relevant part in the HSLA
+    if $h is a "unit"
+        $hue = $hue + $h
+    if $s is a "unit"
+        $saturation = $saturation + $s
+    if $l is a "unit"
+        $lightness = $lightness + $l
+    if $a is a "unit"
+        $alpha = $alpha + $a
+    // compile the final values into a CSS HSLA value
+    $final-value = "hsla(" + $hue + "," + $saturation + "%," + $lightness + "%," + $alpha + ")"
+    // remove string quotes from the final value so that it is valid CSS
+    return unquote($final-value)
+
+// here are some examples of this in use:
+// $cl--attention        = hsla(199, 44%, 19%, 1)
+// $cl--attention--low   = modify-hsla($color: $cl--attention, $s: -6, $l: -6)
+// $cl--attention--med   = modify-hsla($color: $cl--attention, $s: 11, $l: 11)
+// $cl--attention--high  = modify-hsla($color: $cl--attention, $s: 22, $l: 22)

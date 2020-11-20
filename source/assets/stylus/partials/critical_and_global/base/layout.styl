@@ -1,0 +1,63 @@
+// this file is for global layout styles
+// keep page-specific layout styles to their own files
+*
+*::before
+*::after
+    box-sizing border-box
+    word-wrap break-word
+
+body
+    // the below three properties ensure that elements with
+    // fixed positioning will still display relative to the viewport
+    will-change unset
+    transform none
+    filter none
+    display flex
+    flex-direction column
+    align-items center
+    justify-content flex-start
+    min-height 100vh
+    width 100%
+
+.main_content
+    flex 1
+    width 100%
+
+// styles nested in this block are for a standard
+// content page layout with a centered containing div
+.page_content
+    flex 1
+    width 100%
+
+    &__inner
+        contain(flex)
+        flex-direction column
+        align-items flex-start
+
+        > *:first-child
+            margin-top $sp--plus-half
+
+        > *:last-child
+            margin-bottom $sp--plus-half
+
+img
+    display block
+    height auto
+    width auto
+    max-width 100%
+    vertical-align bottom // fix bug in some browsers which adds unintended white-space
+    mt()
+
+svg
+    overflow visible // fix bug in firefox where edges of SVG display as cut
+    height 100%
+    max-height 100%
+    width 100%
+    max-width 100%
+
+input
+button
+    trans()
+
+button
+    button-reset()

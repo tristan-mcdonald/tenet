@@ -1,0 +1,41 @@
+{
+    "extends": "standard",
+    "env": {
+        "browser": true,
+        "jest": true,
+        "jquery": false,
+        "node": true
+    },
+    "rules": {
+        "camelcase": 0,
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "eqeqeq": [
+            "error",
+            "always"
+        ],
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "no-multi-spaces": 0,
+        "quotes": [
+            1,
+            "double"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "sort-vars": "error",
+        "space-before-function-paren": [
+            "error",
+            "always"
+        ]
+    }
+}

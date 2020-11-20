@@ -1,0 +1,17 @@
+// mixin for transitions; adds a will-change value for each property chosen
+trans(
+    $properties                 = "background-color, box-shadow",
+    $transition-duration        = $trsdu,
+    $transition-timing-function = ease-out
+)
+    will-change unquote($properties)
+    transition-property unquote($properties)
+    transition-duration $transition-duration
+    transition-timing-function $transition-timing-function
+
+// mixin to lift the element vertically on hover
+bump-up($distance = -1px)
+    &:active
+    &:focus
+    &:hover
+        transform translateY($distance)
