@@ -1,5 +1,9 @@
-# Tenet
+# Tenet CSS
 _As starred by [Chris Coyier](https://github.com/chriscoyier)!_
+
+> Tenet is a CSS framework which fluidly interpolates not only your entire font stack, but also all whitespace and element sizes.
+
+> Tenet promotes a sensible and maintainable approach to building the frontend of large codebases.
 
 With Tenet you define a small viewport size and a font-size to go with it, as well as a large viewport size and a font-size to go with that. Between these viewport sizes, Tenet fluidly interpolates not only your entire font stack, but also all whitespace and element sizes. In addition to this, you'll define two different ratios (for the minimum and maximum viewport sizes) by which the font-size of your headings will increase, and Tenet will fluidly interpolate between those! 
 
