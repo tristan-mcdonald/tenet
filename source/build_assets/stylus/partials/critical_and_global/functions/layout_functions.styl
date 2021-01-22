@@ -30,12 +30,12 @@ mr($margin-right = $sp)
 */
 contain(
     $width     = 92%,
-    $max-width = $container
+    $max-width = $contain
 )
-    width $width
-    max-width $max-width
     margin-right auto
     margin-left auto
+    width $width
+    max-width $max-width
 /*
     mixin for resetting `button` element styles,
     so that we can start styling them from a
@@ -64,16 +64,16 @@ bxsh-interaction($color = modify-hsla($color: $cl--interface--low, $a: -.8))
     mixin to avoid by default giving an element an unintended
     z-index context when giving an element a `position` of `relative`.
 */
-pos-r()
+pos-r($z-index = auto)
     position relative
-    z-index auto
+    z-index $z-index
 /*
     mixin to avoid by default giving an element an unintended
     z-index context when giving an element a `position` of `absolute`.
 */
-pos-a()
+pos-a($z-index = auto)
     position absolute
-    z-index auto
+    z-index $z-index
 /*
     mixin to add a Material Design-style `box-shadow` which expands on interaction.
     `$inset-color` takes a darker step of the element's `background-color`.

@@ -13,8 +13,6 @@ const buffer       = require("vinyl-buffer");
 const cleanCss     = require("gulp-clean-css");
 // combine duplicate media queries in CSS, improves performance
 const combineMq    = require("gulp-combine-mq");
-// concatenate multiple files into one
-const concat       = require("gulp-concat");
 // encode images referenced in css into the compiled file to reduce http requests
 // leave out svg as it can be problematic
 const cssBase64    = require("gulp-css-base64");
@@ -23,8 +21,6 @@ const cssBase64    = require("gulp-css-base64");
 const cssImport    = require("gulp-cssimport");
 // lint js while developing
 const eslint       = require("gulp-eslint");
-// log task completion to the terminal, pulled out from gutil (which is now deprecated)
-const log          = require("fancy-log");
 // run build tasks
 const gulp         = require("gulp");
 // image minification tools
@@ -64,35 +60,43 @@ const PATHS = {
         site: "http://" + devMachineIp + ":9080",
     },
     images: {
-        entry: "assets/images/*",
-        dest: "../distribution/assets/images",
-        watch: "assets/images/**/*",
+        entry: "../build_assets/images/*",
+        dest: "../../static/images",
+        watch: "../build_assets/images/**/*",
     },
     javascript: {
         common: {
-            dest: "../distribution/assets/js",
+            dest: "../../static/js",
         },
         app: {
             outputName: "app.js",
-            entry: "assets/js/app.js",
-            watch: "assets/js/**/*",
+            entry: "../build_assets/js/app.js",
+            watch: "../build_assets/js/**/*",
+        },
+        vendor: {
+            outputName: "vendor.js",
+            entry: "../build_assets/js/vendor/**/*",
+            watch: "../build_assets/js/vendor/*",
         },
         final: {
             outputName: "app.min.js",
-            app: "../distribution/assets/js/app.js",
-            watch: "assets/js/**/*",
+            app: "../../static/js/app.js",
+            vendor: "../../static/js/vendor.js",
+            watch: "../build_assets/js/**/*",
         },
     },
     styles: {
         common: {
-            dest: "../distribution/assets/css",
-            watch: "../distribution/assets/css/app.min.css",
+            dest: "../../static/css",
         },
         stylus: {
             outputName: "app.css",
-            entry: "assets/stylus/app.styl",
-            watch: "assets/stylus/**/*",
+            entry: "../build_assets/stylus/app.styl",
+            watch: "../build_assets/stylus/**/*",
         },
+        output: {
+            watch: "../../static/css/app.min.css",
+        }
     },
 };
 // run js through eslint while developing
@@ -103,7 +107,7 @@ function lintJavascript (callback) {
     pump(
         [
             gulp.src(PATHS.javascript.app.watch),
-            eslint(),
+            eslint({configFile: ".eslintrc"}),
             eslint.format()
         ],
         callback
@@ -120,7 +124,7 @@ function lintJavascript (callback) {
 // - write a minified version to the destination folder
 // @param {*} callback - the "done" callback fired when all gulp pipes have completed
 function compileJavascript (callback) {
-    const b = browserify(PATHS.javascript.app.entry, {
+    const transpileJS = browserify(PATHS.javascript.app.entry, {
         debug: true,
     }).transform("babelify", {
         // transpile down to es5
@@ -131,15 +135,15 @@ function compileJavascript (callback) {
                     "browsers": [
                         ">0.25%",
                         "not op_mini all",
-                        "ie >= 11"
-                    ]
-                }
-            }]
-        ]
+                        "ie >= 11",
+                    ],
+                },
+            }],
+        ],
     });
     pump(
         [
-            b.bundle(),
+            transpileJS.bundle(),
             source(PATHS.javascript.app.outputName),
             buffer(),
             gulp.dest(PATHS.javascript.common.dest),
@@ -168,7 +172,7 @@ function compileStylus (callback) {
             sourcemaps.init(),
             stylus({
                 use: [
-                    rupture()
+                    rupture(),
                 ],
             }),
             cssBase64({
@@ -176,7 +180,7 @@ function compileStylus (callback) {
                 extensionsAllowed: [
                     ".gif",
                     ".jpg",
-                    ".png"
+                    ".png",
                 ],
                 maxWeightResource: 100,
             }),
@@ -210,7 +214,10 @@ function minifyImages (callback) {
                 imagemin.jpegtran({ progressive: true }),
                 imagemin.optipng({ optimizationLevel: 5 }),
                 imagemin.svgo({
-                    plugins: [{ removeViewBox: true }, { cleanupIDs: true }],
+                    plugins: [
+                        { removeViewBox: true },
+                        { cleanupIDs: true },
+                    ],
                 }),
             ]),
             gulp.dest(PATHS.images.dest),
@@ -218,6 +225,7 @@ function minifyImages (callback) {
         callback
     );
 }
+/* == == tasks == == */
 // js tasks
 gulp.task("javascript:lint", lintJavascript);
 gulp.task("javascript:app", compileJavascript);
@@ -239,33 +247,21 @@ gulp.task("styles", callback => {
 // image tasks
 gulp.task("images", minifyImages);
 // watch function to fire appropriate tasks on file change
-function watch() {
+function watch () {
     browserSync.init({
         notify: false,
         open: false,
         proxy: "../distribution",
         reloadOnRestart: true,
     });
-    gulp.watch(
-        PATHS.images.watch,
-        ["images"]).on(
-            "change",
-            browserSync.reload
-        );
-    gulp.watch(
-        PATHS.styles.stylus.watch,
-        ["styles"]
-    );
-    gulp.watch(PATHS.styles.common.watch).on(
+    gulp.watch(PATHS.images.watch, ["images"]).on("change", browserSync.reload);
+    gulp.watch(PATHS.styles.stylus.watch, ["styles"]);
+    // reload browser once stylus has been compiled
+    gulp.watch(PATHS.styles.output.watch).on(
         "change",
         browserSync.reload
     );
-    gulp.watch(
-        PATHS.javascript.app.watch,
-        ["javascript"]).on(
-            "change",
-            browserSync.reload
-        );
+    gulp.watch(PATHS.javascript.app.watch, ["javascript"]).on("change", browserSync.reload);
 }
 // default task
 gulp.task(
@@ -273,7 +269,7 @@ gulp.task(
     [
         "images",
         "styles",
-        "javascript"
+        "javascript",
     ],
     watch
 );

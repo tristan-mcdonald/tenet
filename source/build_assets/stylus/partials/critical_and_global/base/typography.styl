@@ -1,6 +1,12 @@
 :root
     // see functions/interpolation.styl for an explanation of this function
-    interpolation()
+    interpolation(
+        $properties: "font-size",
+        $min-screen: 480px,
+        $max-screen: 1680px,
+        $min-value: 13px,
+        $max-value: 19px
+    )
 
 html
     text-rendering optimizeLegibility
@@ -70,7 +76,6 @@ h4
 // I have never seen these used semantically; content editors
 // tend to use h5 and h6 as a means of editing the size of text, which
 // is combining content and presentation and should be discouraged.
-
 p
     width auto
     mt()

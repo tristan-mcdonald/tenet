@@ -6,12 +6,12 @@ $ff--strong   = 'inter-ui--medium', sans-serif
 $ff--heading  = 'inter-ui--medium', sans-serif
 
 // font-size variables
+$fz--base = 1rem
+
+// fallback values for browsers not supporting CSS custom properties
 $ratio--sml = 1.125
 $ratio--lrg = 1.24
-// the middle point between $ratio--lrg and $ratio--sml
-$ratio--med = ((($ratio--lrg - $ratio--sml) / 2) + $ratio--sml)
-
-$fz--base = 1rem
+$ratio--med = ((($ratio--lrg - $ratio--sml) / 2) + $ratio--sml) // the middle point between $ratio--lrg and $ratio--sml
 
 // font-weight variables
 $fw--normal  = normal

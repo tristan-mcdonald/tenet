@@ -5,7 +5,7 @@ export default function () {
     if (!("replace" in document.createElement("_").classList)) {
         DOMTokenList.prototype.replace = function (token, replacementToken) {
             let tokens = this.toString().split(" ");
-            let index  = tokens.indexOf(token + "");
+            const index  = tokens.indexOf(token + "");
             if (~index) {
                 tokens = tokens.slice(index);
                 this.remove.apply(this, tokens);

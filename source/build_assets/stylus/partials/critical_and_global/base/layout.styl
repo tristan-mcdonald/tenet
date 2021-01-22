@@ -25,9 +25,9 @@ body
 
 // styles nested in this block are for a standard
 // content page layout with a centered containing div,
-// which in many cases would ba an `article` element
+// which in many cases would bean `article` element
 .page_content
-    flex 1
+    flex 1 1 auto
     width 100%
 
     &__inner
@@ -43,11 +43,11 @@ body
 
 img
     display block
+    mt()
     height auto
     width auto
     max-width 100%
     vertical-align bottom // fix bug in some browsers which adds unintended white-space
-    mt()
 
 svg
     overflow visible // fix bug in firefox where edges of SVG display as cut
