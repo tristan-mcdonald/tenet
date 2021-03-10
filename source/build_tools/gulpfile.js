@@ -73,15 +73,9 @@ const PATHS = {
             entry: "../build_assets/js/app.js",
             watch: "../build_assets/js/**/*",
         },
-        vendor: {
-            outputName: "vendor.js",
-            entry: "../build_assets/js/vendor/**/*",
-            watch: "../build_assets/js/vendor/*",
-        },
         final: {
             outputName: "app.min.js",
             app: "../../static/js/app.js",
-            vendor: "../../static/js/vendor.js",
             watch: "../build_assets/js/**/*",
         },
     },
