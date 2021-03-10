@@ -5,9 +5,9 @@
     memory consumption limit.
 */
 transition(
-    $time = 0.14s,
     $easing = ease-out,
-    $properties = "background-color"
+    $properties = "background-color, box-shadow",
+    $time = $trsdu,
 )
     will-change unquote($properties)
     transition-property unquote($properties)
@@ -17,10 +17,11 @@ transition(
 /*
     mixin to lift an element vertically on interaction.
     remember to specify a transition for the element
-    with a value of `transform`; this has beenommitted
+    with a value of `transform`; this has been ommitted
     here to allow multiple transition values.
 */
 raise_up($distance = -1px)
+
     &:focus
     &:hover
         transform translateY($distance)

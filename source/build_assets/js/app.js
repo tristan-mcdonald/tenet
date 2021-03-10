@@ -1,6 +1,6 @@
 "use strict";
 // import functions
-import ClassListPolyfill from ".modules/classlist_polyfill";
+import ClassListPolyfill from "./modules/classlist_polyfill";
 import ForEachPolyfill from "./modules/foreach_polyfill";
 import FocusAccessibility from "./modules/focus_accessibility";
 import TypeRatioInterpolation from "./modules/type_ratio_interpolation";

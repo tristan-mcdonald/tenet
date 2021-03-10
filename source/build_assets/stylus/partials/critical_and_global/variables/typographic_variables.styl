@@ -1,14 +1,20 @@
 // font family variables
-$ff--light    = 'inter-ui--regular', sans-serif
-$ff--body     = 'inter-ui--regular', sans-serif
-$ff--emphasis = 'inter-ui--italic', sans-serif
-$ff--strong   = 'inter-ui--medium', sans-serif
-$ff--heading  = 'inter-ui--medium', sans-serif
+$ff--light    = "inter-ui--regular", sans-serif
+$ff--body     = "inter-ui--regular", sans-serif
+$ff--emphasis = "inter-ui--italic", sans-serif
+$ff--strong   = "inter-ui--medium", sans-serif
+$ff--heading  = "inter-ui--medium", sans-serif
 
-// font-size variables
+// add an em value to account for some font families displaying
+// with uneven spacing above the highest ascender and below
+// the lowest descender. this is used in the function
+// `pd-account-for-font-offset()`.
+$ff-x-position-offset = .14em
+
+// font-size variable
 $fz--base = 1rem
 
-// fallback values for browsers not supporting CSS custom properties
+// fallback variables for browsers not supporting CSS custom properties
 $ratio--sml = 1.125
 $ratio--lrg = 1.24
 $ratio--med = ((($ratio--lrg - $ratio--sml) / 2) + $ratio--sml) // the middle point between $ratio--lrg and $ratio--sml
@@ -27,5 +33,9 @@ $lh--heading = 1.5
 $ll = 74
 
 // letter-spacing variable, edit this to suit the typeface chosen
-$ls--body    = -0.05em
-$ls--heading = -0.05em
+$ls--body                = -.022em
+$ls--small-text          = -.016em
+$ls--uppercase           = -.006em
+$ls--strong              = -.034em
+$ls--heading--one-two    = -.046em
+$ls--heading--three-four = -.028em

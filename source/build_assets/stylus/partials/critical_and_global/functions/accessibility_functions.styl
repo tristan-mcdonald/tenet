@@ -9,3 +9,13 @@ focus_styles()
     outline-offset $bw--double
     outline $bw dashed $cl--focus
     overflow visible
+
+accessibly-hidden()
+    clip rect(0 0 0 0)
+    position absolute
+    margin -1px
+    overflow hidden
+    height 1px
+    width 1px
+    border 0
+    padding 0

@@ -1,4 +1,10 @@
 /*
+    mixin to allow removal of browser default styles on form elements
+*/
+appearance($value = none)
+    -webkit-appearance $value
+    -moz-appearance $value
+/*
     these mixins provide fluid font-size scaling and vertical height
     scaling with an interpolated set of ratios, with fallbacks for IE11.
     you'll find an explanation for using these mixins in the documentation,

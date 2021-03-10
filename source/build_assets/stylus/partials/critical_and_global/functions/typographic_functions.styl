@@ -28,3 +28,17 @@ content-anchor(
 break-long-words()
     word-break break-word
     overflow-wrap anywhere
+
+txsh-simple($shadow-color = $cl--text--heading)
+    text-shadow 0 0 .02em $shadow-color, 0 0 .08em modify-hsla($color: $shadow-color, $a: -.6)
+
+pd-account-for-font-offset(
+    $pd-vertical,
+    $space-greater-above = true
+)
+    if $space-greater-above
+        padding-top "calc(%s - %s)" % ($pd-vertical $ff-x-position-offset)
+        padding-bottom "calc(%s + %s)" % ($pd-vertical $ff-x-position-offset)
+    else
+        padding-top "calc(%s + %s)" % ($pd-vertical $ff-x-position-offset)
+        padding-bottom "calc(%s - %s)" % ($pd-vertical $ff-x-position-offset)

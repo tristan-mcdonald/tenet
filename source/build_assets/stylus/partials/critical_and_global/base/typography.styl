@@ -22,7 +22,7 @@ textarea
     line-height $lh--body
     font-size inherit
     letter-spacing $ls--body
-    color $cl--text
+    color $cl--text--copy
 
 h1
 h2
@@ -31,18 +31,20 @@ h4
     display block
     line-height $lh--heading
     font-family $ff--heading
-    font-weight normal
-    letter-spacing $ls--heading
-    color $cl--text--low
+    font-weight $fw--heading
+    color $cl--text--heading
 
     a
     a:visited
-        color $cl--anchor
+        content-anchor()
 
-        &:active
-        &:hover
-        &:focus
-            color $cl--anchor--interact
+h1
+h2
+    letter-spacing $ls--heading--one-two
+
+h3
+h4
+    letter-spacing $ls--heading--three-four
 
 h1
     max-width ($ll * .5)ch
@@ -52,7 +54,7 @@ h1
         sp-scale--four()
 
 h2
-    max-width ($ll * .5)ch
+    max-width ($ll * .6)ch
     fz-scale--three()
 
     * + &
@@ -66,16 +68,17 @@ h3
         sp-scale--two()
 
 h4
-    max-width ($ll - 10)ch
+    max-width ($ll *.8)ch
     fz-scale--one()
 
     * + &
         sp-scale--one()
-
-// there are no styles for any heading levels lower than h4, as
-// I have never seen these used semantically; content editors
-// tend to use h5 and h6 as a means of editing the size of text, which
-// is combining content and presentation and should be discouraged.
+/*
+    there are no styles for any heading levels lower than h4, as
+    I have never seen these used semantically; content editors
+    tend to use h5 and h6 as a means of editing the size of text, which
+    is combining content and presentation and should be discouraged.
+*/
 p
     width auto
     mt()
@@ -84,7 +87,7 @@ p
     font-size $fz--base
     line-height $lh--body
     letter-spacing $ls--body
-    color $cl--text
+    color $cl--text--copy
 
     h1 + &
     h2 + &
@@ -110,15 +113,20 @@ a:visited
     cursor pointer
     text-decoration none
 
-strong
 b
-    font-weight normal
+strong
+    font-weight $fw--strong
     font-family $ff--strong
+    letter-spacing $ls--strong
 
-em
 i
+em
     font-style normal
     font-family $ff--emphasis
+
+sup
+    vertical-align super
+    fz-scale--minus-one()
 
 ::selection
     background-color $cl--interface
@@ -170,7 +178,3 @@ i
 
     * + li
         margin-top $sp--half
-
-sup
-    vertical-align super
-    fz-scale--minus-one()

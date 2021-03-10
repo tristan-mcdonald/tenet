@@ -48,18 +48,6 @@ button-reset()
     padding 0
     font inherit
     color inherit
-
-// mixin for non-interactive material-style box shadow
-bxsh-static($color = modify-hsla($color: $cl--interface--low, $a: -.8))
-    box-shadow 0 1px .06rem $color
-
-// mixin to add a material design-style box-shadow which expands on hover
-bxsh-interaction($color = modify-hsla($color: $cl--interface--low, $a: -.8))
-    box-shadow 0 1px 1px $color
-
-    &:focus
-    &:hover
-        box-shadow 0 3px 6px $color
 /*
     mixin to avoid by default giving an element an unintended
     z-index context when giving an element a `position` of `relative`.
@@ -103,27 +91,34 @@ bxsh-static()
     list, which will usually be a `nav` element.
 */
 flex-grid(
-    $maximum-columns = 3,
-    $margin-top      = 2%,
-    $margin-left     = 2%,
-    $change-to-two   = 3,
-    $change-to-three = 5
+    $maximum-columns    = 3,
+    $margin-top         = 2%,
+    $margin-top-stacked = 4vw,
+    $margin-left        = 2%,
+    $change-to-two      = 3,
+    $change-to-three    = 5,
+    $change-to-four     = 6
 )
 
     &__list
         display flex
         flex-wrap wrap
         flex-direction row
-        align-items flex-start
+        align-items stretch
         justify-content space-between
 
     &__item
         flex 0 0 100%
         +above($change-to-two)
             flex 0 0 ((100 - $margin-left) / 2)%
+
         if $maximum-columns >= 3
             +above($change-to-three)
                 flex 0 0 ((100 - ($margin-left * 2)) / 3)%
+
+        if $maximum-columns >= 4
+            +above($change-to-four)
+                flex 0 0 ((100 - ($margin-left * 3)) / 4)%
 
         &:nth-child(even)
             if $maximum-columns >= 3
@@ -133,7 +128,26 @@ flex-grid(
                 +above($change-to-two)
                     margin-left $margin-left
 
-        if $maximum-columns >= 3
+        if $maximum-columns >= 4
+            &:nth-child(4n+2)
+            &:nth-child(4n+3)
+            &:nth-child(4n+4)
+                +above($change-to-four)
+                    margin-left $margin-left
+
+            if $change-to-four - $change-to-three > 1
+                &:nth-child(3n+2)
+                &:nth-child(3n+3)
+                    +between($change-to-three, ($change-to-four - 1))
+                        margin-left $margin-left
+
+            else
+                &:nth-child(3n+2)
+                &:nth-child(3n+3)
+                    +at($change-to-three)
+                        margin-left $margin-left
+
+        if $maximum-columns == 3
             &:nth-child(3n+2)
             &:nth-child(3n+3)
                 +above($change-to-three)
@@ -141,17 +155,33 @@ flex-grid(
 
         &:nth-child(n+2)
             +below(($change-to-two - 1))
-                margin-top $margin-top
+                margin-top $margin-top-stacked
 
-        &:nth-child(n+3)
-            if $maximum-columns >= 3
+        if $maximum-columns >= 3
+            &:nth-child(n+3)
                 +below(($change-to-three - 1))
                     margin-top $margin-top
-            else
+        else
+            &:nth-child(n+3)
                 +above($change-to-two)
                     margin-top $margin-top
 
-        if $maximum-columns >= 3
+        if $maximum-columns >= 4
+            &:nth-child(n+5)
+                +above($change-to-four)
+                    margin-top $margin-top
+
+            if $change-to-four - $change-to-three > 1
+                &:nth-child(n+4)
+                    +between($change-to-three, ($change-to-four - 1))
+                        margin-top $margin-top
+
+            else
+                &:nth-child(n+4)
+                    +at($change-to-three)
+                        margin-top $margin-top
+
+        if $maximum-columns == 3
             &:nth-child(n+4)
                 +above($change-to-three)
                     margin-top $margin-top

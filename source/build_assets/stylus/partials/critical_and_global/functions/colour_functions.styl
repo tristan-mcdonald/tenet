@@ -39,4 +39,10 @@ modify-hsla(
     $final-value = "hsla(" + $hue + "," + $saturation + "%," + $lightness + "%," + $alpha + ")"
     // remove string quotes from the final value, so that it is valid CSS
     return unquote($final-value)
-
+/*
+    some examples of this function in use:
+    $cl--first        = hsla(199, 44%, 19%, 1)
+    $cl--first--low   = modify-hsla($color: $cl--first, $s: -6, $l: -6)
+    $cl--first--med   = modify-hsla($color: $cl--first, $s: 11, $l: 11)
+    $cl--first--high  = modify-hsla($color: $cl--first, $s: 22, $l: 22)
+*/

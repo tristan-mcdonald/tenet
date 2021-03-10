@@ -1,11 +1,57 @@
-@keyframes fade-in
+@keyframes reveal_from_right
+    0%
+        transform translateX(100%)
+    100%
+        transform translateX(0)
+
+@keyframes reveal_from_left
+    0%
+        transform translateX(-100%)
+    100%
+        transform translateX(0)
+
+@keyframes modal--open
     0%
         opacity 0
     100%
         opacity 1
 
-@keyframes slide-left
+@keyframes modal--close
     0%
-        transform translateX(100%)
+        visibility visible
+        opacity 1
+    100%
+        visibility hidden
+        opacity 0
+
+@keyframes action_anchor_interaction--upwards
+    0%
+        transform translateY(0)
+    50%
+        transform translateY(-($sp--fifth))
+    100%
+        transform translateY(0)
+
+@keyframes action_anchor_interaction--forwards
+    0%
+        transform translateX(0)
+    50%
+        transform translateX($sp--third)
+    100%
+        transform translateX(0)
+
+@keyframes action_anchor_interaction--downwards
+    0%
+        transform translateY(0)
+    50%
+        transform translateY($sp--fifth)
+    100%
+        transform translateY(0)
+
+@keyframes action_anchor_interaction--backwards
+    0%
+        transform translateX(0)
+    50%
+        transform translateX(-($sp--third))
     100%
         transform translateX(0)
