@@ -35,7 +35,7 @@ interpolation(
             {$property}: $min-value
         @media screen and (min-width: $min-screen)
             for $property in $properties
-                {$property}: $function-name($min-screen, $min-value, $max-screen, $max-value)
+                {$property}: {$function-name}($min-screen, $min-value, $max-screen, $max-value)
         @media screen and (min-width: $max-screen)
             for $property in $properties
                 {$property}: $max-value
