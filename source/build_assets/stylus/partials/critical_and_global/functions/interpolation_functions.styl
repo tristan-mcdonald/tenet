@@ -23,19 +23,17 @@ overriding of an element's font-size in the rest of the codebase.
 */
 interpolation(
     $properties    = "font-size",
-    $function-name = interpolation_calculation,
     $min-screen    = 480px,
     $max-screen    = 1680px,
     $min-value     = 13px,
     $max-value     = 19px
 )
-
     &
         for $property in $properties
             {$property}: $min-value
         @media screen and (min-width: $min-screen)
             for $property in $properties
-                {$property}: {$function-name}($min-screen, $min-value, $max-screen, $max-value)
+                {$property}: interpolation_calculation($min-screen, $min-value, $max-screen, $max-value)
         @media screen and (min-width: $max-screen)
             for $property in $properties
                 {$property}: $max-value
