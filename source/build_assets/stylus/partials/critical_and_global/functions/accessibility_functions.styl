@@ -9,7 +9,10 @@ focus_styles()
     outline-offset $bw--double
     outline $bw dashed $cl--focus
     overflow visible
-
+/*
+    this mixin visually hides an element,
+    while leaving it accessible to accessibility devices.
+*/
 accessibly-hidden()
     clip rect(0 0 0 0)
     position absolute

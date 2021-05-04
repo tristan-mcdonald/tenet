@@ -1,5 +1,9 @@
+/*
+    specify the font sizes and scaling ratios
+    for our app's typography.
+*/
 :root
-    // see functions/interpolation.styl for an explanation of this function
+    // see functions/interpolation.styl for an explanation of this function.
     interpolation(
         $properties: "font-size",
         $min-screen: 480px,
@@ -8,11 +12,17 @@
         $max-value: 19px
     )
 
+/*
+    specify options browsers should use when rendering text.
+*/
 html
     text-rendering optimizeLegibility
     -webkit-font-smoothing antialiased
     -moz-osx-font-smoothing grayscale
 
+/*
+    specify text styles for generic text.
+*/
 body
 select
 input
@@ -24,6 +34,12 @@ textarea
     letter-spacing $ls--body
     color $cl--text--copy
 
+/*
+    specify text styles for heading text.
+    there are no styles for any heading levels lower than h4, as
+    content editors tend to use h5 and h6 as a means of editing
+    the size of text, which is giving them too much power!
+*/
 h1
 h2
 h3
@@ -48,36 +64,34 @@ h4
 
 h1
     max-width ($ll * .5)ch
-    fz-scale--four()
+    fz-scale--plus-four()
 
     * + &
         sp-scale--four()
 
 h2
     max-width ($ll * .6)ch
-    fz-scale--three()
+    fz-scale--plus-three()
 
     * + &
         sp-scale--three()
 
 h3
     max-width ($ll * .7)ch
-    fz-scale--two()
+    fz-scale--plus-two()
 
     * + &
         sp-scale--two()
 
 h4
     max-width ($ll *.8)ch
-    fz-scale--one()
+    fz-scale--plus-one()
 
     * + &
         sp-scale--one()
+
 /*
-    there are no styles for any heading levels lower than h4, as
-    I have never seen these used semantically; content editors
-    tend to use h5 and h6 as a means of editing the size of text, which
-    is combining content and presentation and should be discouraged.
+    specify text styles for copy text.
 */
 p
     width auto
@@ -97,8 +111,10 @@ p
     h4 + &
         margin-top $sp--half
 
-    // add this class to paragraph content to constrain it to a readable line-length
-    // avoid setting paragraph line-lengths globally so they don't need to be overridden
+    /*
+        add this class to paragraph content to constrain it to a readable line-length.
+        avoid setting paragraph line-lengths globally so that they don't need to be overridden.
+    */
     .reading_content &
     &.reading_content
         width ($ll)ch
@@ -107,32 +123,56 @@ p
         > a:visited
             content-anchor()
 
+/*
+    specify generic anchor styles.
+*/
 a
 a:visited
-    trans()
+    transition(properties: "box-shadow, color")
     cursor pointer
     text-decoration none
 
+/*
+    specify styles for strong text.
+*/
 b
 strong
     font-weight $fw--strong
     font-family $ff--strong
     letter-spacing $ls--strong
 
+/*
+    specify styles for italic text.
+*/
 i
 em
     font-style normal
     font-family $ff--emphasis
 
+/*
+    specify styles for superscript and subscript text.
+*/
 sup
-    vertical-align super
+sub
     fz-scale--minus-one()
 
+sup
+    vertical-align super
+
+sub
+    vertical-align sub
+
+/*
+    specify styles for selected text.
+*/
 ::selection
     background-color $cl--text--copy
     text-shadow 0 0 .1em $cl--text--heading
     color white
 
+/*
+    specify styles for lists in reading content.
+*/
 .reading_content
     width 100%
 

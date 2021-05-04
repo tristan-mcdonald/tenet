@@ -1,17 +1,21 @@
-// keyboard focus styles
-// use a11y.js to detect keyboard input
+/*
+    we use a11y.js to detect keyboard input,
+    and style focus accordingly
+*/
 html
 
     *
-        trans($properties: "outline-offset")
+        transition($properties: "outline-offset")
         outline-offset 0
 
+    // if input source is a keyboard, add visible focus styles
     &[data-focus-source="key"]
     &[data-focus-source="script"]
 
         *:focus
             focus-styles()
 
+    // if input source is a mouse, do not add visible focus styles
     &[data-focus-source="pointer"]
     &[data-focus-source=""]
 
