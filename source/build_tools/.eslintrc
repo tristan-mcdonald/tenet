@@ -1,11 +1,12 @@
 {
-    "extends": "standard",
     "env": {
         "browser": true,
         "jest": true,
         "jquery": false,
         "node": true
     },
+    "extends": "eslint:recommended",
+    "parser": "babel-eslint",
     "rules": {
         "camelcase": 0,
         "comma-dangle": [

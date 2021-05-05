@@ -8,4 +8,4 @@ export default function () {
     // detect focus source using a11y.js, which will be stored
     // as CSS classes on the `html` element
     const focusSource = ally.style.focusSource(); // eslint-disable-line no-unused-vars
-};
+}
