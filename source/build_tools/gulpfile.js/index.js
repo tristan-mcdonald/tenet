@@ -1,26 +1,18 @@
-/*
-    tasks needed:
-        lint javascript
-        transpile javascript
-        minify javascript
-        lint stylus
-        make javascript source files
-        transpile stylus
-        minify stylus
-        make stylus source files
-        watch
-        livereload
-*/
 const { dest, parallel, series, src, watch } = require("gulp");
 
-const babel   = require("gulp-babel");
-const del     = require("delete");
-const eslint  = require("gulp-eslint");
-const rename  = require("gulp-rename");
-const rupture = require("rupture");
-const stylint = require("gulp-stylint");
-const stylus  = require("gulp-stylus");
-const uglify  = require("gulp-uglify");
+const babelify    = require("babelify");              // transpile javascript for browser compatability
+const browserify  = require("browserify");            // allows use of commonjs when targeting the browser
+const browsersync = require("browser-sync").create(); // serve files over LAN, and synchronise file changes with the browser
+const del         = require("delete");                // allow gulp to delete files
+const eslint      = require("gulp-eslint");           // lint javascript
+const rename      = require("gulp-rename");           // allow gulp to rename files
+const rupture     = require("rupture");               // stylus library for simple declaration of media queries
+const sourcemaps  = require("gulp-sourcemaps");       // allow the browser to map minified code back to a readable source
+const stylint     = require("gulp-stylint");          // lint stylus
+const stylus      = require("gulp-stylus");           // transpile stylus into css
+const uglify      = require("gulp-uglify");           // minify javascript & replace variable names, to reduce file size
+const vinylBuffer      = require("vinyl-buffer");     // convert gulp's vinyl virtual file format into a buffer
+const vinylSource = require("vinyl-source-stream");   // loads browserify's output into a vinyl object
 
 const PATHS = {
     javascript: {
@@ -49,63 +41,79 @@ function clean(cb) {
             PATHS.stylus.transpiled,
             PATHS.stylus.uglified,
         ],
-        // allow deleting files outside of the working directory
-        { force: true },
+        {force: true}, // allow deletion of files outside of the working directory
     ),
     cb();
 }
+/*
+    task to lint javascript during development.
+*/
 function lintJavascript(cb) {
     return src(PATHS.javascript.lint)
-        .pipe(eslint(PATHS.javascript.config))
+        .pipe(eslint(PATHS.javascript.config))  // pass in location of `.eslint` config file
         .pipe(eslint.format())
     cb();
 }
-function transpileJavascript(cb) {
-    return src(PATHS.javascript.input)
-        .pipe(babel())
+/*
+    task to transpile, bundle, and uglify javascript.
+*/
+function transpileJavascript() {
+    const bundler = browserify(PATHS.javascript.input, { // bundle commonjs modules into one file
+        debug: true,
+    }).transform("babelify", { presets: ["@babel/preset-env"] }); // transpile modern javascript to es5
+    return bundler.bundle()
+        // write transpiled javascript to the destination folder
+        .pipe(vinylSource("app.js"))
+        .pipe(vinylBuffer())
         .pipe(dest(PATHS.javascript.output))
-    cb();
-}
-function minifyJavascript(cb) {
-    return src(PATHS.javascript.transpiled)
+        // add a suffix to minified file name
+        .pipe(rename({extname: ".min.js"}))
+        .pipe(sourcemaps.init({loadMaps: true}))
+        // minify javascript & replace variable names
         .pipe(uglify())
-        .pipe(rename({ extname: '.min.js' }))
+        .pipe(sourcemaps.write("./"))
+        // write minified javascript to the destination folder
         .pipe(dest(PATHS.javascript.output));
-    cb();
 }
+/*
+    task to run all javascript tasks in sequence.
+*/
 function allJavascript(cb) {
     series(
         lintJavascript,
-        transpileJavascript,
-        minifyJavascript
+        transpileJavascript
     )
     cb();
 }
+/*
+    task to lint stylus during development.
+*/
 function lintStylus(cb) {
     return src(PATHS.stylus.lint)
         .pipe(stylint({config: ".stylintrc"}))
         .pipe(stylint.reporter());
     cb();
 }
+/*
+    task to transpile stylus and make css more efficient.
+*/
 function transpileStylus(cb) {
     return src(PATHS.stylus.input)
         .pipe(stylus({
             use: [
-                rupture(),
+                rupture(), // stylus library for simple declaration of media queries
             ],
         }))
         .pipe(dest(PATHS.stylus.output));
     cb();
 }
-function minifyStylus(cb) {
-    // place code for your task here
-    cb();
-}
+/*
+    task to run all stylus tasks in sequence.
+*/
 function allStylus(cb) {
     series(
         lintStylus,
-        transpileStylus,
-        minifyStylus
+        transpileStylus
     )
     cb();
 }
@@ -113,7 +121,7 @@ function liveReload(cb) {
     // place code for your task here
     cb()
 }
-exports.default = lintJavascript;
+exports.default = transpileJavascript;
 
 
 // series(

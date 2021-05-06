@@ -17,15 +17,22 @@
   },
   "homepage": "https://github.com/trubblebruin/tenet#readme",
   "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
     "babel-eslint": "^10.1.0",
+    "babelify": "^10.0.0",
+    "browser-sync": "^2.26.14",
+    "browserify": "^17.0.0",
     "delete": "^1.1.0",
     "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
     "gulp-eslint": "^6.0.0",
     "gulp-rename": "^2.0.0",
+    "gulp-sourcemaps": "^3.0.0",
     "gulp-stylint": "^4.0.2",
     "gulp-stylus": "^2.7.0",
     "gulp-uglify": "^3.0.2",
-    "rupture": "^0.7.1"
+    "rupture": "^0.7.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
   }
 }

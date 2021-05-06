@@ -35,7 +35,7 @@ const pump         = require("pump");
 const rename       = require("gulp-rename");
 // run tasks in sequence
 const runSequence  = require("run-sequence");
-// stylus library for very simple declaration of media queries
+// stylus library for simple declaration of media queries
 const rupture      = require("rupture");
 // gulp uses `vinyl`, a virtual file format to pass data through pipes
 // as such, we must ensure browserify output can be interpreted by following pipe operations
