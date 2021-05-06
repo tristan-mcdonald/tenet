@@ -4,10 +4,10 @@
 */
 interpolation_calculation($min-screen, $min-value, $max-screen, $max-value)
     $a = ($max-value - $min-value) / ($max-screen - $min-screen)
-    $b = $min-value - $a * $min-screen;
+    $b = $min-value - $a * $min-screen
 
     $sign = " + "
-    if ($b < 0 )
+    if ($b < 0)
         $sign = " - "
         $b = abs($b)
 

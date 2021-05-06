@@ -78,15 +78,15 @@ img
     vertical-align bottom // fix bug in some browsers which adds unintended white-space.
 
     &[height][width]
-      height auto // preserve aspect ratio if image has both dimensions specified in the markup.
+        height auto // preserve aspect ratio if image has both dimensions specified in the markup.
 
     &[width]
-      width auto // ignore width if only width is specified in the markup.
+        width auto // ignore width if only width is specified in the markup.
 
     &[src$=".svg"] // allow svg to scale; we will apply set height/width to specific svg elements where needed.
-      height auto
-      width 100%
-      max-width none
+        height auto
+        width 100%
+        max-width none
 
 svg
     overflow visible // fix bug in firefox where edges of SVG display as cut.

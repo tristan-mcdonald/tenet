@@ -25,7 +25,9 @@ const PATHS = {
         watch: "../build_assets/js/**/*.js",
     },
     stylus: {
+        config: ".stylintrc",
         input: "../build_assets/stylus/app.styl",
+        lint: "../build_assets/stylus/**/*.styl",
         output: "../../distribution/assets/stylus/",
         transpiled: "../../distribution/assets/css/app.css",
         uglified: "../../distribution/assets/css/app.min.css",
@@ -41,26 +43,28 @@ function clean(cb) {
             PATHS.stylus.transpiled,
             PATHS.stylus.uglified,
         ],
-        {force: true}, // allow deletion of files outside of the working directory
+        // allow deletion of files outside of the working directory
+        { force: true },
     ),
     cb();
 }
 /*
     task to lint javascript during development.
 */
-function lintJavascript(cb) {
+function lintJavascript() {
     return src(PATHS.javascript.lint)
-        .pipe(eslint(PATHS.javascript.config))  // pass in location of `.eslint` config file
+        // pass in location of `.eslint` config file
+        .pipe(eslint(PATHS.javascript.config))
         .pipe(eslint.format())
-    cb();
 }
 /*
-    task to transpile, bundle, and uglify javascript.
+    task to transpile, bundle, and uglify javascript, and create a sourcemap.
 */
 function transpileJavascript() {
-    const bundler = browserify(PATHS.javascript.input, { // bundle commonjs modules into one file
-        debug: true,
-    }).transform("babelify", { presets: ["@babel/preset-env"] }); // transpile modern javascript to es5
+    // bundle commonjs modules into one file
+    const bundler = browserify(PATHS.javascript.input, { debug: true })
+        // transpile modern javascript to es5 using babel
+        .transform("babelify", { presets: ["@babel/preset-env"] });
     return bundler.bundle()
         // write transpiled javascript to the destination folder
         .pipe(vinylSource("app.js"))
@@ -68,7 +72,7 @@ function transpileJavascript() {
         .pipe(dest(PATHS.javascript.output))
         // add a suffix to minified file name
         .pipe(rename({extname: ".min.js"}))
-        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.init({ loadMaps: true }))
         // minify javascript & replace variable names
         .pipe(uglify())
         .pipe(sourcemaps.write("./"))
@@ -88,11 +92,10 @@ function allJavascript(cb) {
 /*
     task to lint stylus during development.
 */
-function lintStylus(cb) {
+function lintStylus() {
     return src(PATHS.stylus.lint)
-        .pipe(stylint({config: ".stylintrc"}))
+        .pipe(stylint({ config: PATHS.stylus.config }))
         .pipe(stylint.reporter());
-    cb();
 }
 /*
     task to transpile stylus and make css more efficient.
@@ -121,7 +124,7 @@ function liveReload(cb) {
     // place code for your task here
     cb()
 }
-exports.default = transpileJavascript;
+exports.default = lintStylus;
 
 
 // series(

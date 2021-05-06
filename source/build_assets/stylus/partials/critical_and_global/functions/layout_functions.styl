@@ -67,21 +67,21 @@ pos-a($z-index = auto)
     note the colon, which is Stylus syntax for multi-line properties.
 */
 bxsh-interaction($inset-color)
-    box-shadow:
+    box-shadow: // @stylint ignore
         0 1px 4px modify-hsla($color: $cl--text--heading, $a: -.96),
         0 1px 2px modify-hsla($color: $cl--text--heading, $a: -.8),
         inset 0 -1px 2px $inset-color
 
     &:hover
     &:focus
-        box-shadow:
+        box-shadow: // @stylint ignore
             0 14px 28px modify-hsla($color: $cl--text--heading, $a: -.8),
             0 10px 10px modify-hsla($color: $cl--text--heading, $a: -.96)
 /*
     mixin for non-interactive Material Design-style `box-shadow`.
 */
 bxsh-static()
-    box-shadow:
+    box-shadow: // @stylint ignore
         0 1px 4px modify-hsla($color: $cl--text--heading, $a: -.96),
         0 1px 2px modify-hsla($color: $cl--text--heading, $a: -.8)
 /*
