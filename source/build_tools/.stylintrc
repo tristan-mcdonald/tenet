@@ -30,5 +30,6 @@
     "absolutePath": true,
     "ruleName": true
   },
-  "semicolons": "never"
+  "semicolons": "never",
+  "zIndexNormalize": 10
 }

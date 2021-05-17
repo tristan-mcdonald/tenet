@@ -4,18 +4,21 @@
 */
 :root
     // see functions/interpolation.styl for an explanation of this function.
+    // @stylint off
     interpolation(
         $properties: "font-size",
         $min-screen: 480px,
         $max-screen: 1680px,
         $min-value: 13px,
-        $max-value: 19px // @stylint ignore
+        $max-value: 19px
     )
+    // @stylint on
 
 /*
     specify options browsers should use when rendering text.
 */
 html
+    word-break break-word
     text-rendering optimizeLegibility
     -webkit-font-smoothing antialiased
     -moz-osx-font-smoothing grayscale

@@ -1,14 +1,13 @@
-// interpret all `require` statements in source js & load the code into the stream,
-// concatenating it all into one file
-// allows use of commonjs when targeting the browser
-// `babelify` is also a dependency here, but is not explicitly required
+/*
+    interpret all `require` statements in source js & load the code into the stream,
+    concatenating it all into one file. allows use of commonjs when targeting the browser.
+*/
 const browserify   = require("browserify");
-// serve files locally, and across the network
-// synchronise file changes with the browser
+// serve files over LAN, and synchronise file changes with the browser
 const browserSync  = require("browser-sync").create();
 // we must convert the vinyl virtual file format into a buffer,
 // that can be interpreted by other libraries in the gulp ecosystem
-const buffer       = require("vinyl-buffer");
+const VinylBuffer       = require("vinyl-buffer");
 // configurably optimize generated CSS to remove any duplication/unnecessary rules
 const cleanCss     = require("gulp-clean-css");
 // combine duplicate media queries in CSS, improves performance
@@ -16,7 +15,7 @@ const combineMq    = require("gulp-combine-mq");
 // encode images referenced in css into the compiled file to reduce http requests
 // leave out svg as it can be problematic
 const cssBase64    = require("gulp-css-base64");
-// replace css imports with the imported file"s contents
+// replace css imports with the imported file's contents
 // note this is different to partial imports in stylus
 const cssImport    = require("gulp-cssimport");
 // lint js while developing
@@ -118,33 +117,19 @@ function lintJavascript (callback) {
 // - write a minified version to the destination folder
 // @param {*} callback - the "done" callback fired when all gulp pipes have completed
 function compileJavascript (callback) {
-    const transpileJS = browserify(PATHS.javascript.app.entry, {
+    const bundler = browserify(PATHS.javascript.app.entry, {
         debug: true,
     }).transform("babelify", {
-        // transpile down to es5
-        "presets": [
-            ["@babel/preset-env", {
-                "targets": {
-                    // % refers to the global coverage of users from browserslist
-                    "browsers": [
-                        ">0.25%",
-                        "not op_mini all",
-                        "ie >= 11",
-                    ],
-                },
-            }],
-        ],
-    });
+        presets: ["@babel/preset-env"]
+    })
     pump(
         [
-            transpileJS.bundle(),
-            source(PATHS.javascript.app.outputName),
-            buffer(),
+            bundler.bundle(),
+            vinylSource(PATHS.javascript.app.outputName),
+            vinylBuffer(),
             gulp.dest(PATHS.javascript.common.dest),
             rename({ extname: ".min.js" }),
-            sourcemaps.init({
-                loadMaps: true,
-            }),
+            sourcemaps.init({loadMaps: true}),
             uglify(),
             sourcemaps.write(PATHS.common.sourcemapsOut),
             gulp.dest(PATHS.javascript.common.dest),
