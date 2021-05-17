@@ -3,7 +3,6 @@ const { dest, parallel, series, src, watch } = require("gulp");
 const autoprefix  = require("gulp-autoprefixer");       // autoprefix css for browser compatability
 const babelify    = require("babelify");                // transpile javascript for browser compatability
 const browserify  = require("browserify");              // allows use of commonjs when targeting the browser
-const browsersync = require("browser-sync").create();   // serve files over LAN, and synchronise file changes with the browser
 const cleanCss    = require("gulp-clean-css");          // configurably optimize generated css
 const combineMq   = require("gulp-join-media-queries"); // combine rules within duplicate media queries in css
 const cssBase64   = require("gulp-css-base64");         // encode images referenced in css into the compiled file
@@ -15,6 +14,7 @@ const rupture     = require("rupture");                 // stylus library for si
 const sourcemaps  = require("gulp-sourcemaps");         // allow the browser to map minified code back to a readable source
 const stylint     = require("gulp-stylint");            // lint stylus
 const stylus      = require("gulp-stylus");             // transpile stylus into css
+const sync        = require("browser-sync").create();   // serve files over LAN, and synchronise file changes with the browser
 const uglify      = require("gulp-uglify");             // minify javascript & replace variable names, to reduce file size
 const vinylBuffer = require("vinyl-buffer");            // convert gulp's vinyl virtual file format into a buffer
 const vinylSource = require("vinyl-source-stream");     // loads browserify's output into a vinyl object
@@ -32,6 +32,9 @@ const PATHS = {
     images: {
         css: "../build_assets/images",
     },
+    server: {
+        proxy: "../../distribution/assets/reference",
+    },
     stylus: {
         config: ".stylintrc",
         input: "../build_assets/stylus/app.styl",
@@ -42,7 +45,9 @@ const PATHS = {
         watch: "../build_assets/stylus/**/*.styl",
     },
 };
-
+/*
+    task to delete all compiled files.
+*/
 function clean(cb) {
     del(
         [
@@ -57,18 +62,21 @@ function clean(cb) {
     cb();
 }
 /*
-    task to lint javascript during development.
+    task to lint javascript.
 */
-function lintJavascript() {
+function lintJavascript(cb) {
     return src(PATHS.javascript.lint)
         // pass in location of `.eslint` config file
         .pipe(eslint(PATHS.javascript.config))
         .pipe(eslint.format())
+        .on("end", function() {
+            cb();
+        });
 }
 /*
     task to transpile, bundle, and uglify javascript, and create a sourcemap.
 */
-function transpileJavascript() {
+function transpileJavascript(cb) {
     // bundle commonjs modules into one file
     const bundler = browserify(PATHS.javascript.input, { debug: true })
         // transpile modern javascript to es5 using babel
@@ -85,30 +93,28 @@ function transpileJavascript() {
         .pipe(uglify())
         .pipe(sourcemaps.write("./"))
         // write minified javascript to the destination folder
-        .pipe(dest(PATHS.javascript.output));
+        .pipe(dest(PATHS.javascript.output))
+        // reflect updated code in the browser
+        .pipe(sync.stream())
+        .on("end", function() {
+            cb();
+        });
 }
 /*
-    task to run all javascript tasks in sequence.
+    task to lint stylus.
 */
-function allJavascript(cb) {
-    series(
-        lintJavascript,
-        transpileJavascript
-    )
-    cb();
-}
-/*
-    task to lint stylus during development.
-*/
-function lintStylus() {
+function lintStylus(cb) {
     return src(PATHS.stylus.lint)
         .pipe(stylint({ config: PATHS.stylus.config }))
-        .pipe(stylint.reporter());
+        .pipe(stylint.reporter())
+        .on("end", function() {
+            cb();
+        });
 }
 /*
-    task to transpile stylus and make css more efficient.
+    task to transpile stylus, make css more efficient, and create a sourcemap.
 */
-function transpileStylus() {
+function transpileStylus(cb) {
     return src(PATHS.stylus.input)
         .pipe(sourcemaps.init())
         // use rupture library for simple declaration of media queries
@@ -131,34 +137,44 @@ function transpileStylus() {
         .pipe(cleanCss({ level: 1 }))
         .pipe(rename({ extname: ".min.css" }))
         .pipe(sourcemaps.write("./"))
-        .pipe(dest(PATHS.stylus.output));
+        .pipe(dest(PATHS.stylus.output))
+        // reflect updated code in the browser
+        .pipe(sync.stream())
+        .on("end", function() {
+            cb();
+        });
 }
-/*
-    task to run all stylus tasks in sequence.
-*/
-function allStylus(cb) {
-    series(
-        lintStylus,
-        transpileStylus
-    )
-    cb();
-}
-function liveReload(cb) {
-    // place code for your task here
-    cb()
-}
-exports.default = allStylus;
-
-// series(
-//     clean,
-//     watch(
-//         PATHS.javascript.watch,
-//         { ignoreInitial: false },
-//         allJavascript
-//     ),
-//     watch(
-//         PATHS.stylus.watch,
-//         { ignoreInitial: false },
-//         allStylus
-//     )
-// );
+exports.default = series(
+    clean,
+    function development(cb) {
+        // start a development browser
+        sync.init({
+            notify: false,
+            open: false,
+            proxy: PATHS.server.proxy,
+            reloadOnRestart: true,
+        });
+        // watch javascript files for changes
+        watch(
+            PATHS.javascript.watch,
+            // run when function is initialised
+            { ignoreInitial: false },
+            // run all javascript tasks in sequence
+            series(
+                lintJavascript,
+                transpileJavascript
+            )
+        );
+        // watch stylus files for changes
+        watch(
+            PATHS.stylus.watch,
+            // run when function is initialised
+            { ignoreInitial: false },
+            // run all stylus tasks in sequence
+            series(
+                lintStylus,
+                transpileStylus
+            )
+        );
+    }
+);
