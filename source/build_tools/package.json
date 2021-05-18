@@ -31,6 +31,7 @@
     "gulp-cssimport": "^7.0.0",
     "gulp-eslint": "^6.0.0",
     "gulp-join-media-queries": "^1.2.0",
+    "gulp-nunjucks-render": "^2.2.3",
     "gulp-rename": "^2.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-stylint": "^4.0.2",
