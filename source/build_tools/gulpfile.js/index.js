@@ -1,5 +1,11 @@
+"use strict";
+/*
+    define constants used by gulp.
+*/
 const { dest, parallel, series, src, watch } = require("gulp");
-
+/*
+    require npm packages.
+*/
 const autoprefix  = require("gulp-autoprefixer");       // autoprefix css for browser compatability
 const babelify    = require("babelify");                // transpile javascript for browser compatability
 const browserify  = require("browserify");              // allows use of commonjs when targeting the browser
@@ -14,11 +20,14 @@ const rupture     = require("rupture");                 // stylus library for si
 const sourcemaps  = require("gulp-sourcemaps");         // allow the browser to map minified code back to a readable source
 const stylint     = require("gulp-stylint");            // lint stylus
 const stylus      = require("gulp-stylus");             // transpile stylus into css
-const sync        = require("browser-sync").create();   // serve files over LAN, and synchronise file changes with the browser
-const uglify      = require("gulp-uglify");             // minify javascript & replace variable names, to reduce file size
+const sync        = require("browser-sync").create();   // serve files over lan, and synchronise file changes with the browser
+const uglify      = require("gulp-uglify");             // minify javascript & replace variable names, for efficiency
 const vinylBuffer = require("vinyl-buffer");            // convert gulp's vinyl virtual file format into a buffer
 const vinylSource = require("vinyl-source-stream");     // loads browserify's output into a vinyl object
-
+const nunjucks    = require("gulp-nunjucks-render");    // transpiles nunjucks templates into html
+/*
+    define paths object, containing all paths used.
+*/
 const PATHS = {
     javascript: {
         config: "./.eslintrc",
@@ -33,7 +42,7 @@ const PATHS = {
         css: "../build_assets/images",
     },
     server: {
-        proxy: "../../distribution/assets/reference",
+        root: "../../distribution/assets/reference_html",
     },
     stylus: {
         config: ".stylintrc",
@@ -44,12 +53,19 @@ const PATHS = {
         uglified: "../../distribution/assets/css/app.min.css",
         watch: "../build_assets/stylus/**/*.styl",
     },
+    templates: {
+        input_file: "../build_assets/reference_templates/index.njk",
+        input_folder: "../build_assets/reference_templates/",
+        output: "../../distribution/assets/reference_html",
+        watch: "../build_assets/reference_templates/**/*.njk",
+    },
 };
 /*
-    task to delete all compiled files.
+    private task to delete all compiled files.
 */
 function clean(cb) {
     del(
+        // delete the following files
         [
             PATHS.javascript.transpiled,
             PATHS.javascript.uglified,
@@ -59,22 +75,38 @@ function clean(cb) {
         // allow deletion of files outside of the working directory
         { force: true },
     ),
+    // callback to signal task completion
     cb();
 }
 /*
-    task to lint javascript.
+    private task to transpile nunjucks templates into html.
+*/
+function transpileTemplates(cb) {
+    return src(PATHS.templates.input_file)
+        .pipe(nunjucks({ path: PATHS.templates.input_folder }))
+        .pipe(dest(PATHS.templates.output))
+        // reflect updated code in the browser
+        .pipe(sync.stream())
+        // callback to signal task completion
+        .on("end", function() {
+            cb();
+        });
+}
+/*
+    private task to lint javascript.
 */
 function lintJavascript(cb) {
     return src(PATHS.javascript.lint)
         // pass in location of `.eslint` config file
         .pipe(eslint(PATHS.javascript.config))
         .pipe(eslint.format())
+        // callback to signal task completion
         .on("end", function() {
             cb();
         });
 }
 /*
-    task to transpile, bundle, and uglify javascript, and create a sourcemap.
+    private task to transpile, bundle, and uglify javascript, and create a sourcemap.
 */
 function transpileJavascript(cb) {
     // bundle commonjs modules into one file
@@ -96,23 +128,25 @@ function transpileJavascript(cb) {
         .pipe(dest(PATHS.javascript.output))
         // reflect updated code in the browser
         .pipe(sync.stream())
+        // callback to signal task completion
         .on("end", function() {
             cb();
         });
 }
 /*
-    task to lint stylus.
+    private task to lint stylus.
 */
 function lintStylus(cb) {
     return src(PATHS.stylus.lint)
         .pipe(stylint({ config: PATHS.stylus.config }))
         .pipe(stylint.reporter())
+        // callback to signal task completion
         .on("end", function() {
             cb();
         });
 }
 /*
-    task to transpile stylus, make css more efficient, and create a sourcemap.
+    private task to transpile stylus, make css more efficient, and create a sourcemap.
 */
 function transpileStylus(cb) {
     return src(PATHS.stylus.input)
@@ -140,10 +174,14 @@ function transpileStylus(cb) {
         .pipe(dest(PATHS.stylus.output))
         // reflect updated code in the browser
         .pipe(sync.stream())
+        // callback to signal task completion
         .on("end", function() {
             cb();
         });
 }
+/*
+    public task for local development.
+*/
 exports.default = series(
     clean,
     function development(cb) {
@@ -151,9 +189,17 @@ exports.default = series(
         sync.init({
             notify: false,
             open: false,
-            proxy: PATHS.server.proxy,
             reloadOnRestart: true,
+            server: PATHS.server.root,
+            tunnel: true,
         });
+        // watch nunjucks files for changes
+        watch(
+            PATHS.templates.watch,
+            // run when function is initialised
+            { ignoreInitial: false },
+            transpileTemplates
+        )
         // watch javascript files for changes
         watch(
             PATHS.javascript.watch,
