@@ -1,0 +1,28 @@
+/*
+    spacing variables. use these in place of
+    pixel values to enjoy fluid layout scaling.
+*/
+// base spacing variable.
+$sp = ($fz--base * $lh--body)
+
+// spacing variables below the value of the base spacing variable.
+$sp--twelfth             = ($sp / 12)
+$sp--tenth               = ($sp / 10)
+$sp--eighth              = ($sp / 8)
+$sp--sixth               = ($sp / 6)
+$sp--fifth               = ($sp / 5)
+$sp--quarter             = ($sp / 4)
+$sp--third               = ($sp / 3)
+$sp--half                = ($sp / 2)
+$sp--two-thirds          = ($sp * .666)
+$sp--three-quarters      = ($sp * .75)
+
+// spacing variables above the value of the base spacing variable.
+$sp--plus-quarter        = ($sp * 1.25)
+$sp--plus-third          = ($sp * 1.333)
+$sp--plus-half           = ($sp * 1.5)
+$sp--plus-two-thirds     = ($sp * 1.666)
+$sp--plus-three-quarters = ($sp * 1.75)
+$sp--double              = ($sp * 2)
+$sp--triple              = ($sp * 3)
+$sp--quadruple           = ($sp * 4)

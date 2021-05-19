@@ -1,0 +1,64 @@
+/*
+    mixin for styling input placeholders. use this as follows, for example:
+    ```
+    input
+        +placeholder()
+            color tomato
+    ```
+*/
+placeholder()
+    &::-webkit-input-placeholder
+        {block}
+    &:-moz-placeholder
+        {block}
+    &::-moz-placeholder
+        {block}
+    &:-ms-input-placeholder
+        {block}
+
+/*
+    mixin for a simple anchor underline which appears on interaction.
+*/
+content-anchor(
+    $initial-color     = $cl--anchor,
+    $interaction-color = $cl--anchor--interact
+)
+    transition($properties: "box-shadow, color")
+    box-shadow inset 0 0 0 modify-hsla($color: $interaction-color, $a: -.6)
+    color $initial-color
+
+    &:active
+    &:focus
+    &:hover
+        box-shadow inset 0 -2px 0 modify-hsla($color: $interaction-color, $a: -.6)
+        color $interaction-color
+
+/*
+    mixin for ensuring that long words don't break layout.
+*/
+break-long-words()
+    overflow-wrap anywhere
+
+/*
+    mixin for a simple two-level text shadow.
+*/
+txsh-simple($shadow-color = $cl--text--heading)
+    text-shadow 0 0 .02em $shadow-color, 0 0 .08em modify-hsla($color: $shadow-color, $a: -.6)
+
+/*
+    mixin to add padding above and below an element,
+    which accounts for a font's differing baseline space above
+    the ascender and below the descender. set `$space-greater-above`
+    to `true` if the font appears to have a greater baseline
+    space above the ascender than it does below the descender.
+*/
+pd-account-for-font-offset(
+    $pd-vertical,
+    $space-greater-above = true
+)
+    if $space-greater-above
+        padding-top "calc(%s - %s)" % ($pd-vertical $ff-x-position-offset)
+        padding-bottom "calc(%s + %s)" % ($pd-vertical $ff-x-position-offset)
+    else
+        padding-top "calc(%s + %s)" % ($pd-vertical $ff-x-position-offset)
+        padding-bottom "calc(%s - %s)" % ($pd-vertical $ff-x-position-offset)

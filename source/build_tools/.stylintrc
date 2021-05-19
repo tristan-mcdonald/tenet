@@ -1,0 +1,35 @@
+{
+  // list of options can be found here: https://github.com/SimenB/stylint
+  "blocks": false,
+  "brackets": "never",
+  "colons": "never",
+  "colors": "always",
+  "commaSpace": "always",
+  "commentSpace": true,
+  "cssLiteral": "never",
+  "depthLimit": false,
+  "duplicates": false,
+  "efficient": "always",
+  "globalDupe": false,
+  "groupOutputByFile": true,
+  "indentPref": 4,
+  "leadingZero": "never",
+  "maxErrors": false,
+  "maxWarnings": false,
+  "mixed": true,
+  "namingConvention": "lowercase-dash",
+  "namingConventionStrict": false,
+  "noImportant": true,
+  "none": "always",
+  "parenSpace": "never",
+  "placeholders": "never",
+  "prefixVarsWithDollar": "always",
+  "quotePref": "double",
+  "reporter": "stylint-stylish",
+  "reporterOptions": {
+    "absolutePath": true,
+    "ruleName": true
+  },
+  "semicolons": "never",
+  "zIndexNormalize": 10
+}

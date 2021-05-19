@@ -1,0 +1,72 @@
+/*
+    an animation where an element appears to
+    slide in from the right of the viewport.
+*/
+@keyframes reveal_from_right
+    0%
+        transform translateX(100%)
+    100%
+        transform translateX(0)
+/*
+    an animation where an element appears to
+    slide in from the left of the viewport.
+*/
+@keyframes reveal_from_left
+    0%
+        transform translateX(-100%)
+    100%
+        transform translateX(0)
+/*
+    an animation where an element appears to
+    fade in over already present content.
+*/
+@keyframes modal--open
+    0%
+        opacity 0
+    100%
+        opacity 1
+/*
+    an animation where an element appears to
+    fade out over already present content.
+*/
+@keyframes modal--close
+    0%
+        visibility visible
+        opacity 1
+    100%
+        visibility hidden
+        opacity 0
+/*
+    animations for action anchor arrows to move on interaction.
+*/
+@keyframes action_anchor_interaction--upwards
+    0%
+        transform translateY(0)
+    50%
+        transform translateY(-($sp--fifth))
+    100%
+        transform translateY(0)
+
+@keyframes action_anchor_interaction--forwards
+    0%
+        transform translateX(0)
+    50%
+        transform translateX($sp--third)
+    100%
+        transform translateX(0)
+
+@keyframes action_anchor_interaction--downwards
+    0%
+        transform translateY(0)
+    50%
+        transform translateY($sp--fifth)
+    100%
+        transform translateY(0)
+
+@keyframes action_anchor_interaction--backwards
+    0%
+        transform translateX(0)
+    50%
+        transform translateX(-($sp--third))
+    100%
+        transform translateX(0)

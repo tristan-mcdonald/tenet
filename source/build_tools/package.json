@@ -1,0 +1,44 @@
+{
+  "name": "tenet",
+  "version": "2.0.0",
+  "description": "A CSS framework which fluidly interpolates not only your entire font stack, but also all whitespace and element sizes.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trubblebruin/tenet.git"
+  },
+  "author": "Tristan McDonald",
+  "license": "../../license.txt",
+  "bugs": {
+    "url": "https://github.com/trubblebruin/tenet/issues"
+  },
+  "homepage": "https://github.com/trubblebruin/tenet#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "babel-eslint": "^10.1.0",
+    "babelify": "^10.0.0",
+    "browser-sync": "^2.26.14",
+    "browserify": "^17.0.0",
+    "delete": "^1.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-cssimport": "^7.0.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-join-media-queries": "^1.2.0",
+    "gulp-nunjucks-render": "^2.2.3",
+    "gulp-rename": "^2.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-stylint": "^4.0.2",
+    "gulp-stylus": "^2.7.0",
+    "gulp-uglify": "^3.0.2",
+    "rupture": "^0.7.1",
+    "stylint-stylish": "^2.0.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}

@@ -1,0 +1,24 @@
+/*
+    this mixin applies styles to make it obvious to the user
+    where their focus is. this is used in `accessibility.styl`
+    to apply these styles only for users not using a mouse
+    or a touchpad.
+*/
+focus_styles()
+    z-index 100
+    outline-offset $bw--double
+    outline $bw dashed $cl--focus
+    overflow visible
+/*
+    this mixin visually hides an element,
+    while leaving it accessible to accessibility devices.
+*/
+accessibly-hidden()
+    clip rect(0 0 0 0)
+    position absolute
+    margin -1px
+    overflow hidden
+    height 1px
+    width 1px
+    border none
+    padding 0

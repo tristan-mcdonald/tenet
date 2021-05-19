@@ -1,0 +1,224 @@
+/*
+    specify the font sizes and scaling ratios
+    for our app's typography.
+*/
+:root
+    // see functions/interpolation.styl for an explanation of this function.
+    // @stylint off
+    interpolation(
+        $properties: "font-size",
+        $min-screen: 480px,
+        $max-screen: 1680px,
+        $min-value: 13px,
+        $max-value: 19px
+    )
+    // @stylint on
+
+/*
+    specify options browsers should use when rendering text.
+*/
+html
+    text-rendering optimizeLegibility
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+    word-break break-word
+
+/*
+    specify text styles for generic text.
+*/
+body
+select
+input
+textarea
+    font-family $ff--body
+    font-weight $fw--normal
+    line-height $lh--body
+    font-size inherit
+    letter-spacing $ls--body
+    color $cl--text--copy
+
+/*
+    specify text styles for heading text.
+    there are no styles for any heading levels lower than h4, as
+    content editors tend to use h5 and h6 as a means of editing
+    the size of text, which is giving them too much power!
+*/
+h1
+h2
+h3
+h4
+    display block
+    line-height $lh--heading
+    font-family $ff--heading
+    font-weight $fw--heading
+    color $cl--text--heading
+
+    a
+    a:visited
+        content-anchor()
+
+h1
+h2
+    letter-spacing $ls--heading--one-two
+
+h3
+h4
+    letter-spacing $ls--heading--three-four
+
+h1
+    max-width ($ll * .5)ch
+    fz-scale--plus-four()
+
+    * + &
+        sp-scale--four()
+
+h2
+    max-width ($ll * .6)ch
+    fz-scale--plus-three()
+
+    * + &
+        sp-scale--three()
+
+h3
+    max-width ($ll * .7)ch
+    fz-scale--plus-two()
+
+    * + &
+        sp-scale--two()
+
+h4
+    max-width ($ll *.8)ch
+    fz-scale--plus-one()
+
+    * + &
+        sp-scale--one()
+
+/*
+    specify text styles for copy text.
+*/
+p
+    width auto
+    mt()
+    max-width 100%
+    font-family $ff--body
+    font-size $fz--base
+    line-height $lh--body
+    letter-spacing $ls--body
+    color $cl--text--copy
+
+    h1 + &
+    h2 + &
+    h3 + &
+        margin-top $sp--third
+
+    h4 + &
+        margin-top $sp--half
+
+    /*
+        add this class to paragraph content to constrain it to a readable line-length.
+        avoid setting paragraph line-lengths globally so that they don't need to be overridden.
+    */
+    .reading_content &
+    &.reading_content
+        width ($ll)ch
+
+        > a
+        > a:visited
+            content-anchor()
+
+/*
+    specify generic anchor styles.
+*/
+a
+a:visited
+    transition(properties: "box-shadow, color")
+    cursor pointer
+    text-decoration none
+
+/*
+    specify styles for strong text.
+*/
+b
+strong
+    font-weight $fw--strong
+    font-family $ff--strong
+    letter-spacing $ls--strong
+
+/*
+    specify styles for italic text.
+*/
+i
+em
+    font-style normal
+    font-family $ff--emphasis
+
+/*
+    specify styles for superscript and subscript text.
+*/
+sup
+sub
+    fz-scale--minus-one()
+
+sup
+    vertical-align super
+
+sub
+    vertical-align sub
+
+/*
+    specify styles for selected text.
+*/
+::selection
+    background-color $cl--text--copy
+    text-shadow 0 0 .1em $cl--text--heading
+    color white
+
+/*
+    specify styles for lists in reading content.
+*/
+.reading_content
+    width 100%
+
+    ul
+    ol
+    dl
+        display block
+        width 100%
+        max-width ($ll)ch
+        padding-left 3ch
+
+    & * + ul
+    & * + ol
+    & * + dl
+        margin-top $sp--two-thirds
+
+    ul
+        list-style-type disc
+
+    ul ul
+        list-style-type circle
+
+    ul ul ul
+        list-style-type square
+
+    ol
+        list-style-type decimal
+
+    ol ol
+        list-style-type lower-alpha
+
+    ol ol ol
+        list-style-type lower-roman
+
+    li
+        width ($ll)ch
+        max-width 100%
+
+        ul
+        ol
+
+            &:first-child
+                margin-top $sp--half
+
+    * + li
+        margin-top $sp--half
