@@ -122,9 +122,9 @@ function transpileStylus(cb) {
         .pipe(sourcemaps.init())
         // use rupture library for simple declaration of media queries
         .pipe(stylus({ use: [rupture()] }))
-        // encode images referenced in css into Base64 strings
+        // encode images referenced in stylus into base64 strings
         .pipe(cssBase64({
-            baseDir: PATHS.images.dest,
+            // baseDir: PATHS.images.dest,
             extensionsAllowed: [".gif", ".jpg", ".png"],
             maxWeightResource: 1000,
         }))

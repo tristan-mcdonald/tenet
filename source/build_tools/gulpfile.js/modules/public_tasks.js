@@ -16,22 +16,9 @@ const PATHS = require("./paths");
 */
 const PRIVATE_TASKS = require("./private_tasks");
 /*
-    public task for building all transpiled/compiled files.
-*/
-function build(cb) {
-    parallel(
-        PRIVATE_TASKS.transpileTemplates,
-        PRIVATE_TASKS.lintJavascript,
-        PRIVATE_TASKS.transpileJavascript,
-        PRIVATE_TASKS.lintStylus,
-        PRIVATE_TASKS.transpileStylus
-    ),
-    cb();
-}
-/*
     public task for local development.
 */
-function develop(cb) {
+function develop() {
     // start a development browser
     sync.init({
         notify: false,
@@ -73,5 +60,4 @@ function develop(cb) {
 /*
     export private tasks.
 */
-exports.build   = build;
 exports.develop = develop;

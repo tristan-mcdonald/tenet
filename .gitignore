@@ -3,4 +3,5 @@
 /distribution/assets/js/app.js
 /distribution/assets/js/app.min.js.map
 **/*/node_modules
+node_modules/
 **/*.DS_Store

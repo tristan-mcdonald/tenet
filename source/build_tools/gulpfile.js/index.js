@@ -2,11 +2,7 @@
 /*
     require constants used by gulp.
 */
-const { series, watch } = require("gulp");
-/*
-    require paths object, containing all paths used.
-*/
-const PATHS = require("./modules/paths");
+const { series } = require("gulp");
 /*
     require all private tasks.
 */
@@ -18,10 +14,6 @@ const PUBLIC_TASKS = require("./modules/public_tasks");
 /*
     export all public tasks.
 */
-exports.build = series(
-    PRIVATE_TASKS.clean,
-    PUBLIC_TASKS.build
-);
 exports.develop = series(
     PRIVATE_TASKS.clean,
     PUBLIC_TASKS.develop
