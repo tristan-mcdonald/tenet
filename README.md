@@ -47,3 +47,7 @@ _[Gary Stevens](https://uncommoncorrelation.co.uk)_
 > There is no place for hope in software development.
 
 _[Jim Hill](https://dammitjim.co.uk), paraphrasing Frederick Phillips Brooks, Jr._
+
+## Installation
+
+Once you have cloned Tenet's repository into your project's repository, be sure to delete Tenet's `.git` folder. If you accidentally made a commit before removing Tenet's `.git` folder, you can run `git rm --cached tenet` from your project root, to delete it from your git history.
