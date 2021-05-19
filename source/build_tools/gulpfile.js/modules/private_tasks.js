@@ -11,7 +11,6 @@ const babelify    = require("babelify");                // transpile javascript 
 const browserify  = require("browserify");              // allows use of commonjs when targeting the browser
 const cleanCss    = require("gulp-clean-css");          // configurably optimize generated css
 const combineMq   = require("gulp-join-media-queries"); // combine rules within duplicate media queries in css
-const cssBase64   = require("gulp-css-base64");         // encode images referenced in css into the compiled file
 const cssImport   = require("gulp-cssimport");          // replace native css imports with the imported file's contents
 const del         = require("delete");                  // allow gulp to delete files
 const eslint      = require("gulp-eslint");             // lint javascript
@@ -122,12 +121,6 @@ function transpileStylus(cb) {
         .pipe(sourcemaps.init())
         // use rupture library for simple declaration of media queries
         .pipe(stylus({ use: [rupture()] }))
-        // encode images referenced in stylus into base64 strings
-        .pipe(cssBase64({
-            // baseDir: PATHS.images.dest,
-            extensionsAllowed: [".gif", ".jpg", ".png"],
-            maxWeightResource: 1000,
-        }))
         // replace native css imports with the imported file's contents
         .pipe(cssImport())
         // autoprefix css for browser compatability

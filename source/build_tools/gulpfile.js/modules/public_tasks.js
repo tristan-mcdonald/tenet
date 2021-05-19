@@ -2,7 +2,7 @@
 /*
     require constants used by gulp.
 */
-const { parallel, series, watch } = require("gulp");
+const { series, watch } = require("gulp");
 /*
     require npm packages.
 */
