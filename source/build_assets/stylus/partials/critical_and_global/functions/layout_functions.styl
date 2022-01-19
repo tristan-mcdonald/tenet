@@ -49,17 +49,24 @@ button-reset()
     color inherit
 /*
     mixin to avoid by default giving an element an unintended
-    z-index context when giving an element a `position` of `relative`.
-*/
-pos-r($z-index = auto)
-    position relative
-    z-index $z-index
-/*
-    mixin to avoid by default giving an element an unintended
     z-index context when giving an element a `position` of `absolute`.
 */
 pos-a($z-index = auto)
     position absolute
+    z-index $z-index
+/*
+    mixin to avoid by default giving an element an unintended
+    z-index context when giving an element a `position` of `fixed`.
+*/
+pos-f($z-index = auto)
+    position fixed
+    z-index $z-index
+/*
+    mixin to avoid by default giving an element an unintended
+    z-index context when giving an element a `position` of `sticky`.
+*/
+pos-s($z-index = auto)
+    position sticky
     z-index $z-index
 /*
     mixin to add a Material Design-style `box-shadow` which expands on interaction.
