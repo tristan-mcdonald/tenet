@@ -17,21 +17,56 @@ placeholder()
         {block}
 
 /*
-    mixin for a simple anchor underline which appears on interaction.
+    mixin for a simple anchor underline which appears on interaction,
+    for use against a light background.
 */
 content-anchor(
-    $initial-color     = $cl--anchor,
-    $interaction-color = $cl--anchor--interact
+    $initial-color               = $cl--anchor,
+    $interaction-color           = $cl--anchor--interact,
+    $initial-underline-color     = modify-hsla($color: $cl--interaction, $a: -.6),
+    $interaction-underline-color = $cl--interaction,
+    $text-decoration-thickness   = $bw
 )
-    transition($properties: "box-shadow, color")
-    box-shadow inset 0 0 0 modify-hsla($color: $interaction-color, $a: -.6)
-    color $initial-color
+    &
+    &:visited
+        transition($properties: "color, text-decoration-color")
+        text-decoration underline
+        text-decoration-color $initial-underline-color
+        text-decoration-skip-ink auto
+        text-decoration-thickness $text-decoration-thickness
+        color $initial-color
 
-    &:active
-    &:focus
-    &:hover
-        box-shadow inset 0 -2px 0 modify-hsla($color: $interaction-color, $a: -.6)
-        color $interaction-color
+        &:active
+        &:focus
+        &:hover
+            text-decoration-color $interaction-underline-color
+            color $interaction-color
+
+/*
+    mixin for a simple anchor underline which appears on interaction,
+    for use against a dark background.
+*/
+content-anchor--dark-background(
+    $initial-color               = white,
+    $interaction-color           = white,
+    $initial-underline-color     = alpha(white, .3),
+    $interaction-underline-color = alpha(white, .6)
+)
+    &
+    &:visited
+        transition($properties: "color, text-decoration-color")
+        text-decoration underline
+        text-decoration-color $initial-underline-color
+        text-decoration-skip-ink auto
+        text-decoration-thickness $bw--half
+        text-underline-offset .1em
+        color $initial-color
+
+        &:active
+        &:focus
+        &:hover
+            text-decoration-color $interaction-underline-color
+            color $interaction-color
 
 /*
     mixin for ensuring that long words don't break layout.

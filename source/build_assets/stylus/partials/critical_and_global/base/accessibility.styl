@@ -15,8 +15,9 @@ html
             focus-styles()
 
     // if input source is a mouse, do not add visible focus styles
-    &[data-focus-source="pointer"]
     &[data-focus-source=""]
+    &[data-focus-source="pointer"]
+    &[data-focus-source="script"]
 
         *:focus
             outline none
