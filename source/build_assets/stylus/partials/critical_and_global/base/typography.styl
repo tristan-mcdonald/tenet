@@ -48,9 +48,6 @@ h2
 h3
 h4
     display block
-    line-height $lh--heading
-    font-family $ff--heading
-    font-weight $fw--heading
     color $cl--text--heading
 
     a
@@ -58,40 +55,16 @@ h4
         content-anchor()
 
 h1
-h2
-    letter-spacing $ls--heading--one-two
-
-h3
-h4
-    letter-spacing $ls--heading--three-four
-
-h1
-    max-width ($ll * .5)ch
-    fz-scale--plus-four()
-
-    * + &
-        sp-scale--four()
+    display-as-heading($heading-level: 1)
 
 h2
-    max-width ($ll * .6)ch
-    fz-scale--plus-three()
-
-    * + &
-        sp-scale--three()
+    display-as-heading($heading-level: 2)
 
 h3
-    max-width ($ll * .7)ch
-    fz-scale--plus-two()
-
-    * + &
-        sp-scale--two()
+    display-as-heading($heading-level: 3)
 
 h4
-    max-width ($ll *.8)ch
-    fz-scale--plus-one()
-
-    * + &
-        sp-scale--one()
+    display-as-heading($heading-level: 4)
 
 /*
     specify text styles for copy text.
