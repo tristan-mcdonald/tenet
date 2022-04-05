@@ -120,7 +120,10 @@ function transpileStylus(cb) {
     return src(PATHS.stylus.input)
         .pipe(sourcemaps.init())
         // use rupture library for simple declaration of media queries
-        .pipe(stylus({ use: [rupture()] }))
+        .pipe(stylus({
+            compress: true,
+            use: [rupture()]
+        }))
         // replace native css imports with the imported file's contents
         .pipe(cssImport())
         // autoprefix css for browser compatability
