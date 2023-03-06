@@ -1,42 +1,49 @@
 /*
-    the app's colour scheme is triadic
-    three hues are used: 220.7, 39.9, and 178
+    non-semantic colours, to be referenced in semantic variable names if needed.
+    you may use the `modify-hsla` function to create variations of these colours.
+    generate colour names from your HSLA values here: https://colornamer.robertcooper.me
 */
-// layout delineation colours
-$cl--interface--high  = hsla(220.7, 29.4%, 96.7%, 1);
-$cl--interface--light = hsla(220.7, 20%, 92.2%, 1)
-$cl--interface        = hsla(220.7, 12%, 28%, 1)
-$cl--interface--low   = hsla(220.7, 10%, 24%, 1)
-$cl--interface--dark  = hsla(220.7, 06%, 10%, 1)
+$cl--illuminating-emerald = hsla(161.3, 53%, 39.2%, 1)
+$cl--tupelo-honey         = hsla(44.9, 46.4%, 53.1%, 1)
+$cl--water-town            = hsla(222.1, 39%, 56.3%, 1)
 
-// attention colours, to draw the user's attention to an element
-$cl--attention--high = hsla(39.9, 100%, 90%, 1)
-$cl--attention--med  = hsla(39.9, 100%, 70%, 1)
-$cl--attention       = hsla(39.9, 100%, 60%, 1)
-$cl--attention--low  = hsla(39.9, 100%, 50%, 1)
-$cl--attention--dark = hsla(39.9, 100%, 46%, 1)
+/*
+    layout delineation colours
+*/
+$cl--interface--high  = hsla(180, 29.4%, 96.7%, 1);
+$cl--interface--light = hsla(180, 20%, 92.2%, 1)
+$cl--interface        = hsla(180, 10.5%, 70.2%, 1)
+$cl--interface--dark  = hsla(180, 10%, 24%, 1)
+$cl--interface--low   = hsla(180, 06%, 10%, 1)
 
-// interaction colours, to show the user they can interact with an element
-$cl--interaction--high = hsla(178, 44%, 90%, 1)
-$cl--interaction--med  = hsla(178, 40%, 63%, 1)
-$cl--interaction       = hsla(178, 52%, 40%, 1)
-$cl--interaction--low  = hsla(178, 56%, 38%, 1)
-$cl--interaction--dark = hsla(178, 40%, 28%, 1)
+/*
+    attention colours, to draw the user's attention to an element.
+*/
+$cl--attention = $cl--tupelo-honey
 
-// text colours
-$cl--text--metadata = hsla(191, 8%, 45%, 1)
-$cl--text--copy     = hsla(191, 14.3%, 26%, 1)
-$cl--text--heading  = hsla(191, 22.8%, 13%, 1)
+/*
+    action colours, to show the user they can interact with an element.
+*/
+$cl--action           = $cl--water-town
+$cl--action--interact = modify-hsla($color: $cl--action, $s: 10, $l: -10)
 
-// anchor colours
-$cl--anchor                            = hsla(353.3, 50%, 44%, 1)
-$cl--anchor--interact                  = hsla(353.3, 56%, 30%, 1)
-$cl--anchor--dark-background           = hsla(353.3, 50%, 44%, 1)
-$cl--anchor--dark-background--interact = hsla(353.3, 56%, 30%, 1)
+/*
+    text colours.
+    it often works well to use the same hue as the interface colour values.
+*/
+$cl--text--metadata = hsla(180, 8%, 45%, 1)
+$cl--text--copy     = hsla(180, 14.3%, 26%, 1)
+$cl--text--heading  = hsla(180, 22.8%, 13%, 1)
+
+/*
+    anchor colours
+*/
+$cl--anchor           = $cl--illuminating-emerald
+$cl--anchor--interact = modify-hsla($color: $cl--anchor, $s: 10, $l: -10)
 
 // utility colours
 $cl--success = hsla(160, 55%, 46%, 1)
 $cl--error   = hsla(350, 79.4%, 50.4%, 1)
 $cl--info    = hsla(200.5, 40.1%, 44.1%, 1)
 $cl--warning = hsla(14.5, 100%, 62%, 1)
-$cl--focus   = $cl--warning
+$cl--focus   = $cl--attention

@@ -23,8 +23,8 @@ placeholder()
 content-anchor(
     $initial-color               = $cl--anchor,
     $interaction-color           = $cl--anchor--interact,
-    $initial-underline-color     = modify-hsla($color: $cl--interaction, $a: -.6),
-    $interaction-underline-color = $cl--interaction,
+    $initial-underline-color     = modify-hsla($color: $initial-color, $a: -.6),
+    $interaction-underline-color = $interaction-color,
     $text-decoration-thickness   = $bw
 )
     &
@@ -47,10 +47,10 @@ content-anchor(
     for use against a dark background.
 */
 content-anchor--dark-background(
-    $initial-color               = white,
+    $initial-color               = alpha(white, .8),
     $interaction-color           = white,
-    $initial-underline-color     = alpha(white, .3),
-    $interaction-underline-color = alpha(white, .6)
+    $initial-underline-color     = alpha(white, .4),
+    $interaction-underline-color = alpha(white, .8)
 )
     &
     &:visited
