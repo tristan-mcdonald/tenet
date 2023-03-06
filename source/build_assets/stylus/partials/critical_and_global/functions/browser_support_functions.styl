@@ -4,6 +4,8 @@
 appearance($value = none)
     -webkit-appearance $value
     -moz-appearance $value
+    appearance $value
+
 /*
     these functions provide fluid font-size scaling and vertical height
     scaling with an interpolated set of ratios, with fallbacks for IE11.
@@ -14,6 +16,59 @@ appearance($value = none)
     ratios instead. feel free to copy these functions to add further steps
     in the scale, if you need them for a feature section, for example.
 */
+
+/*
+    provides the eighth step up in the font-size scale.
+*/
+fz--plus-eighth()
+    font-size ($fz--base * $ratio--sml ** 8)
+    font-size var(--fz-ratio-power--eight)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 8)
+        font-size var(--fz-ratio-power--eight)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 8)
+        font-size var(--fz-ratio-power--eight)
+
+/*
+    provides the seventh step up in the font-size scale.
+*/
+fz--plus-seven()
+    font-size ($fz--base * $ratio--sml ** 7)
+    font-size var(--fz-ratio-power--seven)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 7)
+        font-size var(--fz-ratio-power--seven)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 7)
+        font-size var(--fz-ratio-power--seven)
+
+/*
+    provides the sixth step up in the font-size scale.
+*/
+fz--plus-six()
+    font-size ($fz--base * $ratio--sml ** 6)
+    font-size var(--fz-ratio-power--six)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 6)
+        font-size var(--fz-ratio-power--six)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 6)
+        font-size var(--fz-ratio-power--six)
+
+/*
+    provides the fifth step up in the font-size scale.
+*/
+fz--plus-five()
+    font-size ($fz--base * $ratio--sml ** 5)
+    font-size var(--fz-ratio-power--five)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 5)
+        font-size var(--fz-ratio-power--five)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 5)
+        font-size var(--fz-ratio-power--five)
+
 /*
     provides the fourth step up in the font-size scale.
     used for heading level one by default.
@@ -27,6 +82,7 @@ fz--plus-four()
     +above(6)
         font-size ($fz--base * $ratio--lrg ** 4)
         font-size var(--fz-ratio-power--four)
+
 /*
     provides the third step up in the font-size scale.
     used for heading level two by default.
@@ -40,6 +96,7 @@ fz--plus-three()
     +above(6)
         font-size ($fz--base * $ratio--lrg ** 3)
         font-size var(--fz-ratio-power--three)
+
 /*
     provides the second step up in the font-size scale.
     used for heading level three by default.
@@ -53,6 +110,7 @@ fz--plus-two()
     +above(6)
         font-size ($fz--base * $ratio--lrg ** 2)
         font-size var(--fz-ratio-power--two)
+
 /*
     provides the first step up in the font-size scale.
     used for heading level four by default.
@@ -66,6 +124,7 @@ fz--plus-one()
     +above(6)
         font-size ($fz--base * $ratio--lrg)
         font-size var(--fz-ratio-power--one)
+
 /*
     provides the first step down in the font-size scale.
     useful for uppercase or meta information.
@@ -79,6 +138,7 @@ fz--minus-one()
     +above(6)
         font-size ($fz--base / $ratio--lrg)
         font-size var(--fz-ratio-power--minus-one)
+
 /*
     provides the second step down in the font-size scale.
     useful for superscript reference numbers.
@@ -92,6 +152,7 @@ fz--minus-two()
     +above(6)
         font-size ($fz--base / $ratio--lrg ** 2)
         font-size var(--fz-ratio-power--minus-two)
+
 /*
     provides the vertical height of the fourth step in the font-size scale.
     used for the margin-top of heading level one by default.
@@ -105,6 +166,7 @@ sp-scale--four()
     +above(6)
         margin-top ($fz--base * $ratio--lrg ** 4 * $lh--heading)
         margin-top var(--sp-ratio-power--four)
+
 /*
     provides the vertical height of the third step in the font-size scale.
     used for the margin-top of heading level two by default.
@@ -118,6 +180,7 @@ sp-scale--three()
     +above(6)
         margin-top ($fz--base * $ratio--lrg ** 3 * $lh--heading)
         margin-top var(--sp-ratio-power--three)
+
 /*
     provides the vertical height of the third step in the font-size scale.
     used for the margin-top of heading level three by default.
@@ -131,6 +194,7 @@ sp-scale--two()
     +above(6)
         margin-top ($fz--base * $ratio--lrg ** 2 * $lh--heading)
         margin-top var(--sp-ratio-power--two)
+
 /*
     provides the vertical height of the first step in the font-size scale.
     used for the margin-top of heading level four by default.

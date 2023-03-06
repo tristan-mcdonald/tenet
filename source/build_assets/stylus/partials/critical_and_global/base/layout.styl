@@ -34,7 +34,7 @@ body
     /*
         hide scrollbars when modal is visible.
     */
-    .modal_is_visible &
+    .overlay_is_visible &
         overflow hidden
         max-height 100vh
 
@@ -60,10 +60,10 @@ body
         contain()
 
         > *:first-child
-            margin-top $sp--double
+            margin-top $sp--times-two
 
         > *:last-child
-            margin-bottom $sp--double
+            margin-bottom $sp--times-two
 
 img
     display block
