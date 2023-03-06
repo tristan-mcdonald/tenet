@@ -38,7 +38,7 @@ _Dieter Rams_
 The templating system is included to allow this repo to be cloned down and used to make quick design prototypes that can be presented to clients/product-owners in-browser. The templating system is crude and a little clunky, but I've deliberately kept this aspect of Tenet simple, to encourage integration as early as possible with whatever you've decided on to handle the business logic of your project (for instance Django, Vue, Hugo). Nevertheless, it's becoming apparent that for some use-cases the templating system can quickly become messy and limiting. I am reviewing this and deciding on the most flexible way forward, which leads us nicely into...
 
 ## I have an idea for Tenet! I have a question about Tenet!
-That's great to hear! Please have a peek at the documentation first and then feel free to get in touch with me on Twitter, I'm a friendly person: [@wavetemple](https://twitter.com/wavetemple).
+That's great to hear! Please have a peek at the documentation first and then feel free to start a discussion on this repo.
 
 > Tenet is a working reference implementation of responsible design.
 
