@@ -110,7 +110,7 @@ display-as-heading($heading-level)
     if $heading-level == 1
         max-width $maw--h1
         letter-spacing $ls--heading--one-two
-        fz-scale--plus-four()
+        fz--plus-four()
 
         * + &
             sp-scale--four()
@@ -118,7 +118,7 @@ display-as-heading($heading-level)
     else if $heading-level == 2
         max-width $maw--h2
         letter-spacing $ls--heading--one-two
-        fz-scale--plus-three()
+        fz--plus-three()
 
         * + &
             sp-scale--three()
@@ -126,7 +126,7 @@ display-as-heading($heading-level)
     else if $heading-level == 3
         max-width $maw--h3
         letter-spacing $ls--heading--three-four
-        fz-scale--plus-two()
+        fz--plus-two()
 
         * + &
             sp-scale--two()
@@ -134,7 +134,7 @@ display-as-heading($heading-level)
     else if $heading-level == 4
         max-width $maw--h4
         letter-spacing $ls--heading--three-four
-        fz-scale--plus-one()
+        fz--plus-one()
 
         * + &
             sp-scale--one()

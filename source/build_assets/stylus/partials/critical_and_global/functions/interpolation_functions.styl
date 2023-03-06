@@ -2,23 +2,22 @@
     the interpolation function below requires this function,
     which can also be used independently.
 */
-interpolation_calculation($min-screen, $min-value, $max-screen, $max-value)
-    $a = ($max-value - $min-value) / ($max-screen - $min-screen)
-    $b = $min-value - $a * $min-screen
-
+interpolation-calculation($min-screen, $min-value, $max-screen, $max-value)
+    $pixel-value = ($max-value - $min-value) / ($max-screen - $min-screen)
+    $viewport-unit-value = $min-value - $pixel-value * $min-screen
     $sign = " + "
-    if ($b < 0)
+    if ($viewport-width-value < 0)
         $sign = " - "
-        $b = abs($b)
+        $viewport-width-value = abs($viewport-width-value)
+    return s("calc("+ unit($pixel-value*100, "vw") + $sign + ($viewport-width-value) + ")")
 
-    return s("calc("+ unit($a*100, "vw") + $sign + ($b) + ")")
 /*
 this function is intended to be used on the :root element.
 it sets a base font-size which is based on the viewport
 width, and which scales between two font-sizes we've set, at two
 viewport widths that we've also set. We then use CSS custom properties
 to set REM unit values for individual type elements, based on three
-different typographic scales. We set these as mixins, for easier
+different typographic scales. We set these as functions, for easier
 overriding of an element's font-size in the rest of the codebase.
 */
 interpolation(
@@ -33,7 +32,7 @@ interpolation(
             {$property}: $min-value
         @media screen and (min-width: $min-screen)
             for $property in $properties
-                {$property}: interpolation_calculation($min-screen, $min-value, $max-screen, $max-value)
+                {$property}: interpolation-calculation($min-screen, $min-value, $max-screen, $max-value)
         @media screen and (min-width: $max-screen)
             for $property in $properties
                 {$property}: $max-value

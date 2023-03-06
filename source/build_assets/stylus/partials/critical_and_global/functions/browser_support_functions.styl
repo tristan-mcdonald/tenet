@@ -1,24 +1,24 @@
 /*
-    mixin to allow removal of browser default styles on form elements.
+    function to allow removal of browser default styles on form elements.
 */
 appearance($value = none)
     -webkit-appearance $value
     -moz-appearance $value
 /*
-    these mixins provide fluid font-size scaling and vertical height
+    these functions provide fluid font-size scaling and vertical height
     scaling with an interpolated set of ratios, with fallbacks for IE11.
-    you'll find an explanation for using these mixins in the documentation,
+    you'll find an explanation for using these functions in the documentation,
     here: https://github.com/trubblebruin/tenet/wiki/Practical-Documentation
     the intention is for this file not to be edited; if you want to edit
     the size of your h1 element, for example, edit the type scaling
-    ratios instead. feel free to copy these mixins to add further steps
+    ratios instead. feel free to copy these functions to add further steps
     in the scale, if you need them for a feature section, for example.
 */
 /*
     provides the fourth step up in the font-size scale.
     used for heading level one by default.
 */
-fz-scale--plus-four()
+fz--plus-four()
     font-size ($fz--base * $ratio--sml ** 4)
     font-size var(--fz-ratio-power--four)
     +above(3)
@@ -31,7 +31,7 @@ fz-scale--plus-four()
     provides the third step up in the font-size scale.
     used for heading level two by default.
 */
-fz-scale--plus-three()
+fz--plus-three()
     font-size ($fz--base * $ratio--sml ** 3)
     font-size var(--fz-ratio-power--three)
     +above(3)
@@ -44,7 +44,7 @@ fz-scale--plus-three()
     provides the second step up in the font-size scale.
     used for heading level three by default.
 */
-fz-scale--plus-two()
+fz--plus-two()
     font-size ($fz--base * $ratio--sml ** 2)
     font-size var(--fz-ratio-power--two)
     +above(3)
@@ -57,7 +57,7 @@ fz-scale--plus-two()
     provides the first step up in the font-size scale.
     used for heading level four by default.
 */
-fz-scale--plus-one()
+fz--plus-one()
     font-size ($fz--base * $ratio--sml)
     font-size var(--fz-ratio-power--one)
     +above(3)
@@ -70,7 +70,7 @@ fz-scale--plus-one()
     provides the first step down in the font-size scale.
     useful for uppercase or meta information.
 */
-fz-scale--minus-one()
+fz--minus-one()
     font-size ($fz--base / $ratio--sml)
     font-size var(--fz-ratio-power--minus-one)
     +above(3)
@@ -83,7 +83,7 @@ fz-scale--minus-one()
     provides the second step down in the font-size scale.
     useful for superscript reference numbers.
 */
-fz-scale--minus-two()
+fz--minus-two()
     font-size ($fz--base / $ratio--sml ** 2)
     font-size var(--fz-ratio-power--minus-two)
     +above(3)
