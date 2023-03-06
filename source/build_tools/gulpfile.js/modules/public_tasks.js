@@ -18,7 +18,7 @@ const PRIVATE_TASKS = require("./private_tasks");
 /*
     public task for local development.
 */
-function develop() {
+function develop () {
     // start a development browser
     sync.init({
         notify: false,
@@ -27,13 +27,6 @@ function develop() {
         server: PATHS.server.root,
         tunnel: true,
     });
-    // watch Nunjucks files for changes
-    watch(
-        PATHS.templates.watch,
-        // run when function is initialised
-        { ignoreInitial: false },
-        PRIVATE_TASKS.transpile_templates
-    );
     // watch JS files for changes
     watch(
         PATHS.javascript.watch,
@@ -42,7 +35,7 @@ function develop() {
         // run all JS tasks in sequence
         series(
             PRIVATE_TASKS.lint_javascript,
-            PRIVATE_TASKS.transpile_javascript
+            PRIVATE_TASKS.transpile_javascript,
         )
     );
     // watch stylus files for changes
@@ -53,11 +46,21 @@ function develop() {
         // run all stylus tasks in sequence
         series(
             PRIVATE_TASKS.lint_stylus,
-            PRIVATE_TASKS.transpile_stylus
+            PRIVATE_TASKS.transpile_stylus,
         )
+    );
+}
+function reference () {
+    // watch Nunjucks files for changes
+    watch(
+        PATHS.templates.watch,
+        // run when function is initialised
+        { ignoreInitial: false },
+        PRIVATE_TASKS.transpile_templates,
     );
 }
 /*
     export private tasks.
 */
-exports.develop = develop;
+exports.develop   = develop;
+exports.reference = reference;

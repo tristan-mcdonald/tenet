@@ -2,7 +2,7 @@
 /*
     require constants used by gulp.
 */
-const { series } = require("gulp");
+const { parallel, series } = require("gulp");
 /*
     require all private tasks.
 */
@@ -14,11 +14,12 @@ const PUBLIC_TASKS = require("./modules/public_tasks");
 /*
     export all public tasks.
 */
-exports.develop = series(
+exports.default = series(
     PRIVATE_TASKS.clean,
     PUBLIC_TASKS.develop,
 );
-exports.default = series(
+exports.reference = parallel(
     PRIVATE_TASKS.clean,
+    PUBLIC_TASKS.reference,
     PUBLIC_TASKS.develop,
 );

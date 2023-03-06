@@ -16,7 +16,7 @@ module.exports = {
         css: "../build_assets/images",
     },
     server: {
-        root: "../../distribution/assets/reference_html",
+        root: "../../distribution/assets/reference",
     },
     stylus: {
         config: ".stylintrc",
@@ -28,9 +28,9 @@ module.exports = {
         watch: "../build_assets/stylus/**/*.styl",
     },
     templates: {
-        input_file: "../build_assets/reference_templates/index.njk",
-        input_folder: "../build_assets/reference_templates/",
-        output: "../../distribution/assets/reference_html",
-        watch: "../build_assets/reference_templates/**/*.njk",
+        input_file: "../reference/templates/index.njk",
+        input_folder: "../reference/templates/",
+        output: "../../distribution/assets/reference",
+        watch: "../reference/templates/**/*.njk",
     },
 };
