@@ -29,7 +29,7 @@ function scaleRatio (currentViewportWidth, minimumValue, maximumValue) {
 export default function () {
     // store the lowest ratio to use for our typographic scale.
     // This must match the value set in `typographic-variables.styl`.
-    const typeRatioLow = 1.16;
+    const typeRatioLow = 1.125;
     // store the highest ratio to use for our typographic scale.
     // This must match the value set in `typographic-variables.styl`.
     const typeRatioHigh = 1.28;

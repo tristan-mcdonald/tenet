@@ -1,5 +1,5 @@
 /*
-    mixin for styling input placeholders. use this as follows, for example:
+    function for styling input placeholders. use this as follows, for example:
     ```
     input
         +placeholder()
@@ -17,36 +17,71 @@ placeholder()
         {block}
 
 /*
-    mixin for a simple anchor underline which appears on interaction.
+    function for a simple anchor underline which appears on interaction,
+    for use against a light background.
 */
 content-anchor(
-    $initial-color     = $cl--anchor,
-    $interaction-color = $cl--anchor--interact
+    $initial-color               = $cl--anchor,
+    $interaction-color           = $cl--anchor--interact,
+    $initial-underline-color     = modify-hsla($color: $cl--interaction, $a: -.6),
+    $interaction-underline-color = $cl--interaction,
+    $text-decoration-thickness   = $bw
 )
-    transition($properties: "box-shadow, color")
-    box-shadow inset 0 0 0 modify-hsla($color: $interaction-color, $a: -.6)
-    color $initial-color
+    &
+    &:visited
+        transition($properties: "color, text-decoration-color")
+        text-decoration underline
+        text-decoration-color $initial-underline-color
+        text-decoration-skip-ink auto
+        text-decoration-thickness $text-decoration-thickness
+        color $initial-color
 
-    &:active
-    &:focus
-    &:hover
-        box-shadow inset 0 -2px 0 modify-hsla($color: $interaction-color, $a: -.6)
-        color $interaction-color
+        &:active
+        &:focus
+        &:hover
+            text-decoration-color $interaction-underline-color
+            color $interaction-color
 
 /*
-    mixin for ensuring that long words don't break layout.
+    function for a simple anchor underline which appears on interaction,
+    for use against a dark background.
+*/
+content-anchor--dark-background(
+    $initial-color               = white,
+    $interaction-color           = white,
+    $initial-underline-color     = alpha(white, .3),
+    $interaction-underline-color = alpha(white, .6)
+)
+    &
+    &:visited
+        transition($properties: "color, text-decoration-color")
+        text-decoration underline
+        text-decoration-color $initial-underline-color
+        text-decoration-skip-ink auto
+        text-decoration-thickness $bw--half
+        text-underline-offset .1em
+        color $initial-color
+
+        &:active
+        &:focus
+        &:hover
+            text-decoration-color $interaction-underline-color
+            color $interaction-color
+
+/*
+    function for ensuring that long words don't break layout.
 */
 break-long-words()
     overflow-wrap anywhere
 
 /*
-    mixin for a simple two-level text shadow.
+    function for a simple two-level text shadow.
 */
 txsh-simple($shadow-color = $cl--text--heading)
     text-shadow 0 0 .02em $shadow-color, 0 0 .08em modify-hsla($color: $shadow-color, $a: -.6)
 
 /*
-    mixin to add padding above and below an element,
+    function to add padding above and below an element,
     which accounts for a font's differing baseline space above
     the ascender and below the descender. set `$space-greater-above`
     to `true` if the font appears to have a greater baseline
@@ -62,3 +97,44 @@ pd-account-for-font-offset(
     else
         padding-top "calc(%s + %s)" % ($pd-vertical $ff-x-position-offset)
         padding-bottom "calc(%s - %s)" % ($pd-vertical $ff-x-position-offset)
+/*
+    function to set typographic styles for the various heading levels.
+    usage:
+        display-as-heading($heading-level: 1)
+*/
+display-as-heading($heading-level)
+    line-height $lh--heading
+    font-family $ff--heading
+    font-weight $fw--heading
+
+    if $heading-level == 1
+        max-width $maw--h1
+        letter-spacing $ls--heading--one-two
+        fz-scale--plus-four()
+
+        * + &
+            sp-scale--four()
+
+    else if $heading-level == 2
+        max-width $maw--h2
+        letter-spacing $ls--heading--one-two
+        fz-scale--plus-three()
+
+        * + &
+            sp-scale--three()
+
+    else if $heading-level == 3
+        max-width $maw--h3
+        letter-spacing $ls--heading--three-four
+        fz-scale--plus-two()
+
+        * + &
+            sp-scale--two()
+
+    else if $heading-level == 4
+        max-width $maw--h4
+        letter-spacing $ls--heading--three-four
+        fz-scale--plus-one()
+
+        * + &
+            sp-scale--one()

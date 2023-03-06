@@ -10,14 +10,14 @@ html
 
     // if input source is a keyboard, add visible focus styles
     &[data-focus-source="key"]
-    &[data-focus-source="script"]
 
         *:focus
             focus-styles()
 
     // if input source is a mouse, do not add visible focus styles
-    &[data-focus-source="pointer"]
     &[data-focus-source=""]
+    &[data-focus-source="pointer"]
+    &[data-focus-source="script"]
 
         *:focus
             outline none
