@@ -1,10 +1,10 @@
 "use strict";
 /*
-    require constants used by gulp.
+    require constants used by Gulp.
 */
 const { series, watch } = require("gulp");
 /*
-    require npm packages.
+    require NPM packages.
 */
 const sync = require("browser-sync").create(); // serve files over lan, and synchronise file changes with the browser
 /*
@@ -27,22 +27,22 @@ function develop() {
         server: PATHS.server.root,
         tunnel: true,
     });
-    // watch nunjucks files for changes
+    // watch Nunjucks files for changes
     watch(
         PATHS.templates.watch,
         // run when function is initialised
         { ignoreInitial: false },
-        PRIVATE_TASKS.transpileTemplates
+        PRIVATE_TASKS.transpile_templates
     );
-    // watch javascript files for changes
+    // watch JS files for changes
     watch(
         PATHS.javascript.watch,
         // run when function is initialised
         { ignoreInitial: false },
-        // run all javascript tasks in sequence
+        // run all JS tasks in sequence
         series(
-            PRIVATE_TASKS.lintJavascript,
-            PRIVATE_TASKS.transpileJavascript
+            PRIVATE_TASKS.lint_javascript,
+            PRIVATE_TASKS.transpile_javascript
         )
     );
     // watch stylus files for changes
@@ -52,8 +52,8 @@ function develop() {
         { ignoreInitial: false },
         // run all stylus tasks in sequence
         series(
-            PRIVATE_TASKS.lintStylus,
-            PRIVATE_TASKS.transpileStylus
+            PRIVATE_TASKS.lint_stylus,
+            PRIVATE_TASKS.transpile_stylus
         )
     );
 }

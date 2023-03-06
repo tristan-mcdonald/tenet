@@ -16,9 +16,9 @@ const PUBLIC_TASKS = require("./modules/public_tasks");
 */
 exports.develop = series(
     PRIVATE_TASKS.clean,
-    PUBLIC_TASKS.develop
+    PUBLIC_TASKS.develop,
 );
 exports.default = series(
     PRIVATE_TASKS.clean,
-    PUBLIC_TASKS.develop
+    PUBLIC_TASKS.develop,
 );

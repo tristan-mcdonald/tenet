@@ -1,29 +1,47 @@
 "use strict";
 /*
-    require constants used by gulp.
+    require constants used by Gulp.
 */
 const { dest, src } = require("gulp");
 /*
     require npm packages.
 */
-const autoprefix  = require("gulp-autoprefixer");       // autoprefix css for browser compatability
-const babelify    = require("babelify");                // transpile javascript for browser compatability
-const browserify  = require("browserify");              // allows use of commonjs when targeting the browser
-const cleanCss    = require("gulp-clean-css");          // configurably optimize generated css
-const combineMq   = require("gulp-join-media-queries"); // combine rules within duplicate media queries in css
-const cssImport   = require("gulp-cssimport");          // replace native css imports with the imported file's contents
-const del         = require("delete");                  // allow gulp to delete files
-const eslint      = require("gulp-eslint");             // lint javascript
-const rename      = require("gulp-rename");             // allow gulp to rename files
-const rupture     = require("rupture");                 // stylus library for simple declaration of media queries
-const sourcemaps  = require("gulp-sourcemaps");         // allow the browser to map minified code back to a readable source
-const stylint     = require("gulp-stylint");            // lint stylus
-const stylus      = require("gulp-stylus");             // transpile stylus into css
-const sync        = require("browser-sync").create();   // serve files over lan, and synchronise file changes with the browser
-const uglify      = require("gulp-uglify");             // minify javascript & replace variable names, for efficiency
-const vinylBuffer = require("vinyl-buffer");            // convert gulp's vinyl virtual file format into a buffer
-const vinylSource = require("vinyl-source-stream");     // loads browserify's output into a vinyl object
-const nunjucks    = require("gulp-nunjucks-render");    // transpiles nunjucks templates into html
+// autoprefix CSS for browser compatability
+const autoprefix = require("gulp-autoprefixer");
+// transpile JS for browser compatability
+const babelify = require("babelify");
+// allows use of commonjs when targeting the browser
+const browserify = require("browserify");
+// configurably optimize generated CSS
+const clean_css = require("gulp-clean-css");
+// combine rules within duplicate media queries in css
+const combine_media_queries = require("gulp-join-media-queries");
+// replace native CSS imports with the imported file's contents
+const css_import = require("gulp-cssimport");
+// allow Gulp to delete files
+const del = require("delete");
+// lint JS
+const eslint = require("gulp-eslint");
+// allow Gulp to rename files
+const rename = require("gulp-rename");
+// Stylus library for simple declaration of media queries
+const rupture = require("rupture");
+// allow the browser to map minified code back to a readable source
+const sourcemaps = require("gulp-sourcemaps");
+// lint Stylus
+const stylint = require("gulp-stylint");
+// transpile Stylus into CSS
+const stylus = require("gulp-stylus");
+// serve files over LAN, and synchronise file changes with the browser
+const sync = require("browser-sync").create();
+// minify JS & replace variable names, for efficiency
+const uglify = require("gulp-uglify");
+// convert Gulp's vinyl virtual file format into a buffer
+const vinyl_buffer = require("vinyl-buffer");
+// loads browserify's output into a vinyl object
+const vinyl_source = require("vinyl-source-stream");
+// transpiles Nunjucks templates into HTML
+const nunjucks = require("gulp-nunjucks-render");
 /*
     require paths object, containing all paths used.
 */
@@ -47,9 +65,9 @@ function clean(cb) {
     cb();
 }
 /*
-    private task to transpile nunjucks templates into html.
+    private task to transpile Nunjucks templates into HTML.
 */
-function transpileTemplates(cb) {
+function transpile_templates(cb) {
     return src(PATHS.templates.input_file)
         .pipe(nunjucks({ path: PATHS.templates.input_folder }))
         .pipe(dest(PATHS.templates.output))
@@ -61,9 +79,9 @@ function transpileTemplates(cb) {
         });
 }
 /*
-    private task to lint javascript.
+    private task to lint JS.
 */
-function lintJavascript(cb) {
+function lint_javascript(cb) {
     return src(PATHS.javascript.lint)
         // pass in location of `.eslint` config file
         .pipe(eslint(PATHS.javascript.config))
@@ -74,25 +92,25 @@ function lintJavascript(cb) {
         });
 }
 /*
-    private task to transpile, bundle, and uglify javascript, and create a sourcemap.
+    private task to transpile, bundle, and uglify JS, and create a sourcemap.
 */
-function transpileJavascript(cb) {
+function transpile_javascript(cb) {
     // bundle commonjs modules into one file
     const bundler = browserify(PATHS.javascript.input, { debug: true })
-        // transpile modern javascript to es5 using babel
+        // transpile modern JS to ES5 using Babel
         .transform("babelify", { presets: ["@babel/preset-env"] });
     return bundler.bundle()
-        // write transpiled javascript to the destination folder
-        .pipe(vinylSource("app.js"))
-        .pipe(vinylBuffer())
+        // write transpiled JS to the destination folder
+        .pipe(vinyl_source("app.js"))
+        .pipe(vinyl_buffer())
         .pipe(dest(PATHS.javascript.output))
         // add a suffix to minified file name
         .pipe(rename({extname: ".min.js"}))
         .pipe(sourcemaps.init({ loadMaps: true }))
-        // minify javascript & replace variable names
+        // minify JS & replace variable names
         .pipe(uglify())
         .pipe(sourcemaps.write("./"))
-        // write minified javascript to the destination folder
+        // write minified JS to the destination folder
         .pipe(dest(PATHS.javascript.output))
         // reflect updated code in the browser
         .pipe(sync.stream())
@@ -102,9 +120,9 @@ function transpileJavascript(cb) {
         });
 }
 /*
-    private task to lint stylus.
+    private task to lint Stylus.
 */
-function lintStylus(cb) {
+function lint_stylus(cb) {
     return src(PATHS.stylus.lint)
         .pipe(stylint({ config: PATHS.stylus.config }))
         .pipe(stylint.reporter())
@@ -114,9 +132,9 @@ function lintStylus(cb) {
         });
 }
 /*
-    private task to transpile stylus, make css more efficient, and create a sourcemap.
+    private task to transpile Stylus, make CSS more efficient, and create a sourcemap.
 */
-function transpileStylus(cb) {
+function transpile_stylus(cb) {
     return src(PATHS.stylus.input)
         .pipe(sourcemaps.init())
         // use rupture library for simple declaration of media queries
@@ -124,16 +142,16 @@ function transpileStylus(cb) {
             compress: true,
             use: [rupture()]
         }))
-        // replace native css imports with the imported file's contents
-        .pipe(cssImport())
-        // autoprefix css for browser compatability
+        // replace native CSS imports with the imported file's contents
+        .pipe(css_import())
+        // autoprefix CSS for browser compatability
         .pipe(autoprefix())
         // combine rules within duplicate media queries into single media queries
-        .pipe(combineMq())
-        // output css
+        .pipe(combine_media_queries())
+        // output CSS
         .pipe(dest(PATHS.stylus.output))
-        // minify css and output a copy
-        .pipe(cleanCss({ level: 1 }))
+        // minify CSS and output a copy
+        .pipe(clean_css({ level: 1 }))
         .pipe(rename({ extname: ".min.css" }))
         .pipe(sourcemaps.write("./"))
         .pipe(dest(PATHS.stylus.output))
@@ -147,9 +165,9 @@ function transpileStylus(cb) {
 /*
     export private tasks.
 */
-exports.clean               = clean;
-exports.transpileTemplates  = transpileTemplates;
-exports.lintJavascript      = lintJavascript;
-exports.transpileJavascript = transpileJavascript;
-exports.lintStylus          = lintStylus;
-exports.transpileStylus     = transpileStylus;
+exports.clean                = clean;
+exports.transpile_templates  = transpile_templates;
+exports.lint_javascript      = lint_javascript;
+exports.transpile_javascript = transpile_javascript;
+exports.lint_stylus          = lint_stylus;
+exports.transpile_stylus     = transpile_stylus;
