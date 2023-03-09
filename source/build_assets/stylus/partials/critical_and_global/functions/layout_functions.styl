@@ -47,6 +47,7 @@ button-reset()
     padding 0
     font inherit
     color inherit
+
 /*
     function to avoid by default giving an element an unintended
     z-index context when giving an element a `position` of `absolute`.
@@ -54,6 +55,15 @@ button-reset()
 pos-a($z-index = auto)
     position absolute
     z-index $z-index
+
+/*
+    function to avoid by default giving an element an unintended
+    z-index context when giving an element a `position` of `relative`.
+*/
+pos-r($z-index = auto)
+    position relative
+    z-index $z-index
+
 /*
     function to avoid by default giving an element an unintended
     z-index context when giving an element a `position` of `fixed`.
@@ -61,6 +71,7 @@ pos-a($z-index = auto)
 pos-f($z-index = auto)
     position fixed
     z-index $z-index
+
 /*
     function to avoid by default giving an element an unintended
     z-index context when giving an element a `position` of `sticky`.
@@ -68,6 +79,7 @@ pos-f($z-index = auto)
 pos-s($z-index = auto)
     position sticky
     z-index $z-index
+
 /*
     function to add a Material Design-style `box-shadow` which expands on interaction.
     `$inset-color` takes a darker step of the element's `background-color`.
