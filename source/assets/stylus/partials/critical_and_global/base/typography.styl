@@ -1,9 +1,8 @@
-/*
-    specify the font sizes and scaling ratios
-    for our app's typography.
-*/
+/**
+  * Specify the font sizes and scaling ratios for the app's typography. See
+  * `functions/interpolation.styl` for an explanation of this function.
+  */
 :root
-    // see functions/interpolation.styl for an explanation of this function.
     // @stylint off
     interpolation(
         $properties: "font-size",
@@ -14,18 +13,18 @@
     )
     // @stylint on
 
-/*
-    specify options browsers should use when rendering text.
-*/
+/**
+  * Specify options browsers should use when rendering text.
+  */
 html
     text-rendering optimizeLegibility
     -webkit-font-smoothing antialiased
     -moz-osx-font-smoothing grayscale
     word-break break-word
 
-/*
-    specify text styles for generic text.
-*/
+/**
+  * Specify text styles for generic text.
+  */
 body
 select
 input
@@ -37,12 +36,11 @@ textarea
     letter-spacing $ls--body
     color $cl--text--copy
 
-/*
-    specify text styles for heading text.
-    there are no styles for any heading levels lower than h4, as
-    content editors tend to use h5 and h6 as a means of editing
-    the size of text, which is giving them too much power!
-*/
+/**
+  * Specify text styles for heading text. There are no styles for any heading levels lower than h4,
+  * as content editors tend to use h5 and h6 as a means of editing the size of text, rather than
+  * semantically.
+  */
 h1
 h2
 h3
@@ -66,9 +64,9 @@ h3
 h4
     display-as-heading($heading-level: 4)
 
-/*
-    specify text styles for copy text.
-*/
+/**
+  * Specify text styles for copy text.
+  */
 p
     width auto
     mt()
@@ -87,10 +85,10 @@ p
     h4 + &
         margin-top $sp--half
 
-    /*
-        add this class to paragraph content to constrain it to a readable line-length.
-        avoid setting paragraph line-lengths globally so that they don't need to be overridden.
-    */
+    /**
+      * Add this class to paragraph content to constrain it to a readable line-length.
+      * Avoid setting paragraph line-lengths globally so that they don't need to be overridden.
+      */
     .reading_content &
     &.reading_content
         width ($ll)ch
@@ -99,35 +97,35 @@ p
         > a:visited
             content-anchor()
 
-/*
-    specify generic anchor styles.
-*/
+/**
+  * Specify generic anchor styles.
+  */
 a
 a:visited
     transition(properties: "box-shadow, color")
     cursor pointer
     text-decoration none
 
-/*
-    specify styles for strong text.
-*/
+/**
+  * Specify styles for strong text.
+  */
 b
 strong
     font-weight $fw--strong
     font-family $ff--strong
     letter-spacing $ls--strong
 
-/*
-    specify styles for italic text.
-*/
+/**
+  * Specify styles for italic text.
+  */
 i
 em
     font-style normal
     font-family $ff--emphasis
 
-/*
-    specify styles for superscript and subscript text.
-*/
+/**
+  * Specify styles for superscript and subscript text.
+  */
 sup
 sub
     fz--minus-one()
@@ -138,17 +136,17 @@ sup
 sub
     vertical-align sub
 
-/*
-    specify styles for selected text.
-*/
+/**
+  * Specify styles for selected text.
+  */
 ::selection
     background-color $cl--text--copy
     text-shadow 0 0 .1em $cl--text--heading
     color white
 
-/*
-    specify styles for lists in reading content.
-*/
+/**
+  * Specify styles for lists in reading content.
+  */
 .reading_content
     width 100%
 

@@ -1,15 +1,18 @@
-/*
-    this file is for global layout styles.
-    keep view-specific layout styles to their own files.
-*/
+/**
+  * This file is for global layout styles. Keep view-specific layout styles to their own files.
+  */
+
+/**
+  * Make box-sizing more intuitive.
+  */
 *
 *::before
 *::after
     box-sizing border-box
 
-/*
-    provide browser-native smooth scrolling, unless user has decided against it.
-*/
+/**
+  * Provide browser-native smooth scrolling, unless user has decided against it.
+  */
 html
     scroll-behavior smooth
 
@@ -17,10 +20,10 @@ html
         scroll-behavior auto
 
 body
-    /*
-        the below three properties ensure that elements with
-        fixed positioning will still display relative to the viewport.
-    */
+    /**
+      * The below three properties ensure that elements with fixed positioning will still display
+      * relative to the viewport.
+      */
     will-change unset
     transform none
     filter none
@@ -31,9 +34,9 @@ body
     min-height 100vh
     width 100%
 
-    /*
-        hide scrollbars when modal is visible.
-    */
+    /**
+      * Hide scrollbars when modal dialog is visible.
+      */
     .overlay_is_visible &
         overflow hidden
         max-height 100vh
@@ -44,11 +47,10 @@ body
     flex-direction column
     width 100%
 
-/*
-    styles nested in this block are for a standard
-    content page layout with a centered containing div,
-    which in many cases would be an `article` element.
-*/
+/**
+  * Styles nested in this block are for a standard content page layout with a centered containing
+  * element, which in many cases would be an `article` element.
+  */
 .page_content
     flex 1 0 auto
     width 100%
@@ -70,28 +72,31 @@ img
     height auto
     width auto
     max-width 100%
-    vertical-align bottom // fix bug in some browsers which adds unintended white-space.
+    vertical-align bottom // Fix bug in some browsers which adds unintended white-space.
 
     &[height][width]
-        height auto // preserve aspect ratio if image has both dimensions specified in the markup.
+        height auto // Preserve aspect ratio if image has both dimensions specified in the markup.
 
     &[width]
-        width auto // ignore width if only width is specified in the markup.
+        width auto // Ignore width if only width is specified in the markup.
 
-    &[src$=".svg"] // allow svg to scale; we will apply set height/width to specific svg elements where needed.
+    /**
+      * Allow svg to scale; we will apply set height/width to specific svg elements where needed.
+      */
+    &[src$=".svg"]
         height auto
         width 100%
         max-width none
 
 svg
-    overflow visible // fix bug in firefox where edges of SVG display as cut.
+    overflow visible // Fix bug in firefox where edges of SVG display as cut.
     height 100%
     max-height 100%
     width 100%
     max-width 100%
 
-/*
-    remove browser's native button styles.
-*/
+/**
+  * Remove browser's native button styles.
+  */
 button
     button-reset()
