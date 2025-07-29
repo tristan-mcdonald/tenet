@@ -8,32 +8,155 @@ appearance($value = none)
 
 /**
   * These functions provide fluid font-size scaling and vertical height scaling with an interpolated
-  * set of ratios You'll find an explanation for using these
-  * functions in the documentation, here:
+  * set of ratios You'll find an explanation for using these functions in the documentation, here:
   * https://github.com/trubblebruin/tenet/wiki/Practical-Documentation
   * The intention is for this file not to be edited; if you want to edit the size of your h1
   * element, for example, edit the type scaling ratios instead.
   */
 
 /**
-  * Fluid font-size utilities, outputting, for example, `fz--step-4`, `fz--step--2`.
-  * These rely on the CSS custom properties declared in `css_custom_properties.styl`.
+  * Steps in the font-size scale.
   */
-$min_font_step = -2
-$max_font_step = 8
+fz--plus-eighth()
+    font-size ($fz--base * $ratio--sml ** 8)
+    font-size var(--fz-ratio-power--eight)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 8)
+        font-size var(--fz-ratio-power--eight)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 8)
+        font-size var(--fz-ratio-power--eight)
 
-for step in ($min_font_step..$max_font_step)
-    fz--step-{step}()
-        font-size var(--font-size-step-{step})
+fz--plus-seven()
+    font-size ($fz--base * $ratio--sml ** 7)
+    font-size var(--fz-ratio-power--seven)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 7)
+        font-size var(--fz-ratio-power--seven)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 7)
+        font-size var(--fz-ratio-power--seven)
+
+fz--plus-six()
+    font-size ($fz--base * $ratio--sml ** 6)
+    font-size var(--fz-ratio-power--six)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 6)
+        font-size var(--fz-ratio-power--six)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 6)
+        font-size var(--fz-ratio-power--six)
+
+fz--plus-five()
+    font-size ($fz--base * $ratio--sml ** 5)
+    font-size var(--fz-ratio-power--five)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 5)
+        font-size var(--fz-ratio-power--five)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 5)
+        font-size var(--fz-ratio-power--five)
+
+fz--plus-four()
+    font-size ($fz--base * $ratio--sml ** 4)
+    font-size var(--fz-ratio-power--four)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 4)
+        font-size var(--fz-ratio-power--four)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 4)
+        font-size var(--fz-ratio-power--four)
+
+fz--plus-three()
+    font-size ($fz--base * $ratio--sml ** 3)
+    font-size var(--fz-ratio-power--three)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 3)
+        font-size var(--fz-ratio-power--three)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 3)
+        font-size var(--fz-ratio-power--three)
+
+fz--plus-two()
+    font-size ($fz--base * $ratio--sml ** 2)
+    font-size var(--fz-ratio-power--two)
+    +above(3)
+        font-size ($fz--base * $ratio--med ** 2)
+        font-size var(--fz-ratio-power--two)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg ** 2)
+        font-size var(--fz-ratio-power--two)
+
+fz--plus-one()
+    font-size ($fz--base * $ratio--sml)
+    font-size var(--fz-ratio-power--one)
+    +above(3)
+        font-size ($fz--base * $ratio--med)
+        font-size var(--fz-ratio-power--one)
+    +above(6)
+        font-size ($fz--base * $ratio--lrg)
+        font-size var(--fz-ratio-power--one)
+
+fz--minus-one()
+    font-size ($fz--base / $ratio--sml)
+    font-size var(--fz-ratio-power--minus-one)
+    +above(3)
+        font-size ($fz--base / $ratio--med)
+        font-size var(--fz-ratio-power--minus-one)
+    +above(6)
+        font-size ($fz--base / $ratio--lrg)
+        font-size var(--fz-ratio-power--minus-one)
+
+fz--minus-two()
+    font-size ($fz--base / $ratio--sml ** 2)
+    font-size var(--fz-ratio-power--minus-two)
+    +above(3)
+        font-size ($fz--base / $ratio--med ** 2)
+        font-size var(--fz-ratio-power--minus-two)
+    +above(6)
+        font-size ($fz--base / $ratio--lrg ** 2)
+        font-size var(--fz-ratio-power--minus-two)
+
+sp-scale--four()
+    margin-top ($fz--base * $ratio--sml ** 4 * $lh--heading)
+    margin-top var(--sp-ratio-power--four)
+    +above(3)
+        margin-top ($fz--base * $ratio--med ** 4 * $lh--heading)
+        margin-top var(--sp-ratio-power--four)
+    +above(6)
+        margin-top ($fz--base * $ratio--lrg ** 4 * $lh--heading)
+        margin-top var(--sp-ratio-power--four)
 
 /**
-  * Fluid spacing utilities, outputting, for example, `sp--step-2`. These are used for margin-top on
-  * headings to maintain a typographic vertical rhythm.
-  * These rely on the CSS custom properties declared in `css_custom_properties.styl`.
+  * Provides the vertical height of the steps in the font-size scale.
+  * Used for the margin-top of headings by default.
   */
-$min_sp_step = 1
-$max_sp_step = 4
+sp-scale--three()
+    margin-top ($fz--base * $ratio--sml ** 3 * $lh--heading)
+    margin-top var(--sp-ratio-power--three)
+    +above(3)
+        margin-top ($fz--base * $ratio--med ** 3 * $lh--heading)
+        margin-top var(--sp-ratio-power--three)
+    +above(6)
+        margin-top ($fz--base * $ratio--lrg ** 3 * $lh--heading)
+        margin-top var(--sp-ratio-power--three)
 
-for step in ($min_sp_step..$max_sp_step)
-    sp--step-{step}()
-        margin-top var(--sp-step-{step})
+sp-scale--two()
+    margin-top ($fz--base * $ratio--sml ** 2 * $lh--heading)
+    margin-top var(--sp-ratio-power--two)
+    +above(3)
+        margin-top ($fz--base * $ratio--med ** 2 * $lh--heading)
+        margin-top var(--sp-ratio-power--two)
+    +above(6)
+        margin-top ($fz--base * $ratio--lrg ** 2 * $lh--heading)
+        margin-top var(--sp-ratio-power--two)
+
+sp-scale--one()
+    margin-top ($fz--base * $ratio--sml * $lh--heading)
+    margin-top var(--sp-ratio-power--one)
+    +above(3)
+        margin-top ($fz--base * $ratio--med * $lh--heading)
+        margin-top var(--sp-ratio-power--one)
+    +above(6)
+        margin-top ($fz--base * $ratio--lrg * $lh--heading)
+        margin-top var(--sp-ratio-power--one)

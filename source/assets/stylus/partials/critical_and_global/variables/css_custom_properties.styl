@@ -13,31 +13,21 @@
     /**
       * Font-size custom properties.
       */
-    $max_step = 8
-    $min_step = -2
-
-    for step in ($min_step..$max_step)
-        power = ""
-        abs = abs(step)
-
-        if step == 0
-            --font-size-step-0 $fz--base
-
-        else if step > 0
-            for i in (1..abs)
-                power += "* var(--ratio) "
-                --font-size-step-{step} "calc(%s %s)" % ($fz--base, power.trim())
-
-        else
-            for i in (1..abs)
-                power += "/ var(--ratio) "
-                --font-size-step-{step} "calc(%s %s)" % ($fz--base, power.trim())
+    --fz-ratio-power--eight "calc(%s * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio))" % ($fz--base)
+    --fz-ratio-power--seven "calc(%s * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio))" % ($fz--base)
+    --fz-ratio-power--six "calc(%s * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio))" % ($fz--base)
+    --fz-ratio-power--five "calc(%s * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio))" % ($fz--base)
+    --fz-ratio-power--four "calc(%s * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio))" % ($fz--base)
+    --fz-ratio-power--three "calc(%s * var(--ratio) * var(--ratio) * var(--ratio))" % ($fz--base)
+    --fz-ratio-power--two "calc(%s * var(--ratio) * var(--ratio))" % ($fz--base)
+    --fz-ratio-power--one "calc(%s * var(--ratio))" % ($fz--base)
+    --fz-ratio-power--minus-one "calc(%s / var(--ratio))" % ($fz--base)
+    --fz-ratio-power--minus-two "calc((%s / var(--ratio)) / var(--ratio))" % ($fz--base)
 
     /**
       * Spacing custom properties.
       */
-    $min_step = 1
-    $max_step = 4
-
-    for step in ($min_step..$max_step)
-        --sp-step-{step} "calc(var(--font-size-step-{step}) * %s)" % ($lh--heading)
+    --sp-ratio-power--four "calc(var(--fz-ratio-power--four) * %s)" % ($lh--heading)
+    --sp-ratio-power--three "calc(var(--fz-ratio-power--three) * %s)" % ($lh--heading)
+    --sp-ratio-power--two "calc(var(--fz-ratio-power--two) * %s)" % ($lh--heading)
+    --sp-ratio-power--one "calc(var(--fz-ratio-power--one) * %s)" % ($lh--heading)
