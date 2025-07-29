@@ -1,18 +1,32 @@
-/*
-    breakpoint settings. the commented scale below is to help
-    you to visualise this. documentation can be found here:
-    https://github.com/jescalan/rupture
-*/
+/**
+  * Breakpoint settings. the commented scale below is to help you to visualise this. Documentation
+  * can be found here: https://github.com/jescalan/rupture
+  */
 rupture.anti-overlap   = true // @stylint ignore
 rupture.base-font-size = 1rem // @stylint ignore
-/*
-    the below is set to false as you will otherwise likely run into errors
-    due to em-unit breakpoints clashing with the complex root font-size value.
-*/
+
+/**
+  * The below is set to false as you will otherwise likely run into errors due to em-unit
+  * breakpoints clashing with the complex root font-size value.
+  */
 rupture.enable-em-breakpoints = false // @stylint ignore
-rupture.scale                 = 0 480px 680px 880px 1080px 1280px 1480px 1680px // @stylint ignore
+rupture.scale                 = 0 480px 580px 680px 780px 880px 980px 1080px 1180px 1280px 1380px 1480px 1580px 1680px 1780px 1880px // @stylint ignore
 /*
-    rupture.scale:      0    480px  680px  880px 1080px 1280px  1480px 1680px
-                        └──┬──┘└──┬──┘└──┬──┘└──┬──┘└──┬──┘└──┬──┘└──┬──┘└──┬──>
-    slice numbers:        1       2      3      4      5      6      7      8
+    Slice numbers   rupture.scale
+    1               0
+    2               480px
+    3               580px
+    4               680px
+    5               780px
+    6               880px
+    7               980px
+    8               1080px
+    9               1180px
+    10              1280px
+    11              1380px
+    12              1480px
+    13              1580px
+    14              1680px
+    15              1780px
+    16              1880px
 */

@@ -1,12 +1,11 @@
-/*
-    function for styling input placeholders.
-    use this as follows, for example:
-    ```
-    input
-        +placeholder()
-            color tomato
-    ```
-*/
+/**
+  * Function for styling input placeholders. Use this as follows, for example:
+  * ```
+  * input
+  *     +placeholder()
+  *         color tomato
+  * ```
+  */
 placeholder()
     &::-webkit-input-placeholder
         {block}
@@ -17,10 +16,10 @@ placeholder()
     &:-ms-input-placeholder
         {block}
 
-/*
-    function for a simple anchor underline which appears on interaction,
-    for use against a light background.
-*/
+/**
+  * function for a simple anchor underline which appears on interaction, for use against a light
+  * background.
+  */
 content-anchor(
     $initial-color               = $cl--anchor,
     $interaction-color           = $cl--anchor--interact,
@@ -43,10 +42,10 @@ content-anchor(
             text-decoration-color $interaction-underline-color
             color $interaction-color
 
-/*
-    function for a simple anchor underline which appears on interaction,
-    for use against a dark background.
-*/
+/**
+  * Function for a simple anchor underline which appears on interaction, for use against a dark
+  * background.
+  */
 content-anchor--dark-background(
     $initial-color               = alpha(white, .8),
     $interaction-color           = white,
@@ -69,25 +68,23 @@ content-anchor--dark-background(
             text-decoration-color $interaction-underline-color
             color $interaction-color
 
-/*
-    function for ensuring that long words don't break layout.
-*/
+/**
+  * Function for ensuring that long words don't break layout.
+  */
 break-long-words()
     overflow-wrap anywhere
 
-/*
-    function for a simple two-level text shadow.
-*/
+/**
+  * Function for a simple two-level text shadow.
+  */
 txsh-simple($shadow-color = $cl--text--heading)
     text-shadow 0 0 .02em $shadow-color, 0 0 .08em modify-hsla($color: $shadow-color, $a: -.6)
 
-/*
-    function to add padding above and below an element,
-    which accounts for a font's differing baseline space above
-    the ascender and below the descender. set `$space-greater-above`
-    to `true` if the font appears to have a greater baseline
-    space above the ascender than it does below the descender.
-*/
+/**
+  * Function to add padding above and below an element, which accounts for a font's differing
+  * baseline space above the ascender and below the descender. set `$space-greater-above` to `true`
+  * if the font appears to have a greater space above the ascender than it does below the descender.
+  */
 pd-account-for-font-offset(
     $pd-vertical,
     $space-greater-above = true
@@ -98,11 +95,10 @@ pd-account-for-font-offset(
     else
         padding-top "calc(%s + %s)" % ($pd-vertical $ff-x-position-offset)
         padding-bottom "calc(%s - %s)" % ($pd-vertical $ff-x-position-offset)
-/*
-    function to set typographic styles for the various heading levels.
-    usage:
-        display-as-heading($heading-level: 1)
-*/
+/**
+  * Function to set typographic styles for the various heading levels. Usage:
+  * display-as-heading($heading-level: 1)
+  */
 display-as-heading($heading-level)
     line-height $lh--heading
     font-family $ff--heading

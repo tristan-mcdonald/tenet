@@ -1,9 +1,8 @@
-/*
-    set CSS custom properties for fluid typographic scale.
-    ratios used are in variables.styl.
-    `%s` is the syntax for printing the values of Stylus variables inside `calc`:
-    http://stylus-lang.com/docs/operators.html#sprintf
-*/
+/**
+  * Set CSS custom properties for fluid typographic scale. Ratios used are in variables.styl.
+  * `%s` is the syntax for printing the values of Stylus variables inside `calc`:
+  * http://stylus-lang.com/docs/operators.html#sprintf
+  */
 :root
     --ratio $ratio--sml
     +above(3)
@@ -11,9 +10,9 @@
     +above(6)
         --ratio $ratio--lrg
 
-    /*
-        font-size custom properties
-    */
+    /**
+      * Font-size custom properties.
+      */
     --fz-ratio-power--eight "calc(%s * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio))" % ($fz--base)
     --fz-ratio-power--seven "calc(%s * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio))" % ($fz--base)
     --fz-ratio-power--six "calc(%s * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio))" % ($fz--base)
@@ -25,9 +24,9 @@
     --fz-ratio-power--minus-one "calc(%s / var(--ratio))" % ($fz--base)
     --fz-ratio-power--minus-two "calc((%s / var(--ratio)) / var(--ratio))" % ($fz--base)
 
-    /*
-        spacing custom properties
-    */
+    /**
+      * Spacing custom properties.
+      */
     --sp-ratio-power--four "calc(var(--fz-ratio-power--four) * %s)" % ($lh--heading)
     --sp-ratio-power--three "calc(var(--fz-ratio-power--three) * %s)" % ($lh--heading)
     --sp-ratio-power--two "calc(var(--fz-ratio-power--two) * %s)" % ($lh--heading)

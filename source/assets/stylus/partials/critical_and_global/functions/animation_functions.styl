@@ -1,9 +1,8 @@
-/*
-    function for transitions. this adds a will-change value for each
-    property chosen. avoid using "all" for the will-change value,
-    as you will very quickly hit the browser's will-change
-    memory consumption limit.
-*/
+/**
+  * Function for transitions. This adds a will-change value for each property chosen. avoid using
+  * `all` for the `will-change` value, as you will very quickly hit the browser's `will-change`
+  * memory consumption limit.
+  */
 transition(
     $easing = ease-out,
     $properties = "background-color, box-shadow",
@@ -14,12 +13,11 @@ transition(
     transition-duration $time
     transition-timing-function $easing
 
-/*
-    function to lift an element vertically on interaction.
-    remember to specify a transition for the element
-    with a value of `transform`; this has been ommitted
-    here to allow for multiple transition values.
-*/
+/**
+  * Function to lift an element vertically on interaction. remember to specify a transition for the
+  * element with a value of `transform`; this has been ommitted here to allow for multiple
+  * transition values.
+  */
 raise-up($distance = -2px)
 
     &:focus

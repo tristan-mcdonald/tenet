@@ -1,49 +1,48 @@
-/*
-    non-semantic colours, to be referenced in semantic variable names if needed.
-    you may use the `modify-hsla` function to create variations of these colours.
-    generate colour names from your HSLA values here: https://colornamer.robertcooper.me
-*/
+/**
+  * Non-semantic colours, to be referenced in semantic variable names if needed. You may use the
+  * `modify-hsla` function to create variations of these colours. Generate these colour names from
+  * your HSLA values here: https://colornamer.robertcooper.me
+  */
 $cl--illuminating-emerald = hsla(161.3, 53%, 39.2%, 1)
 $cl--tupelo-honey         = hsla(44.9, 46.4%, 53.1%, 1)
-$cl--water-town            = hsla(222.1, 39%, 56.3%, 1)
+$cl--water-town           = hsla(222.1, 39%, 56.3%, 1)
 
-/*
-    layout delineation colours
-*/
+/**
+  * Layout delineation colours.
+  */
 $cl--interface--high  = hsla(180, 29.4%, 96.7%, 1);
 $cl--interface--light = hsla(180, 20%, 92.2%, 1)
 $cl--interface        = hsla(180, 10.5%, 70.2%, 1)
 $cl--interface--dark  = hsla(180, 10%, 24%, 1)
 $cl--interface--low   = hsla(180, 06%, 10%, 1)
 
-/*
-    attention colours, to draw the user's attention to an element.
-*/
+/**
+  * Attention colours, to draw the user's attention to an element.
+  */
 $cl--attention = $cl--tupelo-honey
 
-/*
-    action colours, to show the user they can interact with an element.
-*/
+/**
+  * Action colours, to show the user they can interact with an element.
+  */
 $cl--action           = $cl--water-town
 $cl--action--interact = modify-hsla($color: $cl--action, $s: 10, $l: -10)
 
-/*
-    text colours.
-    it often works well to use the same hue as the interface colour values.
-*/
+/**
+  * Text colours. It often works well to use the same hue as the interface colour values.
+  */
 $cl--text--metadata = hsla(180, 8%, 45%, 1)
 $cl--text--copy     = hsla(180, 14.3%, 26%, 1)
 $cl--text--heading  = hsla(180, 22.8%, 13%, 1)
 
-/*
-    anchor colours.
-*/
+/**
+  * Anchor colours.
+  */
 $cl--anchor           = $cl--illuminating-emerald
 $cl--anchor--interact = modify-hsla($color: $cl--anchor, $s: 10, $l: -10)
 
-/*
-    utility colours.
-*/
+/**
+  * Utility colours.
+  */
 $cl--success = hsla(160, 55%, 46%, 1)
 $cl--error   = hsla(350, 79.4%, 50.4%, 1)
 $cl--info    = hsla(200.5, 40.1%, 44.1%, 1)

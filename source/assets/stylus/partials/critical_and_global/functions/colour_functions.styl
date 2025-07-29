@@ -1,10 +1,14 @@
-/*
-    this function is for use in variables.styl, to create
-    a programmatic colour system. each part of HSLA takes
-    a plus or minus value, in the same format as it's
-    value in CSS; so `$s: 10` to add 10% saturation,
-    and `$a: -.2` to reduce a colour's opacity by 20%.
-    be aware that this relies on the colour having a valid HSLA value.
+/**
+  * This function is for use in variables.styl, to create a programmatic colour system. each part of
+  * HSLA takes a plus or minus value, in the same format as it's value in CSS; so `$s: 10` to add
+  * 10% saturation, and `$a: -.2` to reduce a colour's opacity by 20%. Be aware that this relies on
+  * the colour having a valid HSLA value.
+  *
+  * Some examples of this function in use:
+  * $cl--first        = hsla(199, 44%, 19%, 1)
+  * $cl--first--low   = modify-hsla($color: $cl--first, $s: -6, $l: -6)
+  * $cl--first--med   = modify-hsla($color: $cl--first, $s: 11, $l: 11)
+  * $cl--first--high  = modify-hsla($color: $cl--first, $s: 22, $l: 22)
 */
 modify-hsla(
     $color,
@@ -13,21 +17,26 @@ modify-hsla(
     $l = "",
     $a = ""
 )
-    // convert the colour value to a string so that we can operate on it
+    // Convert the colour value to a string so that we can operate on it
     $color  = join(" ", $color)
-    // slice away everything other than the list of values
+    // Slice away everything other than the list of values
     $color  = slice($color, 5, -1)
-    // remove units from the list of values so that we can operate on it
+    // Remove units from the list of values so that we can operate on it
     $color  = replace("%", "", $color)
-    // split the colour into an array
+    // Split the colour into an array
     $values = split(",", $color)
-    // split the array into numbers on which we can operate
+
+    /**
+      * Split the array into numbers on which we can operate.
+      */
     $hue        = convert($values[0])
     $saturation = convert($values[1])
     $lightness  = convert($values[2])
     $alpha      = convert($values[3])
-    // if present, add/subtract the arguments to/from their
-    // relevant part in the HSLA value
+
+    /**
+      * If present, add/subtract the arguments to/from their relevant part in the HSLA value.
+      */
     if $h is a "unit"
         $hue = $hue + $h
     if $s is a "unit"
@@ -36,14 +45,8 @@ modify-hsla(
         $lightness = $lightness + $l
     if $a is a "unit"
         $alpha = $alpha + $a
-    // compile the final individual values into a valid HSLA value
+
+    // Compile the final individual values into a valid HSLA value
     $final-value = "hsla(" + $hue + "," + $saturation + "%," + $lightness + "%," + $alpha + ")"
-    // remove string quotes from the final value, so that it is valid CSS
+    // Remove string quotes from the final value, so that it is valid CSS
     return unquote($final-value)
-/*
-    some examples of this function in use:
-    $cl--first        = hsla(199, 44%, 19%, 1)
-    $cl--first--low   = modify-hsla($color: $cl--first, $s: -6, $l: -6)
-    $cl--first--med   = modify-hsla($color: $cl--first, $s: 11, $l: 11)
-    $cl--first--high  = modify-hsla($color: $cl--first, $s: 22, $l: 22)
-*/

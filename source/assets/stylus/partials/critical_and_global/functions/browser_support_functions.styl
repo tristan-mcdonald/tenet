@@ -1,25 +1,22 @@
-/*
-    function to allow removal of browser default styles on form elements.
-*/
+/**
+  * Function to allow removal of browser default styles on form elements.
+  */
 appearance($value = none)
     -webkit-appearance $value
     -moz-appearance $value
     appearance $value
 
-/*
-    these functions provide fluid font-size scaling and vertical height
-    scaling with an interpolated set of ratios, with fallbacks for IE11.
-    you'll find an explanation for using these functions in the documentation,
-    here: https://github.com/trubblebruin/tenet/wiki/Practical-Documentation
-    the intention is for this file not to be edited; if you want to edit
-    the size of your h1 element, for example, edit the type scaling
-    ratios instead. feel free to copy these functions to add further steps
-    in the scale, if you need them for a feature section, for example.
-*/
+/**
+  * These functions provide fluid font-size scaling and vertical height scaling with an interpolated
+  * set of ratios You'll find an explanation for using these functions in the documentation, here:
+  * https://github.com/trubblebruin/tenet/wiki/Practical-Documentation
+  * The intention is for this file not to be edited; if you want to edit the size of your h1
+  * element, for example, edit the type scaling ratios instead.
+  */
 
-/*
-    provides the eighth step up in the font-size scale.
-*/
+/**
+  * Steps in the font-size scale.
+  */
 fz--plus-eighth()
     font-size ($fz--base * $ratio--sml ** 8)
     font-size var(--fz-ratio-power--eight)
@@ -30,9 +27,6 @@ fz--plus-eighth()
         font-size ($fz--base * $ratio--lrg ** 8)
         font-size var(--fz-ratio-power--eight)
 
-/*
-    provides the seventh step up in the font-size scale.
-*/
 fz--plus-seven()
     font-size ($fz--base * $ratio--sml ** 7)
     font-size var(--fz-ratio-power--seven)
@@ -43,9 +37,6 @@ fz--plus-seven()
         font-size ($fz--base * $ratio--lrg ** 7)
         font-size var(--fz-ratio-power--seven)
 
-/*
-    provides the sixth step up in the font-size scale.
-*/
 fz--plus-six()
     font-size ($fz--base * $ratio--sml ** 6)
     font-size var(--fz-ratio-power--six)
@@ -56,9 +47,6 @@ fz--plus-six()
         font-size ($fz--base * $ratio--lrg ** 6)
         font-size var(--fz-ratio-power--six)
 
-/*
-    provides the fifth step up in the font-size scale.
-*/
 fz--plus-five()
     font-size ($fz--base * $ratio--sml ** 5)
     font-size var(--fz-ratio-power--five)
@@ -69,10 +57,6 @@ fz--plus-five()
         font-size ($fz--base * $ratio--lrg ** 5)
         font-size var(--fz-ratio-power--five)
 
-/*
-    provides the fourth step up in the font-size scale.
-    used for heading level one by default.
-*/
 fz--plus-four()
     font-size ($fz--base * $ratio--sml ** 4)
     font-size var(--fz-ratio-power--four)
@@ -83,10 +67,6 @@ fz--plus-four()
         font-size ($fz--base * $ratio--lrg ** 4)
         font-size var(--fz-ratio-power--four)
 
-/*
-    provides the third step up in the font-size scale.
-    used for heading level two by default.
-*/
 fz--plus-three()
     font-size ($fz--base * $ratio--sml ** 3)
     font-size var(--fz-ratio-power--three)
@@ -97,10 +77,6 @@ fz--plus-three()
         font-size ($fz--base * $ratio--lrg ** 3)
         font-size var(--fz-ratio-power--three)
 
-/*
-    provides the second step up in the font-size scale.
-    used for heading level three by default.
-*/
 fz--plus-two()
     font-size ($fz--base * $ratio--sml ** 2)
     font-size var(--fz-ratio-power--two)
@@ -111,10 +87,6 @@ fz--plus-two()
         font-size ($fz--base * $ratio--lrg ** 2)
         font-size var(--fz-ratio-power--two)
 
-/*
-    provides the first step up in the font-size scale.
-    used for heading level four by default.
-*/
 fz--plus-one()
     font-size ($fz--base * $ratio--sml)
     font-size var(--fz-ratio-power--one)
@@ -125,10 +97,6 @@ fz--plus-one()
         font-size ($fz--base * $ratio--lrg)
         font-size var(--fz-ratio-power--one)
 
-/*
-    provides the first step down in the font-size scale.
-    useful for uppercase or meta information.
-*/
 fz--minus-one()
     font-size ($fz--base / $ratio--sml)
     font-size var(--fz-ratio-power--minus-one)
@@ -139,10 +107,6 @@ fz--minus-one()
         font-size ($fz--base / $ratio--lrg)
         font-size var(--fz-ratio-power--minus-one)
 
-/*
-    provides the second step down in the font-size scale.
-    useful for superscript reference numbers.
-*/
 fz--minus-two()
     font-size ($fz--base / $ratio--sml ** 2)
     font-size var(--fz-ratio-power--minus-two)
@@ -153,10 +117,6 @@ fz--minus-two()
         font-size ($fz--base / $ratio--lrg ** 2)
         font-size var(--fz-ratio-power--minus-two)
 
-/*
-    provides the vertical height of the fourth step in the font-size scale.
-    used for the margin-top of heading level one by default.
-*/
 sp-scale--four()
     margin-top ($fz--base * $ratio--sml ** 4 * $lh--heading)
     margin-top var(--sp-ratio-power--four)
@@ -167,10 +127,10 @@ sp-scale--four()
         margin-top ($fz--base * $ratio--lrg ** 4 * $lh--heading)
         margin-top var(--sp-ratio-power--four)
 
-/*
-    provides the vertical height of the third step in the font-size scale.
-    used for the margin-top of heading level two by default.
-*/
+/**
+  * Provides the vertical height of the steps in the font-size scale.
+  * Used for the margin-top of headings by default.
+  */
 sp-scale--three()
     margin-top ($fz--base * $ratio--sml ** 3 * $lh--heading)
     margin-top var(--sp-ratio-power--three)
@@ -181,10 +141,6 @@ sp-scale--three()
         margin-top ($fz--base * $ratio--lrg ** 3 * $lh--heading)
         margin-top var(--sp-ratio-power--three)
 
-/*
-    provides the vertical height of the third step in the font-size scale.
-    used for the margin-top of heading level three by default.
-*/
 sp-scale--two()
     margin-top ($fz--base * $ratio--sml ** 2 * $lh--heading)
     margin-top var(--sp-ratio-power--two)
@@ -195,10 +151,6 @@ sp-scale--two()
         margin-top ($fz--base * $ratio--lrg ** 2 * $lh--heading)
         margin-top var(--sp-ratio-power--two)
 
-/*
-    provides the vertical height of the first step in the font-size scale.
-    used for the margin-top of heading level four by default.
-*/
 sp-scale--one()
     margin-top ($fz--base * $ratio--sml * $lh--heading)
     margin-top var(--sp-ratio-power--one)

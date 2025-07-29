@@ -1,7 +1,6 @@
-/*
-    the interpolation function below requires this function,
-    which can also be used independently.
-*/
+/**
+  * The interpolation function below requires this function, which can also be used independently.
+  */
 interpolation-calculation($min-screen, $min-value, $max-screen, $max-value)
     $pixel-value = ($max-value - $min-value) / ($max-screen - $min-screen)
     $viewport-width-value = $min-value - $pixel-value * $min-screen
@@ -11,15 +10,13 @@ interpolation-calculation($min-screen, $min-value, $max-screen, $max-value)
         $viewport-width-value = abs($viewport-width-value)
     return s("calc("+ unit($pixel-value*100, "vw") + $sign + ($viewport-width-value) + ")")
 
-/*
-this function is intended to be used on the :root element.
-it sets a base font-size which is based on the viewport
-width, and which scales between two font-sizes we've set, at two
-viewport widths that we've also set. We then use CSS custom properties
-to set REM unit values for individual type elements, based on three
-different typographic scales. We set these as functions, for easier
-overriding of an element's font-size in the rest of the codebase.
-*/
+/**
+  * This function is intended to be used on the :root element. It sets a base font-size which is
+  * based on the viewport width, and which scales between two font-sizes we've set, at two viewport
+  * widths that we've also set. We then use CSS custom properties to set REM unit values for
+  * individual type elements, based on three different typographic scales. We set these as
+  * functions, for easier overriding of an element's font-size in the rest of the codebase.
+  */
 interpolation(
     $properties    = "font-size",
     $min-screen    = 480px,
