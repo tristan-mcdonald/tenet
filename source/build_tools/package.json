@@ -21,7 +21,7 @@
     "@babel/preset-env": "^7.14.1",
     "babel-eslint": "^10.1.0",
     "babelify": "^10.0.0",
-    "browser-sync": "^2.26.14",
+    "browser-sync": "^2.29.3",
     "browserify": "^17.0.0",
     "delete": "^1.1.0",
     "gulp": "^4.0.2",
