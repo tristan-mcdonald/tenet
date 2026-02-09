@@ -1,10 +1,10 @@
 /**
-  * Function to be used for general spacing values.
+  * Function to be used for general spacing values; padding, margin, gap etc.
   * Pass in a value like `2` for double the base spacing value, `2/3` for two thirds of the base
-  * spacing value, or `1.333` for one and a third of the base spacing value.
+  * spacing value, or `4/3` for one and a third of the base spacing value.
   */
-sp($multiplier)
-    ($sp * multiplier)
+sp($multiplier = 0)
+    ($sp * $multiplier)
 
 /**
   * Function to add `margin-top` to an item if another child precedes it. This must be used on a
@@ -25,7 +25,8 @@ ml($margin-left = $sp)
         margin-left $margin-left
 
 /**
-  * Function to add `margin-right` to an item if it is not the last child. This is useful on list items with a `flex-row` value of `row`, and saves us overwriting a rule for the last child.
+  * Function to add `margin-right` to an item if it is not the last child. This is useful on list
+  * items with a `flex-row` value of `row`, and saves us overwriting a rule for the last child.
   */
 mr($margin-right = $sp)
     &:not(:last-child)
@@ -115,8 +116,8 @@ bxsh-static()
 
 /**
   * Function to display list items in a flex-based repeating grid, for browser compatability when
-  * CSS grid isn't supported. This function should be applied to an element containing a list, which
-  * will usually be a `nav` element.
+  * CSS grid isn't supported. This function should be applied to an element containing a list (which
+  * will usually be a `nav` element).
   */
 flex-grid(
     $maximum-columns    = 3,
