@@ -1,0 +1,126 @@
+{
+  "startTime": 1770821672894,
+  "tasks": {
+    "build": {
+      "startTime": 1770821673087
+    },
+    "clean": {
+      "startTime": 1770821673087,
+      "endTime": 1770821673105,
+      "duration": 18,
+      "success": true,
+      "metadata": {}
+    },
+    "clean-js": {
+      "startTime": 1770821673087,
+      "endTime": 1770821673104,
+      "duration": 17,
+      "success": true,
+      "metadata": {}
+    },
+    "clean-css": {
+      "startTime": 1770821673088,
+      "endTime": 1770821673105,
+      "duration": 17,
+      "success": true,
+      "metadata": {}
+    },
+    "build-js": {
+      "startTime": 1770821673105,
+      "endTime": 1770821674394,
+      "duration": 1289,
+      "success": true,
+      "metadata": {}
+    },
+    "lint-js": {
+      "startTime": 1770821673105,
+      "endTime": 1770821674164,
+      "duration": 1059,
+      "success": true,
+      "metadata": {}
+    },
+    "build-css": {
+      "startTime": 1770821673105,
+      "endTime": 1770821673702,
+      "duration": 597,
+      "success": true,
+      "metadata": {}
+    },
+    "lint-stylus": {
+      "startTime": 1770821673105,
+      "endTime": 1770821673487,
+      "duration": 382,
+      "success": true,
+      "metadata": {}
+    },
+    "minify-images": {
+      "startTime": 1770821673486,
+      "endTime": 1770821673702,
+      "duration": 216,
+      "success": true,
+      "metadata": {}
+    },
+    "transpile-stylus": {
+      "startTime": 1770821673675,
+      "endTime": 1770821673692,
+      "duration": 17,
+      "success": true,
+      "metadata": {}
+    },
+    "minify-css": {
+      "startTime": 1770821673692,
+      "endTime": 1770821673701,
+      "duration": 9,
+      "success": true,
+      "metadata": {}
+    },
+    "remove-css-sourcemap": {
+      "startTime": 1770821673701,
+      "endTime": 1770821673702,
+      "duration": 1,
+      "success": true,
+      "metadata": {}
+    },
+    "transpile-js": {
+      "startTime": 1770821674393,
+      "endTime": 1770821674393,
+      "duration": 0,
+      "success": true,
+      "metadata": {}
+    },
+    "minify-js": {
+      "startTime": 1770821674393,
+      "endTime": 1770821674394,
+      "duration": 1,
+      "success": true,
+      "metadata": {}
+    },
+    "remove-js-sourcemap": {
+      "startTime": 1770821674394,
+      "endTime": 1770821674394,
+      "duration": 0,
+      "success": true,
+      "metadata": {}
+    }
+  },
+  "files": {
+    "processed": 6,
+    "cached": 4,
+    "sizes": {
+      "/Users/tristanmcdonald/Dropbox/00-work/personal_work/tenet_css/tenet/distribution/assets/css/app.css": {
+        "size": 13408
+      },
+      "/Users/tristanmcdonald/Dropbox/00-work/personal_work/tenet_css/tenet/distribution/assets/css/app.min.css": {
+        "size": 13094
+      },
+      "/Users/tristanmcdonald/Dropbox/00-work/personal_work/tenet_css/tenet/distribution/assets/js/app.js": {
+        "size": 2791
+      },
+      "/Users/tristanmcdonald/Dropbox/00-work/personal_work/tenet_css/tenet/distribution/assets/js/app.min.js": {
+        "size": 1075
+      }
+    }
+  },
+  "endTime": 1770821674394,
+  "totalDuration": 1500
+}

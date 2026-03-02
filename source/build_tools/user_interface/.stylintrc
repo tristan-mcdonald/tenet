@@ -10,6 +10,7 @@
   "depthLimit": false,
   "duplicates": false,
   "efficient": "always",
+  "exclude": ["node_modules/**/*"],
   "globalDupe": false,
   "groupOutputByFile": true,
   "indentPref": 4,
@@ -25,11 +26,6 @@
   "placeholders": "never",
   "prefixVarsWithDollar": "always",
   "quotePref": "double",
-  "reporter": "stylint-stylish",
-  "reporterOptions": {
-    "absolutePath": true,
-    "ruleName": true
-  },
   "semicolons": "never",
   "zIndexNormalize": 10
 }
