@@ -1,103 +1,103 @@
 {
-  "startTime": 1770821672894,
+  "startTime": 1774340634501,
   "tasks": {
     "build": {
-      "startTime": 1770821673087
+      "startTime": 1774340634582
     },
     "clean": {
-      "startTime": 1770821673087,
-      "endTime": 1770821673105,
-      "duration": 18,
+      "startTime": 1774340634582,
+      "endTime": 1774340634595,
+      "duration": 13,
       "success": true,
       "metadata": {}
     },
     "clean-js": {
-      "startTime": 1770821673087,
-      "endTime": 1770821673104,
-      "duration": 17,
+      "startTime": 1774340634582,
+      "endTime": 1774340634595,
+      "duration": 13,
       "success": true,
       "metadata": {}
     },
     "clean-css": {
-      "startTime": 1770821673088,
-      "endTime": 1770821673105,
-      "duration": 17,
+      "startTime": 1774340634583,
+      "endTime": 1774340634595,
+      "duration": 12,
       "success": true,
       "metadata": {}
     },
     "build-js": {
-      "startTime": 1770821673105,
-      "endTime": 1770821674394,
-      "duration": 1289,
+      "startTime": 1774340634595,
+      "endTime": 1774340635523,
+      "duration": 928,
       "success": true,
       "metadata": {}
     },
     "lint-js": {
-      "startTime": 1770821673105,
-      "endTime": 1770821674164,
-      "duration": 1059,
+      "startTime": 1774340634595,
+      "endTime": 1774340635509,
+      "duration": 914,
       "success": true,
       "metadata": {}
     },
     "build-css": {
-      "startTime": 1770821673105,
-      "endTime": 1770821673702,
-      "duration": 597,
+      "startTime": 1774340634596,
+      "endTime": 1774340635123,
+      "duration": 527,
       "success": true,
       "metadata": {}
     },
     "lint-stylus": {
-      "startTime": 1770821673105,
-      "endTime": 1770821673487,
-      "duration": 382,
+      "startTime": 1774340634596,
+      "endTime": 1774340634912,
+      "duration": 316,
       "success": true,
       "metadata": {}
     },
     "minify-images": {
-      "startTime": 1770821673486,
-      "endTime": 1770821673702,
-      "duration": 216,
+      "startTime": 1774340634912,
+      "endTime": 1774340635124,
+      "duration": 212,
       "success": true,
       "metadata": {}
     },
     "transpile-stylus": {
-      "startTime": 1770821673675,
-      "endTime": 1770821673692,
-      "duration": 17,
+      "startTime": 1774340635094,
+      "endTime": 1774340635113,
+      "duration": 19,
       "success": true,
       "metadata": {}
     },
     "minify-css": {
-      "startTime": 1770821673692,
-      "endTime": 1770821673701,
+      "startTime": 1774340635113,
+      "endTime": 1774340635122,
       "duration": 9,
       "success": true,
       "metadata": {}
     },
     "remove-css-sourcemap": {
-      "startTime": 1770821673701,
-      "endTime": 1770821673702,
+      "startTime": 1774340635122,
+      "endTime": 1774340635123,
       "duration": 1,
       "success": true,
       "metadata": {}
     },
     "transpile-js": {
-      "startTime": 1770821674393,
-      "endTime": 1770821674393,
+      "startTime": 1774340635521,
+      "endTime": 1774340635521,
       "duration": 0,
       "success": true,
       "metadata": {}
     },
     "minify-js": {
-      "startTime": 1770821674393,
-      "endTime": 1770821674394,
-      "duration": 1,
+      "startTime": 1774340635521,
+      "endTime": 1774340635523,
+      "duration": 2,
       "success": true,
       "metadata": {}
     },
     "remove-js-sourcemap": {
-      "startTime": 1770821674394,
-      "endTime": 1770821674394,
+      "startTime": 1774340635523,
+      "endTime": 1774340635523,
       "duration": 0,
       "success": true,
       "metadata": {}
@@ -108,10 +108,10 @@
     "cached": 4,
     "sizes": {
       "/Users/tristanmcdonald/Dropbox/00-work/personal_work/tenet_css/tenet/distribution/assets/css/app.css": {
-        "size": 13408
+        "size": 13426
       },
       "/Users/tristanmcdonald/Dropbox/00-work/personal_work/tenet_css/tenet/distribution/assets/css/app.min.css": {
-        "size": 13094
+        "size": 13112
       },
       "/Users/tristanmcdonald/Dropbox/00-work/personal_work/tenet_css/tenet/distribution/assets/js/app.js": {
         "size": 2791
@@ -121,6 +121,6 @@
       }
     }
   },
-  "endTime": 1770821674394,
-  "totalDuration": 1500
+  "endTime": 1774340635523,
+  "totalDuration": 1022
 }

@@ -29,11 +29,16 @@ import { minifyImages } from "./build_modules/tasks/images.js";
  * Create and configure the task runner with all build tasks.
  *
  * Registers the following tasks:
- * - **Clean tasks**: `clean`, `clean-js`, `clean-css`
- * - **JavaScript tasks**: `lint-js`, `transpile-js`, `minify-js`, `remove-js-sourcemap`, `build-js`
- * - **CSS tasks**: `lint-stylus`, `transpile-stylus`, `minify-css`, `remove-css-sourcemap`, `build-css`
- * - **Image tasks**: `minify-images`
- * - **Meta tasks**: `build`, `develop`, `lint`
+ * - **Clean tasks**: 
+ *      `clean`, `clean-js`, `clean-css`
+ * - **JavaScript tasks**: 
+ *      `lint-js`, `transpile-js`, `minify-js`, `remove-js-sourcemap`, `build-js`
+ * - **CSS tasks**: 
+ *      `lint-stylus`, `transpile-stylus`, `minify-css`, `remove-css-sourcemap`, `build-css`
+ * - **Image tasks**: 
+ *      `minify-images`
+ * - **Meta tasks**: 
+ *      `build`, `develop`, `lint`
  *
  * @returns {TaskRegistry} Configured task runner instance with all tasks registered.
  * @see {@link ./build_modules/task_registry.js} for TaskRegistry implementation.
