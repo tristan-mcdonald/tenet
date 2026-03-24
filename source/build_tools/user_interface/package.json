@@ -1,0 +1,43 @@
+{
+  "name": "tenet-css-build-tools",
+  "version": "1.0.0",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js build",
+    "develop": "node build.js develop",
+    "lint": "node build.js lint",
+    "lint:fix": "node build.js lint --fix",
+    "test": "node --test tests/**/*.test.js",
+    "test:unit": "node --test tests/unit/*.test.js",
+    "test:integration": "node --test tests/integration/*.test.js",
+    "test:watch": "node --test --watch tests/**/*.test.js",
+    "test:verbose": "node --test --test-reporter=./tests/reporters/natural-language.js tests/**/*.test.js"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.0",
+    "autoprefixer": "^10.4.20",
+    "chokidar": "^3.6.0",
+    "clean-css": "^5.3.3",
+    "clean-css-cli": "^5.6.3",
+    "css-mqpacker": "^7.0.0",
+    "esbuild": "^0.20.2",
+    "eslint": "^9.21.0",
+    "eslint-plugin-comment-length": "^2.1.1",
+    "eslint-plugin-unicorn": "^57.0.0",
+    "fast-glob": "^3.3.2",
+    "glob": "^11.0.1",
+    "globals": "^16.0.0",
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "node-notifier": "^10.0.1",
+    "picocolors": "^1.1.1",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "rupture": "^0.7.1",
+    "stylint": "^2.0.0",
+    "stylus": "^0.64.0",
+    "terser": "^5.30.0"
+  },
+  "type": "module"
+}

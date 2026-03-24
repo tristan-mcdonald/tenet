@@ -1,0 +1,34 @@
+// Test Stylus file for build system testing.
+// Uses variables and nesting to verify compilation.
+
+$primary-color = #3498db
+$spacing = 16px
+$font-stack = system-ui, -apple-system, sans-serif
+
+body
+    margin: 0
+    padding: $spacing
+    font-family: $font-stack
+    background-color: #ffffff
+
+.container
+    max-width: 1200px
+    margin: 0 auto
+    padding: $spacing
+
+.button
+    display: inline-block
+    background-color: $primary-color
+    color: white
+    padding: ($spacing / 2) $spacing
+    border: none
+    border-radius: 4px
+    cursor: pointer
+    transition: background-color 0.2s ease
+
+    &:hover
+        background-color: darken($primary-color, 10%)
+
+    &:focus
+        outline: 2px solid $primary-color
+        outline-offset: 2px
