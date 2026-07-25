@@ -32,7 +32,7 @@
     "imagemin-pngquant": "^9.0.2",
     "node-notifier": "^10.0.1",
     "picocolors": "^1.1.1",
-    "postcss": "^8.4.38",
+    "postcss": "^8.5.18",
     "postcss-cli": "^11.0.0",
     "rupture": "^0.7.1",
     "stylint": "^2.0.0",
