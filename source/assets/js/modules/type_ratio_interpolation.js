@@ -38,7 +38,7 @@ function scaleRatio (currentViewportWidth, minimumValue, maximumValue) {
      * The maximum viewport width at which `--ratio` custom property will be set. this must match
      * values set in `breakpoints.styl` & `typography.styl`.
      */
-    const maxRange = 1480;
+    const maxRange = 1680;
     // Calculate the rate at which our ratio changes when the viewport width changes by 1px.
     const rateOfChange = (maximumValue - minimumValue) / (maxRange - minRange);
     // Store the intercept (the value of Y when all X=0).
