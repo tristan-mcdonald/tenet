@@ -5,3 +5,6 @@
 **/*/node_modules
 node_modules/
 **/*.DS_Store
+
+# Generated build cache — regenerated on every build.
+source/build_tools/user_interface/.cache/
