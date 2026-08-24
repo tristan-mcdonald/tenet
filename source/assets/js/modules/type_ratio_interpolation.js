@@ -24,7 +24,7 @@ export default function () {
         // Store the current viewport width.
         const screenWidth = window.innerWidth;
         // Recalculate ratio when change is detected.
-        resizeTimeout = setTimeout(scaleRatio(screenWidth, typeRatioLow, typeRatioHigh), 100);
+        resizeTimeout = setTimeout(() => scaleRatio(screenWidth, typeRatioLow, typeRatioHigh), 100);
     });
 }
 
