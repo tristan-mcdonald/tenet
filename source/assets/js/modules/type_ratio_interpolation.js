@@ -4,13 +4,13 @@
  */
 export default function () {
     /**
-     * Store the lowest ratio to use for our typographic scale. This must match `$ratio--sml` set in
-     * `typographic_variables.styl`.
+     * Store the lowest ratio to use for our typographic scale. This must match `$ratio--sml`
+     * in `typographic_variables.styl`.
      */
     const typeRatioLow = 1.125;
     /**
-     * Store the highest ratio to use for our typographic scale. This must match `$ratio--lrg` set in
-     * `typographic_variables.styl`.
+     * Store the highest ratio to use for our typographic scale. This must match `$ratio--lrg`
+     * in `typographic_variables.styl`.
      */
     const typeRatioHigh = 1.28;
     // Store the current viewport width.
