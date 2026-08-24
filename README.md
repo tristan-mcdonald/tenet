@@ -20,7 +20,7 @@ Tenet also comes with many handy tools pointing you toward a methodology for wri
 - [I have an idea for Tenet!](#i-have-an-idea-for-tenet-i-have-a-question-about-tenet)
 
 ## What is this?
-Tenet is a sensible toolkit for starting large front-end projects, and for prototyping designs for the web. It is opinionated, and a detailed guide to the suggested methodology for working with this toolkit can be found in the [documentation](https://github.com/trubblebruin/tenet/wiki).
+Tenet is a sensible toolkit for starting large front-end projects, and for prototyping designs for the web. It is opinionated, and a detailed guide to the suggested methodology for working with this toolkit can be found in the [documentation](https://github.com/tristan-mcdonald/tenet/wiki).
 
 Tenet aims to help reduce the introduction of technical debt, which is useful because you or another human like you will almost certainly end up maintaining the project that you're designing and building now, and they will be happier if you make sensible decisions from the outset.
 
@@ -36,7 +36,7 @@ I design almost entirely in code and in-browser; this isn't a conference talk ab
 I work closely with excellent backend engineers, and our aim is to make robust software together while maintaining a high quality of life for engineers; reducing repetition, increasing predictability in our codebases, avoiding common and annoying bugs, etc. It is my opinion that context and methodologies can and should be shared freely and be continuously improved, from project managers to designers to engineers, and that the separation of concerns and skills that pervades our industry at present is holding us back, but that's for another time.
 
 ## Why is it called Tenet?
-Tenet is named after the designer [Deiter Rams](https://en.wikipedia.org/wiki/Dieter_Rams) and his tenets of [good design](https://www.vitsoe.com/eu/about/good-design); my favourite of which is "_good design makes a product understandable_".
+Tenet is named after the designer [Dieter Rams](https://en.wikipedia.org/wiki/Dieter_Rams) and his tenets of [good design](https://www.vitsoe.com/eu/about/good-design); my favourite of which is "_good design makes a product understandable_".
 
 > Design should not dominate things, should not dominate people. It should help people. That’s its role.
 
@@ -51,7 +51,7 @@ _Dieter Rams_
    cd source/build_tools/user_interface
    npm install
    ```
-4. Edit the paths in `source/build_tools/user_interface/build_modules/config.js` to match your project structure:
+4. That's it — the build derives all of its paths automatically, so there's nothing to configure for the default layout. Tenet expects the structure below; if your project differs, override the paths in `source/build_tools/user_interface/build_modules/config.js`:
 
 | Path | Default Location |
 |------|------------------|
@@ -80,6 +80,9 @@ npm run lint
 
 # Lint and auto-fix
 npm run lint:fix
+
+# Run the test suite
+npm test
 ```
 
 ### NPM Scripts
@@ -107,6 +110,15 @@ Starts development mode with file watching:
 #### `npm run lint` / `npm run lint:fix`
 
 Lints all JavaScript files using ESLint. Use `lint:fix` to automatically resolve fixable issues.
+
+#### `npm test`
+
+Runs the full test suite with the built-in Node.js test runner. Related scripts:
+
+- `npm run test:unit` — unit tests only (`tests/unit/`)
+- `npm run test:integration` — integration tests only (`tests/integration/`)
+- `npm run test:watch` — re-run tests on change
+- `npm run test:verbose` — run with the natural-language reporter
 
 ### Environment Variables
 
