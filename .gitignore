@@ -8,3 +8,6 @@ node_modules/
 
 # Generated build cache — regenerated on every build.
 source/build_tools/user_interface/.cache/
+
+# Local development sandbox — never commit (see index.html header comment).
+/index.html

@@ -51,7 +51,7 @@ _Dieter Rams_
    cd source/build_tools/user_interface
    npm install
    ```
-4. That's it — the build derives all of its paths automatically, so there's nothing to configure for the default layout. Tenet expects the structure below; if your project differs, override the paths in `source/build_tools/user_interface/build_modules/config.js`:
+4. The build derives all of its paths automatically, so there's nothing to configure for the default layout. Tenet expects the structure below; if your project differs, override the paths in `source/build_tools/user_interface/build_modules/config.js`:
 
 | Path | Default Location |
 |------|------------------|
@@ -115,10 +115,10 @@ Lints all JavaScript files using ESLint. Use `lint:fix` to automatically resolve
 
 Runs the full test suite with the built-in Node.js test runner. Related scripts:
 
-- `npm run test:unit` — unit tests only (`tests/unit/`)
-- `npm run test:integration` — integration tests only (`tests/integration/`)
-- `npm run test:watch` — re-run tests on change
-- `npm run test:verbose` — run with the natural-language reporter
+- `npm run test:unit`: unit tests only (`tests/unit/`)
+- `npm run test:integration`: integration tests only (`tests/integration/`)
+- `npm run test:watch`: re-run tests on change
+- `npm run test:verbose`: run with the natural-language reporter
 
 ### Environment Variables
 
