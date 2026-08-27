@@ -70,10 +70,16 @@ const CACHE = path.join(BUILD_TOOLS, "user_interface/.cache");
 
 /**
  * Absolute path to the distribution/output directory (`distribution/assets/`).
+ *
+ * Set `TENET_OUTPUT_DIR` to write somewhere else. This exists so that tests
+ * which run the build's own tasks can be pointed at a scratch directory,
+ * rather than cleaning or overwriting the project's real output.
  * @private
  * @type {string}
  */
-const STATIC = path.join(SOURCE, "../distribution/assets");
+const STATIC = process.env.TENET_OUTPUT_DIR
+    ? path.resolve(process.env.TENET_OUTPUT_DIR)
+    : path.join(SOURCE, "../distribution/assets");
 
 // Ensure that cache directory exists on module load.
 ensureDirectoryExists(CACHE);

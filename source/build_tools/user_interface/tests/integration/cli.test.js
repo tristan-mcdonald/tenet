@@ -5,14 +5,31 @@
  * error handling, and exit codes.
  */
 
-import { describe, it } from "node:test";
+import { after, describe, it } from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import { spawn } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BUILD_SCRIPT = path.join(__dirname, "../../build.js");
+
+/**
+ * Scratch output directory for these tests.
+ *
+ * The CLI is spawned for real here, and some of its commands (`clean` in
+ * particular) delete whatever is in the output directory. Pointing the build
+ * at a scratch directory keeps it away from the project's real output, which
+ * is committed to the repository.
+ */
+const OUTPUT = path.join(__dirname, "../output/cli-integration");
+
+after(() => {
+    if (fs.existsSync(OUTPUT)) {
+        fs.rmSync(OUTPUT, { recursive: true });
+    }
+});
 
 /**
  * Execute the build script with given arguments.
@@ -25,6 +42,7 @@ function execBuild (args = [], timeout = 10000) {
     return new Promise((resolve) => {
         const child = spawn("node", [BUILD_SCRIPT, ...args], {
             cwd: path.join(__dirname, "../.."),
+            env: { ...process.env, TENET_OUTPUT_DIR: OUTPUT },
             timeout,
         });
 
