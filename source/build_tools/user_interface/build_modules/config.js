@@ -344,7 +344,7 @@ const PATHS = {
 /**
  * Tool-specific configuration options.
  *
- * Contains settings for each build tool: ESBuild, Stylus, PostCSS, ImageMin, etc.
+ * Contains settings for each build tool: ESBuild, Stylus, PostCSS, Sharp, etc.
  *
  * @type {Object}
  * @property {Object} browserify - Browserify configuration (legacy, unused).
@@ -356,7 +356,7 @@ const PATHS = {
  * @property {Object} stylint - Stylint linter configuration.
  * @property {Object} postcss - PostCSS plugin configuration.
  * @property {Object} cleanCss - CleanCSS minifier configuration.
- * @property {Object} imagemin - ImageMin optimiser configuration.
+ * @property {Object} sharp - Sharp image optimiser configuration.
  * @property {Object} watch - File watcher patterns.
  */
 const TOOLS = {
@@ -450,7 +450,7 @@ const TOOLS = {
      * @property {string[]} plugins - PostCSS plugins to use.
      */
     postcss: {
-        plugins: ["autoprefixer", "css-mqpacker"],
+        plugins: ["autoprefixer", "postcss-sort-media-queries"],
     },
 
     /**
@@ -465,19 +465,22 @@ const TOOLS = {
     },
 
     /**
-     * ImageMin optimiser configuration.
+     * Sharp image optimiser configuration. These objects are passed straight to
+     * Sharp's format methods, so any option those accept may be added here.
      * @type {Object}
-     * @property {Object} mozjpeg - JPEG optimisation options.
-     * @property {Object} pngquant - PNG optimisation options.
+     * @property {Object} jpeg - JPEG optimisation options.
+     * @property {Object} png - PNG optimisation options.
      */
-    imagemin: {
-        mozjpeg: {
+    sharp: {
+        jpeg: {
             quality: 80,
             progressive: true,
+            mozjpeg: true,
         },
-        pngquant: {
-            quality: [0.65, 0.8],
-            speed: 4,
+        png: {
+            quality: 80,
+            compressionLevel: 9,
+            palette: true,
         },
     },
 

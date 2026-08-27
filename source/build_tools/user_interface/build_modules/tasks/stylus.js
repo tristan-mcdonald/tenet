@@ -15,7 +15,7 @@
 import autoprefixer from "autoprefixer";
 import CleanCSS from "clean-css";
 import fs from "fs";
-import mqpacker from "css-mqpacker";
+import sortMediaQueries from "postcss-sort-media-queries";
 import path from "path";
 import postcss from "postcss";
 import stylus from "stylus";
@@ -215,7 +215,7 @@ async function processWithPostCSS (css, inputFile, outputFile) {
     try {
         const postcssProcessor = postcss([
             autoprefixer(),
-            mqpacker(),
+            sortMediaQueries(),
         ]);
 
         return await postcssProcessor.process(css, {

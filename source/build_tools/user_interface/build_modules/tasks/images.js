@@ -1,9 +1,9 @@
 /**
  * @fileoverview Image optimisation tasks.
  *
- * Handles image processing with ImageMin:
- * - **JPEG**: mozjpeg compression (quality 80, progressive)
- * - **PNG**: pngquant compression (quality 65-80%)
+ * Handles image processing with Sharp:
+ * - **JPEG**: mozjpeg-style compression (quality 80, progressive)
+ * - **PNG**: palette quantisation (quality 80, maximum compression)
  *
  * Features:
  * - Batch processing with concurrency control
@@ -15,10 +15,8 @@
  */
 
 import fs from "fs";
-import imagemin from "imagemin";
-import imageminMozjpeg from "imagemin-mozjpeg";
-import imageminPngquant from "imagemin-pngquant";
 import path from "path";
+import sharp from "sharp";
 
 import { calculateOptimization, findFilesForPattern, logFileProcessing, processBatchFiles } from "../task_utilities.js";
 import { createTaskError, ensureDirectoryExists, log, needsProcessing, recordFileProcessed, updateCache } from "../utilities.js";
@@ -26,21 +24,22 @@ import { ErrorSeverity, FileSystemError, ProcessError, ValidationError } from ".
 import { PATHS, TOOLS } from "../config.js";
 
 /**
- * Supported image types and their ImageMin processor factories.
+ * Supported image types and the Sharp format method used to encode each one.
+ * Each entry receives a Sharp instance and the options from `TOOLS.sharp`.
  * @type {Object.<string, Function>}
  * @private
  */
 const IMAGE_PROCESSORS = {
-    ".jpg": (options) => imageminMozjpeg(options),
-    ".jpeg": (options) => imageminMozjpeg(options),
-    ".png": (options) => imageminPngquant(options),
+    ".jpg": (image, options) => image.jpeg(options),
+    ".jpeg": (image, options) => image.jpeg(options),
+    ".png": (image, options) => image.png(options),
 };
 
 // Default concurrency limit for image processing.
 const CONCURRENCY_LIMIT = 5;
 
 /**
- * Minify images using imagemin with error handling.
+ * Minify images using Sharp with error handling.
  */
 export async function minifyImages () {
     log("Minifying images...", "INFO", "Images");
@@ -233,8 +232,8 @@ async function processImage (file) {
         // Get the appropriate processor for this file type.
         const processor = IMAGE_PROCESSORS[ext];
         const processorOptions = ext.includes("png")
-            ? TOOLS.imagemin.pngquant
-            : TOOLS.imagemin.mozjpeg;
+            ? TOOLS.sharp.png
+            : TOOLS.sharp.jpeg;
 
         // Validate processor options
         if (!processorOptions) {
@@ -272,9 +271,7 @@ async function processImage (file) {
         // Optimize the image.
         let optimizedBuffer;
         try {
-            optimizedBuffer = await imagemin.buffer(fileBuffer, {
-                plugins: [processor(processorOptions)],
-            });
+            optimizedBuffer = await processor(sharp(fileBuffer), processorOptions).toBuffer();
         } catch (error) {
             return {
                 file,
@@ -282,6 +279,13 @@ async function processImage (file) {
                 skipped: true,
                 reason: "optimization-failed",
             };
+        }
+
+        // Re-encoding can occasionally produce a larger file than the original, for instance
+        // where the source image has already been optimised. Keep whichever is smaller.
+        if (optimizedBuffer.length >= fileBuffer.length) {
+            log(`Re-encoding did not reduce ${relativePath}; keeping the original`, "DEBUG", "Images");
+            optimizedBuffer = fileBuffer;
         }
 
         // Validate optimized buffer.
