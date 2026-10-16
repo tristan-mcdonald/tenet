@@ -24,3 +24,55 @@ html
 
         *:focus
             outline none
+
+/**
+  * Remove animations and transitions for users who have asked their operating system to reduce
+  * motion. Durations are shortened rather than removed, so that `animationend` and `transitionend`
+  * events still fire for any scripts which rely on them.
+  */
+@media (prefers-reduced-motion: reduce)
+
+    *
+    *::before
+    *::after
+    *::backdrop // @stylint ignore
+        animation-duration .01ms !important // @stylint ignore
+        animation-iteration-count 1 !important // @stylint ignore
+        transition-duration .01ms !important // @stylint ignore
+        transition-delay 0s !important // @stylint ignore
+
+/**
+  * A link which allows keyboard users to skip past repeated content, such as the global navigation,
+  * to the page's main content. It's visually hidden above the viewport until it receives focus. It
+  * should be the first focusable element in the page.
+  */
+.skip_to_main_content
+    transition($properties: "top")
+    pos-a($z-index: 100)
+    top -(sp(4))
+    left sp(1)
+    bxsh-static()
+    border-radius $bdrs--times-two
+    background-color $cl--interface--black
+    padding sp(1/3) sp(2/3)
+
+    &:focus
+        top sp(1)
+
+    &__text
+        color white
+
+/**
+  * Show users that an element has a tooltip.
+  */
+[data-tooltip]
+    cursor help
+
+/**
+  * An empty, visually hidden element at the start of the page, with an attribute of
+  * `tabindex="-1"`. When content is replaced without a full page load, focus can be lost to the
+  * `body` element; moving focus to this element with JavaScript returns the user to the start of
+  * the page, with the skip link as the next focusable element.
+  */
+.initial_focus_element
+    accessibly-hidden()
