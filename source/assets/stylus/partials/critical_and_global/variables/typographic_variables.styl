@@ -1,9 +1,13 @@
-// Font family variables.
-$ff--light    = "inter-ui--regular", sans-serif
-$ff--body     = "inter-ui--regular", sans-serif
-$ff--emphasis = "inter-ui--italic", sans-serif
-$ff--strong   = "inter-ui--medium", sans-serif
-$ff--heading  = "inter-ui--medium", sans-serif
+/**
+  * Font family variables. Each web font is followed by its metric-matched fallback font, which is
+  * defined in `load_fonts.styl` to reduce layout shift while the web font loads, and then by
+  * generic fallbacks. Italic and strong text use the same variable font families as body text, as
+  * each variable font file contains the full weight range.
+  */
+$ff--body    = "inter", "inter--fallback", system-ui, sans-serif
+$ff--strong  = $ff--body
+$ff--heading = "fraunces", "fraunces--fallback", Georgia, serif
+$ff--mono    = ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace
 
 /**
   * Add an em value to account for some font families displaying with uneven spacing above the
@@ -24,17 +28,22 @@ $ratio--lrg = 1.28
 $ratio--med = ((($ratio--lrg - $ratio--sml) / 2) + $ratio--sml) // the middle point between $ratio--lrg and $ratio--sml
 
 /**
-  * Font-weight variables.
+  * Font-weight variables. Variable fonts accept any value between 100 and 900, so these can be
+  * fine-tuned to suit the typefaces chosen.
   */
-$fw--normal  = normal
-$fw--strong  = normal
-$fw--heading = normal
+$fw--light   = 300
+$fw--normal  = 400
+$fw--strong  = 600
+$fw--heading = 600
 
 /**
   * Line height variables.
   */
-$lh--body    = 1.618
-$lh--heading = 1.5
+$lh--body      = 1.618
+$lh--heading   = 1.5
+$lh--subscript = 1.5
+$lh--label     = 1.25
+$lh--single    = 1.1
 
 /**
   * Line-length variable. edit this to suit the typeface chosen. The line-length of heading elements
@@ -43,14 +52,17 @@ $lh--heading = 1.5
 $ll = 74
 
 /**
-  * Letter-spacing variables. Edit these to suit the typeface chosen.
+  * Letter-spacing variables. Edit these to suit the typefaces chosen.
   */
-$ls--body                = -.022em
-$ls--small-text          = -.016em
-$ls--uppercase           = -.006em
-$ls--strong              = -.034em
-$ls--heading--one-two    = -.046em
-$ls--heading--three-four = -.028em
+$ls--body       = -.022em
+$ls--small-text = -.016em
+$ls--uppercase  = -.006em
+$ls--strong     = -.034em
+$ls--numbers    = 0
+$ls--h1         = -.02em
+$ls--h2         = -.02em
+$ls--h3         = -.015em
+$ls--h4         = -.01em
 
 /**
   * Max-width variables for headings.
