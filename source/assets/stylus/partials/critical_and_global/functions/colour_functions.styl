@@ -50,3 +50,14 @@ modify-hsla(
     $final-value = "hsla(" + $hue + "," + $saturation + "%," + $lightness + "%," + $alpha + ")"
     // Remove string quotes from the final value, so that it is valid CSS
     return unquote($final-value)
+
+/**
+  * This function returns a colour with the same hue, saturation, and alpha as `$color`, at an
+  * absolute `$lightness`. Use it to derive a consistent scale of steps from a single base colour,
+  * so that each step sits at the same lightness regardless of the base colour's own lightness.
+  *
+  * For example:
+  * $cl--first--background = set-lightness($color: $cl--first, $lightness: 96%)
+  */
+set-lightness($color, $lightness)
+    hsla(hue($color), saturation($color), $lightness, alpha($color))
