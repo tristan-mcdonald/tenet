@@ -17,7 +17,7 @@ placeholder()
         {block}
 
 /**
-  * function for a simple anchor underline which appears on interaction, for use against a light
+  * Function for a simple anchor underline which appears on interaction, for use against a light
   * background.
   */
 content-anchor(
@@ -25,15 +25,17 @@ content-anchor(
     $interaction-color           = $cl--anchor--interact,
     $initial-underline-color     = modify-hsla($color: $initial-color, $a: -.6),
     $interaction-underline-color = $interaction-color,
-    $text-decoration-thickness   = $bw
+    $text-decoration-thickness   = $bw,
+    $text-underline-offset       = .1em
 )
     &
     &:visited
         transition($properties: "color, text-decoration-color")
-        text-decoration underline
+        text-decoration-line underline
         text-decoration-color $initial-underline-color
         text-decoration-skip-ink auto
         text-decoration-thickness $text-decoration-thickness
+        text-underline-offset $text-underline-offset
         color $initial-color
 
         &:active
@@ -50,16 +52,18 @@ content-anchor--dark-background(
     $initial-color               = alpha(white, .8),
     $interaction-color           = white,
     $initial-underline-color     = alpha(white, .4),
-    $interaction-underline-color = alpha(white, .8)
+    $interaction-underline-color = alpha(white, .8),
+    $text-decoration-thickness   = $bw--half,
+    $text-underline-offset       = .1em
 )
     &
     &:visited
         transition($properties: "color, text-decoration-color")
-        text-decoration underline
+        text-decoration-line underline
         text-decoration-color $initial-underline-color
         text-decoration-skip-ink auto
-        text-decoration-thickness $bw--half
-        text-underline-offset .1em
+        text-decoration-thickness $text-decoration-thickness
+        text-underline-offset $text-underline-offset
         color $initial-color
 
         &:active
@@ -95,8 +99,11 @@ pd-account-for-font-offset(
     else
         padding-top "calc(%s + %s)" % ($pd-vertical $ff-x-position-offset)
         padding-bottom "calc(%s - %s)" % ($pd-vertical $ff-x-position-offset)
+
 /**
-  * Function to set typographic styles for the various heading levels. Usage:
+  * Function to set typographic styles for the various heading levels. Vertical spacing is applied
+  * only within `.reading_content`, so that headings used elsewhere (in components, for example)
+  * don't gain margins which would need to be overridden. Usage:
   * display-as-heading($heading-level: 1)
   */
 display-as-heading($heading-level)
@@ -106,32 +113,74 @@ display-as-heading($heading-level)
 
     if $heading-level == 1
         max-width $maw--h1
-        letter-spacing $ls--heading--one-two
+        letter-spacing $ls--h1
         fz--plus-four()
 
-        * + &
+        .reading_content * + &
             sp-scale--four()
 
     else if $heading-level == 2
         max-width $maw--h2
-        letter-spacing $ls--heading--one-two
+        letter-spacing $ls--h2
         fz--plus-three()
 
-        * + &
+        .reading_content * + &
             sp-scale--three()
 
     else if $heading-level == 3
         max-width $maw--h3
-        letter-spacing $ls--heading--three-four
+        letter-spacing $ls--h3
         fz--plus-two()
 
-        * + &
+        .reading_content * + &
             sp-scale--two()
 
     else if $heading-level == 4
         max-width $maw--h4
-        letter-spacing $ls--heading--three-four
+        letter-spacing $ls--h4
         fz--plus-one()
 
-        * + &
+        .reading_content * + &
             sp-scale--one()
+
+/**
+  * Function to apply font settings to elements which should display as body copy text.
+  */
+display-as-body-copy()
+    font-weight $fw--normal
+    font-family $ff--body
+    letter-spacing $ls--body
+    font-size $fz--base
+
+/**
+  * Function to apply font settings to elements which should display as strong text.
+  */
+display-as-strong()
+    font-weight $fw--strong
+    font-family $ff--strong
+    letter-spacing $ls--strong
+
+/**
+  * Function to apply font settings to elements which should display as monospaced text. Tabular
+  * numbers keep columns of figures aligned.
+  */
+display-as-monospaced()
+    font-family $ff--mono
+    font-variant-numeric tabular-nums
+    letter-spacing $ls--numbers
+
+/**
+  * Function to apply styles for a small label, such as the term in a list of details.
+  */
+label()
+    display block
+    line-height $lh--label
+    fz--minus-one()
+    color $cl--text--metadata
+
+/**
+  * Function to account for a typeface appearing vertically misaligned, which is often due to it
+  * reserving space for diacritics. A negative `$amount` moves the text upwards.
+  */
+account-for-font-offset($amount = -.2em)
+    transform translateY($amount)
