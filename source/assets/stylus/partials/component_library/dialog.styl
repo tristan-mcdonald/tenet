@@ -1,0 +1,100 @@
+/**
+  * Modal dialogs, built on the native `dialog` element, which handles moving focus into the dialog,
+  * returning focus when it closes, closing on the escape key, and making the rest of the page
+  * inert. Open and close it with buttons using the `command` and `commandfor` attributes, which
+  * `dialog_commands.js` provides for browsers which don't yet support them.
+  *
+  * The dialog grows into visibility as it opens and shrinks as it closes. `@starting-style` sets
+  * the styles to transition from as it opens, and `allow-discrete` keeps it in the top layer and
+  * displayed until its closing transition has finished.
+  */
+.dialog
+    transition-property opacity, display, overlay
+    transition-duration $trsdu
+    transition-timing-function ease-out
+    transition-behavior allow-discrete
+    opacity 0
+    overflow visible
+    margin auto
+    max-width 92vw
+    max-height 92dvh
+    border none
+    background-color transparent
+    padding 0
+
+    &::backdrop
+        transition-property background-color, display, overlay
+        transition-duration $trsdu--times-two
+        transition-timing-function ease-out
+        transition-behavior allow-discrete
+        background-color transparent
+
+    &[open]
+        opacity 1
+
+        &::backdrop
+            background-color $cl--dialog--background
+
+        .dialog__inner
+            scale 1
+
+    @starting-style
+
+        &[open]
+            opacity 0
+
+        &[open]::backdrop
+            background-color transparent
+
+        &[open] .dialog__inner
+            scale .2
+
+    &__inner
+        transition($properties: "scale")
+        display flex
+        flex-direction column
+        overflow auto
+        bxsh-static()
+        scale .8
+        width 100%
+        max-width $contain--half
+        max-height 92dvh
+        border-radius $bdrs--times-two
+        background-color $cl--interface--high
+        padding sp(1)
+
+        &&--form
+        &&--simple_form
+            max-width 100%
+
+        &&--form
+            width $form-width-dialog
+
+        &&--simple_form
+            width $form-width-dialog-simple
+
+    &__heading_and_close_button
+        display flex
+        align-items flex-start
+        justify-content space-between
+        gap sp(2/3)
+
+    &__heading
+        flex 1 1 auto
+        display-as-heading($heading-level: 3)
+
+    &__close_button
+        transition($properties: "color")
+        flex 0 0 auto
+        height sp(2/3)
+        width @height
+        color $cl--action
+
+        &:focus
+        &:hover
+            color $cl--action--interact
+
+    &__content
+        display flex
+        flex-direction column
+        margin-top sp(2/3)
