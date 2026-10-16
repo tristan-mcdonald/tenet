@@ -34,7 +34,7 @@ textarea
     line-height $lh--body
     font-size inherit
     letter-spacing $ls--body
-    color $cl--text--copy
+    color $cl--text--body
 
 /**
   * Specify text styles for heading text. There are no styles for any heading levels lower than h4,
@@ -50,7 +50,6 @@ h4
     color $cl--text--heading
 
     a
-    a:visited
         content-anchor()
 
 h1
@@ -70,21 +69,12 @@ h4
   */
 p
     width auto
-    mt()
     max-width 100%
     font-family $ff--body
     font-size $fz--base
     line-height $lh--body
     letter-spacing $ls--body
-    color $cl--text--copy
-
-    h1 + &
-    h2 + &
-    h3 + &
-        margin-top sp(1/3)
-
-    h4 + &
-        margin-top sp(1/2)
+    color $cl--text--body
 
     /**
       * Add this class to paragraph content to constrain it to a readable line-length.
@@ -95,8 +85,21 @@ p
         width ($ll)ch
 
         > a
-        > a:visited
             content-anchor()
+
+    /**
+      * Vertical spacing between paragraphs is applied only within `.reading_content`.
+      */
+    .reading_content * + &
+        margin-top sp(1)
+
+    .reading_content h1 + &
+    .reading_content h2 + &
+    .reading_content h3 + &
+        margin-top sp(1/3)
+
+    .reading_content h4 + &
+        margin-top sp(1/2)
 
 /**
   * Specify generic anchor styles.
@@ -112,17 +115,15 @@ a:visited
   */
 b
 strong
-    font-weight $fw--strong
-    font-family $ff--strong
-    letter-spacing $ls--strong
+    display-as-strong()
 
 /**
-  * Specify styles for italic text.
+  * Specify styles for italic text. Each font family's italic style is a separate variable font file,
+  * which the browser selects according to `font-style`.
   */
 i
 em
-    font-style normal
-    font-family $ff--emphasis
+    font-style italic
 
 /**
   * Specify styles for superscript and subscript text.
@@ -141,8 +142,9 @@ sub
   * Specify styles for selected text.
   */
 ::selection
-    background-color $cl--text--copy
+    background-color $cl--text--body
     text-shadow 0 0 .1em $cl--text--heading
+    -webkit-text-fill-color white // Override text which is filled with a clipped background gradient.
     color white
 
 /**
@@ -183,11 +185,11 @@ sub
         list-style-type lower-roman
 
     li
-        width ($ll)ch
-        max-width 100%
+        padding-left 1.3ch
+        width 100%
+        max-width ($ll)ch
 
         a
-        a:visited
             content-anchor()
 
         ul
@@ -198,3 +200,66 @@ sub
 
     * + li
         margin-top sp(1/2)
+
+    * + pre
+        margin-top sp(1)
+
+/**
+  * Specify styles for preformatted text, such as a block of code.
+  */
+pre
+    width 100%
+    max-width ($ll)ch
+    white-space pre-wrap
+    overflow-wrap break-word
+    display-as-monospaced()
+
+    a
+        content-anchor()
+
+/**
+  * Specify styles for inline code.
+  */
+code
+    border-radius $bdrs
+    background-color $cl--interface--dark
+    padding 0 .3em .1em
+    display-as-monospaced()
+    fz--minus-one()
+    color white
+
+    pre &
+        border-radius 0
+        background-color transparent
+        padding 0
+        font-size inherit
+        color inherit
+
+/**
+  * Specify styles for description lists without a class. Each term and its description(s) should
+  * be wrapped in a `div`, which displays them side-by-side.
+  */
+dl:not([class])
+    w-full()
+
+    > div:not([class])
+        display flex
+        flex-direction row
+        align-items flex-start
+        gap sp(1/3)
+        w-full()
+
+        &:not(:first-child)
+            margin-top sp(2/3)
+
+    dt:not([class])
+    dd:not([class])
+        display block
+        line-height $lh--heading
+
+    dt:not([class])
+        flex 0 0 8rem
+        display-as-strong()
+
+    dd:not([class])
+        flex 1 1 auto

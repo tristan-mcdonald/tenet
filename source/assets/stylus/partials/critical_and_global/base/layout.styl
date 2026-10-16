@@ -35,11 +35,10 @@ body
     width 100%
 
     /**
-      * Hide scrollbars when modal dialog is visible.
+      * Prevent the page behind a modal dialog from scrolling while the dialog is open.
       */
-    .overlay_is_visible &
+    &:has(dialog:modal)
         overflow hidden
-        max-height 100vh
 
 .main_content
     flex 1 0 auto
@@ -88,15 +87,28 @@ img
         width 100%
         max-width none
 
+/**
+  * SVG elements ignore pointer events, so that an icon inside an interactive element such as a
+  * `button` never becomes the target of the event in place of the element itself.
+  */
 svg
     overflow visible // Fix bug in firefox where edges of SVG display as cut.
+    pointer-events none
     height 100%
     max-height 100%
-    width 100%
-    max-width 100%
+    w-full()
 
 /**
   * Remove browser's native button styles.
   */
 button
     button-reset()
+
+/**
+  * Remove browsers' styles from autofilled inputs.
+  */
+input
+    filter none
+
+    &:autofill
+        background transparent
