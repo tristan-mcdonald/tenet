@@ -90,29 +90,46 @@ pos-s($z-index = auto)
     z-index $z-index
 
 /**
-  * Function to add a Material Design-style `box-shadow` which expands on interaction.
-  * `$inset-color` takes a darker step of the element's `background-color`. Note the colon, which is
-  * Stylus syntax for multi-line properties.
+  * Function to add a subtle `box-shadow` which expands on interaction. `$tint` sets the colour of
+  * the shadow at rest, and `$interaction-tint` the colour of the expanded shadow. Note the colon,
+  * which is Stylus syntax for multi-line properties.
   */
-bxsh-interaction($inset-color)
-    box-shadow: // @stylint ignore
-        0 1px 4px modify-hsla($color: $cl--text--heading, $a: -.96),
-        0 1px 2px modify-hsla($color: $cl--text--heading, $a: -.8),
-        inset 0 -1px 2px $inset-color
+bxsh-interactive(
+    $tint             = $cl--interface,
+    $interaction-tint = $cl--text--metadata
+)
+    bxsh-static($tint: $tint)
 
     &:hover
     &:focus
         box-shadow: // @stylint ignore
-            0 14px 28px modify-hsla($color: $cl--text--heading, $a: -.8),
-            0 10px 10px modify-hsla($color: $cl--text--heading, $a: -.96)
+            0 12px 16px modify-hsla($color: $interaction-tint, $a: -.99),
+            0 6px 8px modify-hsla($color: $interaction-tint, $a: -.95)
 
 /**
-  * Function for non-interactive Material Design-style `box-shadow`.
+  * Function for a subtle, non-interactive `box-shadow`, tinted with the colour `$tint`.
   */
-bxsh-static()
+bxsh-static($tint = $cl--interface)
     box-shadow: // @stylint ignore
-        0 1px 4px modify-hsla($color: $cl--text--heading, $a: -.96),
-        0 1px 2px modify-hsla($color: $cl--text--heading, $a: -.8)
+        0 2px 4px modify-hsla($color: $tint, $a: -.99),
+        0 1px 1px modify-hsla($color: $tint, $a: -.95)
+
+/**
+  * Function to make an element display as its own distinct section of the page, like a card.
+  */
+section()
+    bxsh-static()
+    border-radius $bdrs--times-two
+    border $bw--half solid $cl--interface--border
+    background-color white
+    padding sp(2/3)
+
+/**
+  * Function to make an element fill the full width of its container.
+  */
+w-full()
+    width 100%
+    max-width 100%
 
 /**
   * Function to display list items in a flex-based repeating grid, for browser compatability when

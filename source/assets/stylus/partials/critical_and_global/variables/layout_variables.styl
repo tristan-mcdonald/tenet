@@ -17,11 +17,19 @@ $bdrs--times-two   = ($bdrs * 2)
 $bdrs--times-three = ($bdrs * 3)
 $bdrs--times-four  = ($bdrs * 4)
 
-
 /**
   * Global container width variables.
   */
-$contain         = 1520px
-$contain--wide   = ($contain * 1.5)
-$contain--narrow = ($contain * .75)
-$contain--half   = ($contain / 2)
+$contain               = 1520px
+$contain--plus-quarter = ($contain * 1.25)
+$contain--plus-half    = ($contain * 1.5)
+$contain--narrow       = ($contain * .75)
+$contain--half         = ($contain / 2)
+
+/**
+  * Form sizing variables. These are global, rather than part of the forms component, as other
+  * components such as dialogs size themselves around forms.
+  */
+$form-field-width         = 36rem
+$form-width-dialog        = ($form-field-width + ($sp * 2))
+$form-width-dialog-simple = 30rem
