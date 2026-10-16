@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tenet CSS — reference page</title>
+
+    <!--
+        Reference page for Tenet CSS.
+
+        Demonstrates the framework's base elements and components. Build markup here
+        while developing, and promote anything reusable into the Stylus partials so
+        it becomes part of the framework.
+
+        Stylesheet + script are the unminified build outputs. Run the watcher with:
+            cd source/build_tools/user_interface && npm run develop
+        then edit the Stylus/JS source and refresh the browser.
+    -->
+    <link rel="preload" href="distribution/assets/fonts/inter/inter--variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="distribution/assets/fonts/fraunces/fraunces--variable--latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="distribution/assets/css/app.css">
+</head>
+<body>
+    <span class="initial_focus_element" tabindex="-1"></span>
+    <a class="skip_to_main_content" href="#main_content">
+        <span class="skip_to_main_content__text">Skip to main content</span>
+    </a>
+
+    <main class="main_content" id="main_content" tabindex="-1">
+        <div class="page_content">
+            <article class="page_content__inner">
+                <div class="reading_content">
+
+                    <h1>Tenet CSS</h1>
+                    <p>
+                        This is the reference page for the framework. Resize the browser window
+                        and watch the type, spacing, and element sizes interpolate fluidly
+                        between the small and large viewport definitions &mdash; no font-size
+                        media queries required.
+                    </p>
+
+                    <h2>The typographic scale</h2>
+                    <p>
+                        Headings step up through a modular scale whose ratio itself
+                        interpolates with the viewport. The paragraph you are reading is
+                        constrained to a comfortable measure by the <b>reading_content</b>
+                        wrapper.
+                    </p>
+
+                    <h3>A third-level heading</h3>
+                    <p>
+                        Body copy sits at the base font-size. Inline styling is handled by
+                        the framework too: <strong>strong text</strong> uses a heavier weight
+                        of the same variable font, <em>emphasised text</em> uses its italic
+                        style, and footnotes can be marked with a superscript<sup>1</sup> or
+                        subscript<sub>2</sub>.
+                    </p>
+
+                    <h4>A fourth-level heading</h4>
+                    <p>
+                        Links inside reading content are styled distinctly, for example this
+                        <a href="#">anchor within a paragraph</a>. Try tabbing through the
+                        page with your keyboard to see the accessibility-aware focus styles,
+                        which only appear for keyboard users. The first press of the tab key
+                        reveals a link to skip to the main content.
+                    </p>
+
+                    <h3>Lists</h3>
+                    <ul>
+                        <li>Unordered lists use a disc marker&hellip;</li>
+                        <li>
+                            &hellip;and nest cleanly:
+                            <ul>
+                                <li>a circle at the second level,</li>
+                                <li>
+                                    and a square at the third:
+                                    <ul>
+                                        <li>like so.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Each item is constrained to a readable line-length.</li>
+                    </ul>
+
+                    <ol>
+                        <li>Ordered lists count with decimals,</li>
+                        <li>then lower-alpha when nested,</li>
+                        <li>then lower-roman below that.</li>
+                    </ol>
+
+                    <h3>Buttons</h3>
+                    <p>
+                        The <b>button</b> element is reset to a neutral base so you can style
+                        it from scratch: <button>An unstyled button</button>.
+                    </p>
+
+                    <h3>Code</h3>
+                    <p>
+                        Inline code, such as <code>display-as-heading()</code>, sits on a dark
+                        background. Blocks of preformatted text wrap to the reading measure:
+                    </p>
+                    <pre><code>.card
+    section()
+    w-full()
+
+    &amp;__heading
+        display-as-heading($heading-level: 3)</code></pre>
+
+                    <h3>Description lists</h3>
+                    <p>
+                        A description list without a class displays each term beside its
+                        description. Wrap each pair in a <code>div</code>.
+                    </p>
+                    <dl>
+                        <div>
+                            <dt>Typeface</dt>
+                            <dd>Inter for body text, and Fraunces for headings.</dd>
+                        </div>
+                        <div>
+                            <dt>Format</dt>
+                            <dd>Variable WOFF2 files, with a single file per style.</dd>
+                        </div>
+                        <div>
+                            <dt>Fallback</dt>
+                            <dd>Metric-matched system fonts, to minimise layout shift.</dd>
+                        </div>
+                    </dl>
+
+                    <h2>Forms</h2>
+                    <p>
+                        Text fields use a floating label, which rests inside the field until
+                        it has focus or a value. Validation styles appear only once you've
+                        interacted with a field.
+                    </p>
+
+                    <form class="form" action="#" method="post" novalidate>
+                        <ul class="form__non_field_errors" aria-label="Form errors">
+                            <li class="form__non_field_errors__item">
+                                This is an example of an error which doesn't belong to a single field.
+                            </li>
+                        </ul>
+
+                        <fieldset class="form__fields">
+                            <div class="form_component form_component--text">
+                                <label class="form_component__label" for="example_name">
+                                    <span class="form_component__label__text">Full name</span>
+                                    <span class="form_component__label__required" aria-hidden="true">*</span>
+                                </label>
+                                <input class="form_component__input" type="text" id="example_name" name="name" placeholder=" " autocomplete="name" required>
+                            </div>
+
+                            <div class="form_component form_component--email">
+                                <label class="form_component__label" for="example_email">
+                                    <span class="form_component__label__text">Email address</span>
+                                    <span class="form_component__label__required" aria-hidden="true">*</span>
+                                </label>
+                                <input class="form_component__input" type="email" id="example_email" name="email" placeholder=" " autocomplete="email" aria-describedby="example_email_help" required>
+                                <p class="form_component__help_text" id="example_email_help">We'll only use this to reply to you.</p>
+                            </div>
+
+                            <div class="form_component form_component--number">
+                                <label class="form_component__label" for="example_quantity">
+                                    <span class="form_component__label__text">Quantity</span>
+                                </label>
+                                <input class="form_component__input" type="number" id="example_quantity" name="quantity" placeholder=" " min="1" aria-describedby="example_quantity_error" aria-invalid="true" value="0">
+                                <p class="form_component__field_error" id="example_quantity_error">Enter a quantity of 1 or more.</p>
+                            </div>
+
+                            <div class="form_component form_component--select">
+                                <label class="form_component__label" for="example_topic">
+                                    <span class="form_component__label__text">Topic</span>
+                                </label>
+                                <select class="form_component__select" id="example_topic" name="topic">
+                                    <option value=""></option>
+                                    <option value="question">A question</option>
+                                    <option value="feedback">Some feedback</option>
+                                    <option value="other">Something else</option>
+                                </select>
+                            </div>
+
+                            <div class="form_component form_component--textarea">
+                                <label class="form_component__label" for="example_message">
+                                    <span class="form_component__label__text">Message</span>
+                                </label>
+                                <textarea class="form_component__textarea" id="example_message" name="message" placeholder=" "></textarea>
+                            </div>
+
+                            <fieldset class="form_component form_component--radio">
+                                <legend class="form_component__label">Preferred contact method</legend>
+                                <div class="form_component__radio_option">
+                                    <input class="form_component__radio" type="radio" id="example_contact_email" name="contact" value="email" checked>
+                                    <label class="form_component__radio_label" for="example_contact_email">Email</label>
+                                </div>
+                                <div class="form_component__radio_option">
+                                    <input class="form_component__radio" type="radio" id="example_contact_phone" name="contact" value="phone">
+                                    <label class="form_component__radio_label" for="example_contact_phone">Phone</label>
+                                </div>
+                            </fieldset>
+
+                            <div class="form_component form_component--file">
+                                <label class="form_component__label" for="example_attachment">Attachment</label>
+                                <input class="form_component__file" type="file" id="example_attachment" name="attachment">
+                            </div>
+
+                            <div class="form_component form_component--checkbox">
+                                <input class="form_component__checkbox" type="checkbox" id="example_updates" name="updates" role="switch">
+                                <label class="form_component__checkbox_label" for="example_updates">Send me occasional updates</label>
+                            </div>
+
+                            <div class="form_component form_component--checkbox">
+                                <input class="form_component__checkbox" type="checkbox" id="example_terms" name="terms" role="switch" required>
+                                <label class="form_component__checkbox_label" for="example_terms">
+                                    I agree to the <a href="#">terms and conditions</a>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <div class="form__actions">
+                            <button class="form__button form__button--secondary" type="reset">Clear</button>
+                            <button class="form__button form__button--primary" type="submit">Send message</button>
+                        </div>
+                    </form>
+
+                    <h2>Dialogs</h2>
+                    <p>
+                        Dialogs use the native <code>dialog</code> element, opened and closed
+                        by buttons with <code>command</code> and <code>commandfor</code>
+                        attributes. Close them with the close button, the escape key, or by
+                        clicking the backdrop.
+                    </p>
+                    <div class="form__actions">
+                        <button class="form__button form__button--secondary" type="button" commandfor="example_dialog" command="show-modal">Open a dialog</button>
+                        <button class="form__button form__button--primary" type="button" commandfor="example_form_dialog" command="show-modal">Open a dialog with a form</button>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <dialog class="dialog" id="example_dialog" aria-labelledby="example_dialog_heading" closedby="any">
+        <div class="dialog__inner">
+            <div class="dialog__heading_and_close_button">
+                <h2 class="dialog__heading" id="example_dialog_heading">An example dialog</h2>
+                <button class="dialog__close_button" type="button" commandfor="example_dialog" command="close" aria-label="Close dialog">
+                    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+            <div class="dialog__content reading_content">
+                <p>
+                    The dialog grows into view as it opens, over a backdrop which fades
+                    in behind it. Focus moves into the dialog, and the page behind it
+                    can't be scrolled or interacted with until the dialog closes.
+                </p>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog class="dialog" id="example_form_dialog" aria-labelledby="example_form_dialog_heading" closedby="any">
+        <div class="dialog__inner dialog__inner--simple_form">
+            <div class="dialog__heading_and_close_button">
+                <h2 class="dialog__heading" id="example_form_dialog_heading">Rename this item</h2>
+                <button class="dialog__close_button" type="button" commandfor="example_form_dialog" command="close" aria-label="Close dialog">
+                    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+            <form class="dialog__content form" method="dialog">
+                <div class="form_component form_component--text">
+                    <label class="form_component__label" for="example_item_name">
+                        <span class="form_component__label__text">Item name</span>
+                    </label>
+                    <input class="form_component__input" type="text" id="example_item_name" name="item_name" placeholder=" " autofocus>
+                </div>
+                <div class="form__actions">
+                    <button class="form__button form__button--secondary" type="button" commandfor="example_form_dialog" command="close">Cancel</button>
+                    <button class="form__button form__button--primary" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- IIFE bundle: type-ratio interpolation, accessibility-aware focus detection, and dialog commands. -->
+    <script src="distribution/assets/js/app.js" defer></script>
+</body>
+</html>
