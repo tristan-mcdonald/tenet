@@ -1,0 +1,44 @@
+/**
+  * Checkboxes, displayed as a switch. The track and the knob are both drawn on the input element
+  * itself, so no additional markup is needed.
+  */
+.form_component
+
+    &--checkbox
+        flex-direction row
+        align-items flex-start
+        gap sp(1/2)
+
+        .form_component + &
+            margin-top sp(1/2)
+
+    &__checkbox
+        transition($properties: "background-color, background-position")
+        appearance none
+        cursor pointer
+        flex 0 0 auto
+        margin 0
+        height sp(1)
+        width sp(7/4)
+        border-radius sp(1)
+        background-color $cl--interface
+        background-image radial-gradient(circle closest-side, white 0 calc(100% - 1.5px), transparent 100%)
+        background-repeat no-repeat
+        background-size sp(1) sp(1)
+        background-position left center
+
+        &:checked
+            background-color $cl--form--selected
+            background-position right center
+
+        &:disabled
+            cursor not-allowed
+            opacity .5
+
+    &__checkbox_label
+        flex 1 1 auto
+        cursor pointer
+        line-height $lh--heading
+
+        a
+            content-anchor()

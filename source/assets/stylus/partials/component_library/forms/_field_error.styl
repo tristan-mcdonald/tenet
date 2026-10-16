@@ -1,0 +1,14 @@
+/**
+  * An error message for an individual field. Associate it with its field by giving the field an
+  * `aria-describedby` attribute containing the error's `id`, and an attribute of
+  * `aria-invalid="true"`.
+  */
+.form_component
+
+    // Nested so that these styles take precedence over the paragraph styles in `.reading_content`.
+    & &__field_error
+        display block
+        margin-top sp(1/4)
+        line-height $lh--heading
+        fz--minus-one()
+        color $cl--form--error

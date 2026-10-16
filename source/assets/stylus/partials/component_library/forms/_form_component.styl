@@ -1,0 +1,33 @@
+/**
+  * Native form controls which aren't otherwise styled, such as range inputs and progress bars, take
+  * the action colour.
+  */
+:root
+    accent-color $cl--action
+
+.form_component
+    display flex
+    flex-direction column
+    align-items flex-start
+    mt()
+    w-full()
+    max-width $form-field-width
+
+    > *
+        flex 0 0 auto
+
+/**
+  * Override browsers' default background colour for autofilled fields, which otherwise can't be
+  * changed with `background-color`.
+  */
+.form_component__input
+.form_component__textarea
+.form_component__select
+
+    &:autofill
+
+        &
+        &:hover
+        &:focus
+        &:active
+            box-shadow 0 0 0 100vmax $cl--form--background inset

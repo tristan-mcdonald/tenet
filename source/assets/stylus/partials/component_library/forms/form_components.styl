@@ -1,0 +1,28 @@
+/**
+  * The form component library. Each form field is wrapped in an element with the class
+  * `form_component`, and a modifier class for its type, such as `form_component--text`. See the
+  * sandbox `index.html` for example markup of each type.
+  */
+
+/**
+  * Set variables and functions to allow easy configuration of form-specific values.
+  */
+@import "_form_variables"
+@import "_form_functions"
+
+/**
+  * `_form_component.styl` and `_label.styl` must load first, to enable overriding with modifier
+  * classes.
+  */
+@import "_form_component"
+@import "_label"
+
+@import "_input_standard"
+@import "_textarea"
+@import "_select"
+@import "_checkbox"
+@import "_radio"
+@import "_file"
+@import "_help_text"
+@import "_field_error"
+@import "_form"

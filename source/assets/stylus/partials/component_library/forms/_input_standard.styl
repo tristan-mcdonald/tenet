@@ -1,0 +1,31 @@
+/**
+  * Text-like inputs: `text`, `email`, `number`, `password`, `search`, `tel`, and `url`. Give the
+  * input an attribute of `placeholder=" "`, so that `:placeholder-shown` can tell whether the input
+  * has a value.
+  */
+.form_component
+
+    &--email
+    &--number
+    &--password
+    &--search
+    &--tel
+    &--text
+    &--url
+        floating-label()
+
+        &:has(.form_component__input:focus)
+        &:has(.form_component__input:not(:placeholder-shown))
+        &:has(.form_component__input:autofill)
+            floated-label()
+
+    &__input
+        input-standard()
+
+        &[type="number"]
+            appearance textfield
+
+            &::-webkit-inner-spin-button
+            &::-webkit-outer-spin-button
+                appearance none
+                margin 0

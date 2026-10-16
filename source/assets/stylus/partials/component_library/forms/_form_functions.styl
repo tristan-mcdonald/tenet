@@ -1,0 +1,82 @@
+/**
+  * Function for standard input styles, shared by text inputs, textareas, and select elements.
+  * Placeholder text is hidden, as the field's floating label takes its place until the field has
+  * focus or a value.
+  */
+input-standard()
+    transition($properties: "border-color")
+    w-full()
+    border-radius $bdrs
+    border $bw--half solid $cl--form--input-border
+    background-color $cl--form--background
+    padding sp(2/3) sp(2/3) sp(1/2)
+    line-height $lh--single
+    letter-spacing $ls--body
+    color $cl--text--body
+
+    +placeholder()
+        opacity 0
+        color $cl--form--placeholder
+
+    &:hover
+    &:focus
+        border-color $cl--form--input-border--interact
+
+    /**
+      * Validation styles are applied only after the user has interacted with the field, or when
+      * the server has marked the field as invalid with `aria-invalid="true"`.
+      */
+    &:user-invalid
+    &[aria-invalid="true"]
+        border-color $cl--form--error
+
+    &:required:user-valid
+        border-color $cl--form--success
+
+    // Use the `readonly` attribute rather than `:read-only`, which always matches select elements.
+    &:disabled
+    &[readonly]
+        cursor not-allowed
+        border-color $cl--interface--border
+        background-color $cl--interface--light
+        color $cl--text--metadata
+
+/**
+  * Functions for a floating label, which sits inside its field like a placeholder, then moves up to
+  * sit on the field's top border once the field has focus or a value. Apply `floating-label()` to
+  * the `form_component` element, then apply `floated-label()` within a selector for each state in
+  * which the label should float, for example:
+  * ```
+  * .form_component--text
+  *     floating-label()
+  *
+  *     &:has(input:focus)
+  *     &:has(input:not(:placeholder-shown))
+  *         floated-label()
+  * ```
+  * Keep each condition as its own selector, as Stylus splits selectors at commas inside `:has()`.
+  */
+floating-label()
+    pos-r()
+
+    .form_component__label
+        transition($properties: "translate, scale, background-color")
+        pointer-events none
+        pos-a($z-index: 10)
+        top 0
+        left "calc(%s + %s)" % (sp(1/2) $bw--half)
+        translate 0 "calc(%s + %s)" % (sp(2/3) $bw--half)
+        transform-origin left center
+        max-width "calc(100% - %s)" % (sp(1))
+        border-radius $bdrs
+        padding 0 sp(1/6)
+        white-space nowrap
+        overflow hidden
+        text-overflow ellipsis
+
+floated-label()
+
+    .form_component__label
+        translate 0 -50%
+        scale .8
+        background-color $cl--form--background

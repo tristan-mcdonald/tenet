@@ -1,0 +1,66 @@
+.form
+    mt()
+    w-full()
+
+    /**
+      * A list of errors which don't apply to an individual field, such as a failed log-in.
+      */
+    /**
+      * Nested within `.form` so that these styles take precedence over the list styles in
+      * `.reading_content`.
+      */
+    & &__non_field_errors
+        w-full()
+        list-style none
+        margin-bottom sp(3/2)
+        border-top $bw solid $cl--form--error
+        border-bottom $bw solid $cl--form--error
+        padding sp(1/3) 0
+
+        &__item
+            width auto
+            padding-left 0
+            line-height $lh--heading
+            color $cl--form--error
+
+            & + .form__non_field_errors__item
+                margin-top sp(1/3)
+
+    &__fields
+        border none
+        w-full()
+
+    &__actions
+        display flex
+        flex-direction row
+        flex-wrap wrap
+        align-items center
+        justify-content flex-end
+        gap sp(1/2)
+        margin-top sp(1)
+        w-full()
+
+    &__button
+        transition($properties: "background-color, border-color, color")
+        border-radius $bdrs--times-two
+        border $bw--half solid transparent
+        padding sp(1/3) sp(2/3)
+        line-height $lh--single
+        display-as-strong()
+
+        &--primary
+            background-color $cl--action
+            color white
+
+            &:hover
+            &:focus
+                background-color $cl--action--interact
+
+        &--secondary
+            border-color $cl--action--subtle
+            background-color $cl--form--background
+            color $cl--action--interact
+
+            &:hover
+            &:focus
+                border-color $cl--action

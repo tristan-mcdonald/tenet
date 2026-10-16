@@ -1,0 +1,35 @@
+/**
+  * File inputs. The browser's file selection button is styled with `::file-selector-button`, so no
+  * additional markup or JavaScript is needed.
+  */
+.form_component
+
+    &__file
+        cursor pointer
+        w-full()
+        color $cl--form--help-text
+
+        &::file-selector-button
+            transition($properties: "background-color, box-shadow")
+            cursor pointer
+            margin-right sp(1/2)
+            border-radius $bdrs--times-two
+            border none
+            box-shadow inset 0 -2px 0 $cl--interface--dark
+            background-color $cl--interface
+            padding sp(1/6) sp(1/2) sp(1/4)
+            font inherit
+            color white
+
+        &:hover::file-selector-button
+            box-shadow inset 0 1px 2px $cl--interface--dark
+            background-color $cl--interface--dark
+
+    /**
+      * Visible focus styles are moved from the input as a whole to its button.
+      */
+    html[data-focus-source="key"] &__file:focus
+        outline none
+
+        &::file-selector-button
+            focus-styles()

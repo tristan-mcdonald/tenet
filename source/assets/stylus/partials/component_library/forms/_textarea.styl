@@ -1,0 +1,25 @@
+/**
+  * Textareas grow to fit their content in browsers which support `field-sizing`, between a minimum
+  * of four lines and a maximum of twelve. Give the textarea an attribute of `placeholder=" "`, so
+  * that `:placeholder-shown` can tell whether it has a value.
+  */
+.form_component
+
+    &--textarea
+        floating-label()
+
+        // Align the resting label with the textarea's first line, which has a taller line-height.
+        .form_component__label
+            translate 0 "calc(%s + %s + %sem)" % (sp(2/3) $bw--half (($lh--body - $lh--label) / 2))
+
+        &:has(.form_component__textarea:focus)
+        &:has(.form_component__textarea:not(:placeholder-shown))
+            floated-label()
+
+    &__textarea
+        input-standard()
+        field-sizing content
+        resize vertical
+        min-height "calc((4lh + %s) + %s)" % (sp(7/6) $bw)
+        max-height "calc((12lh + %s) + %s)" % (sp(7/6) $bw)
+        line-height $lh--body

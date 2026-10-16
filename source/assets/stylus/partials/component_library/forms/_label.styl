@@ -1,0 +1,17 @@
+.form_component
+
+    &__label
+        display block
+        line-height $lh--label
+        color $cl--form--label
+
+        &__required
+            margin-left .25ch
+            color $cl--form--error
+
+    /**
+      * Colour the label to match its field's validation state.
+      */
+    &:has(:user-invalid) &__label
+    &:has([aria-invalid="true"]) &__label
+        color $cl--form--error

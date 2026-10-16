@@ -1,0 +1,15 @@
+/**
+  * Help text, which describes what a field expects. Associate it with its field by giving the field
+  * an `aria-describedby` attribute containing the help text's `id`.
+  */
+/**
+  * Nested within `.form_component` so that these styles take precedence over the paragraph styles
+  * in `.reading_content`.
+  */
+.form_component
+
+    & &__help_text
+        margin-top sp(1/4)
+        line-height $lh--heading
+        fz--minus-one()
+        color $cl--form--help-text
