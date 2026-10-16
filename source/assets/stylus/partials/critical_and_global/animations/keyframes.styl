@@ -1,5 +1,6 @@
 /**
-  * An animation where an element appears to slide in from the right of the viewport.
+  * Animations where an element appears to slide in from an edge of the viewport, and to slide
+  * out again across the same edge. Useful for off-canvas panels.
   */
 @keyframes reveal_from_right
     0%
@@ -7,34 +8,203 @@
     100%
         transform translateX(0)
 
-/**
-  * An animation where an element appears to slide in from the left of the viewport.
-  */
 @keyframes reveal_from_left
     0%
         transform translateX(-100%)
     100%
         transform translateX(0)
 
+@keyframes reveal_from_top
+    0%
+        transform translateY(-100%)
+    100%
+        transform translateY(0)
+
+@keyframes reveal_from_bottom
+    0%
+        transform translateY(100%)
+    100%
+        transform translateY(0)
+
+@keyframes conceal_to_right
+    0%
+        transform translateX(0)
+    100%
+        transform translateX(100%)
+
+@keyframes conceal_to_left
+    0%
+        transform translateX(0)
+    100%
+        transform translateX(-100%)
+
+@keyframes conceal_to_top
+    0%
+        transform translateY(0)
+    100%
+        transform translateY(-100%)
+
+@keyframes conceal_to_bottom
+    0%
+        transform translateY(0)
+    100%
+        transform translateY(100%)
+
 /**
-  * An animation where an element appears to fade in over already present content.
+  * Animations for an element to fade into and out of visibility.
   */
-@keyframes modal--open
+@keyframes fade_into_visibility--in
     0%
         opacity 0
     100%
         opacity 1
 
-/**
-  * An animation where an element appears to fade out over already present content.
-  */
-@keyframes modal--close
+@keyframes fade_into_visibility--out
     0%
-        visibility visible
         opacity 1
     100%
-        visibility hidden
         opacity 0
+
+/**
+  * Animations for an element to grow as it fades into visibility, and to shrink as it fades out
+  * of visibility.
+  */
+@keyframes grow_into_visibility--in
+    0%
+        opacity 0
+        transform scale(.2)
+    100%
+        opacity 1
+        transform scale(1)
+
+@keyframes grow_into_visibility--out
+    0%
+        opacity 1
+        transform scale(1)
+    100%
+        opacity 0
+        transform scale(.8)
+
+/**
+  * Animations for an element to slide as it fades into visibility, and as it fades out of
+  * visibility. The modifier is the direction in which the element moves; for example,
+  * `slide_into_visibility--up` moves the element upwards from below its final position.
+  */
+@keyframes slide_into_visibility--up
+    0%
+        opacity 0
+        transform translateY(105%)
+    100%
+        opacity 1
+        transform translateY(0)
+
+@keyframes slide_into_visibility--down
+    0%
+        opacity 0
+        transform translateY(-105%)
+    100%
+        opacity 1
+        transform translateY(0)
+
+@keyframes slide_into_visibility--left
+    0%
+        opacity 0
+        transform translateX(105%)
+    100%
+        opacity 1
+        transform translateX(0)
+
+@keyframes slide_into_visibility--right
+    0%
+        opacity 0
+        transform translateX(-105%)
+    100%
+        opacity 1
+        transform translateX(0)
+
+@keyframes slide_out_of_visibility--up
+    0%
+        opacity 1
+        transform translateY(0)
+    100%
+        opacity 0
+        transform translateY(-105%)
+
+@keyframes slide_out_of_visibility--down
+    0%
+        opacity 1
+        transform translateY(0)
+    100%
+        opacity 0
+        transform translateY(105%)
+
+@keyframes slide_out_of_visibility--left
+    0%
+        opacity 1
+        transform translateX(0)
+    100%
+        opacity 0
+        transform translateX(-105%)
+
+@keyframes slide_out_of_visibility--right
+    0%
+        opacity 1
+        transform translateX(0)
+    100%
+        opacity 0
+        transform translateX(105%)
+
+/**
+  * Animations for a modal dialog's backdrop to fade into and out of visibility.
+  */
+@keyframes dialog_backdrop--in
+    0%
+        background-color transparent
+    100%
+        background-color $cl--dialog--background
+
+@keyframes dialog_backdrop--out
+    0%
+        background-color $cl--dialog--background
+    100%
+        background-color transparent
+
+/**
+  * Animation for a pulsing circle, to draw the user's attention.
+  */
+@keyframes pulsate
+    0%
+        transform scale(.6)
+        opacity 0
+    50%
+        opacity 1
+    100%
+        transform scale(1.6)
+        opacity 0
+
+/**
+  * Animation for a spinning element, to show the user that the app is waiting for an operation.
+  */
+@keyframes show_progress
+    0%
+        transform rotate(0deg)
+    100%
+        transform rotate(360deg)
+
+/**
+  * Animation to make an element wiggle, to draw the user's attention.
+  */
+@keyframes wiggle
+    0%
+        transform rotate(0deg)
+    4%
+        transform rotate(-8deg) scale(1.04)
+    8%
+        transform rotate(8deg) scale(1.04)
+    12%
+        transform rotate(0deg)
+    100%
+        transform rotate(0deg)
 
 /**
   * Animations for action anchor arrows to move on interaction.
