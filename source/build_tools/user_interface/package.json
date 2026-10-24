@@ -29,7 +29,7 @@
     "postcss": "^8.5.26",
     "postcss-sort-media-queries": "^6.7.1",
     "rupture": "^0.7.1",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "stylint": "^2.0.0",
     "stylus": "^0.64.0"
   },
